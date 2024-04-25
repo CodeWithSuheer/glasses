@@ -123,7 +123,7 @@ const Header = () => {
               </Link>
 
               {/* CART & SEARCH */}
-              <div className="cart_search flex items-center border-l border-gray-600">
+              <div className="cart_search flex ml-3 pl-3 py-0 items-center border-l border-gray-600">
                 <Link
                   to="/blog"
                   onClick={() => window.scroll(0, 0)}
