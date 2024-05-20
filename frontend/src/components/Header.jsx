@@ -1,16 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { BsHandbag } from "react-icons/bs";
 import "./Header.css";
 
 const Header = () => {
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
+
   const navigate = useNavigate();
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [state, setState] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const navigation = [
+    { title: "Home", path: "/" },
+    { title: "About", path: "/" },
+    { title: "Shop", path: "/" },
+    { title: "Blog", path: "/" },
+  ];
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -36,24 +48,25 @@ const Header = () => {
 
   return (
     <>
+      {/* {!isHomePage && ( */}
       <nav
-        className={`w-full header_back py-0 border border-gray-600 transition-all fixed top-0 left-0 right-0 z-60`}
+        className={`navbar absolute top-0 w-full py-0 border-b bg-transparent border-[#A4A3A2] transition-all `}
       >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl px-3 sm:px-6 xl:px-0 mx-auto">
-          <div className="lg:flex lg:items-center lg:justify-between">
-            <div className="flex items-center justify-between border-r border-gray-600 py-5">
+          <div className="lg:flex lg:items-center lg:justify-between ">
+            <div className="flex items-center justify-between border-0 lg:border-r border-[#A4A3A2] py-6">
               {/* -------------- BRAND LOGO -------------- */}
               <Link
-                onClick={handleLinkClick}
                 to="/"
+                onClick={handleLinkClick}
                 className="flex items-center gap-0.5 md:pr-8"
               >
-                <img
+                {/* <img
                   className="w-auto h-10 sm:h-12"
                   src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Untitled_design.png?v=1713204274"
                   alt="Octa Tech Solution LLC Logo"
-                />
-                <h2 className="text-xl mt-1 ml-2 sm:text-3xl font-semibold">
+                /> */}
+                <h2 className="text-xl mt-1 text-white ml-2 sm:text-3xl font-semibold">
                   ClearView
                 </h2>
               </Link>
@@ -63,7 +76,7 @@ const Header = () => {
                 <button
                   onClick={toggleMenu}
                   type="button"
-                  className="text-gray-500  hover:text-gray-600 focus:outline-none focus:text-gray-600"
+                  className="text-gray-100  hover:text-gray-600 focus:outline-none focus:text-gray-600"
                   aria-label="toggle menu"
                 >
                   {isOpen ? (
@@ -92,49 +105,31 @@ const Header = () => {
             </div>
 
             {/* -------------- MENU FOR LARGE VIEW -------------- */}
-            <div className="hidden lg:flex lg:items-center" ref={dropdownRef}>
-              <Link
-                to="/services"
-                onClick={() => window.scroll(0, 0)}
-                className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 xl:mx-8 text-lg font-medium tracking-wide text-gray-900 rounded-xl"
-              >
-                Home
-              </Link>
-              <Link
-                to="/industries"
-                onClick={() => window.scroll(0, 0)}
-                className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 xl:mx-8 text-lg font-medium tracking-wide text-gray-900 rounded-xl"
-              >
-                About
-              </Link>
-              <Link
-                to="/blog"
-                onClick={() => window.scroll(0, 0)}
-                className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 xl:mx-8 text-lg font-medium tracking-wide text-gray-900 rounded-xl"
-              >
-                Shop
-              </Link>
-              <Link
-                to="/blog"
-                onClick={() => window.scroll(0, 0)}
-                className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 xl:mx-8 text-lg font-medium tracking-wide text-gray-900 rounded-xl"
-              >
-                Blog
-              </Link>
+            <div className="hidden lg:flex lg:items-center">
+              {navigation.map((data, index) => (
+                <Link
+                  key={index}
+                  to={data.path}
+                  onClick={() => window.scroll(0, 0)}
+                  className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-6 xl:mx-8 text-lg font-medium tracking-wide text-white rounded-xl"
+                >
+                  {data.title}
+                </Link>
+              ))}
 
               {/* CART & SEARCH */}
-              <div className="cart_search flex ml-3 pl-3 py-0 items-center border-l border-gray-600">
+              <div className="cart_search flex ml-3 pl-3 py-7 items-center border-l border-[#A4A3A2]">
                 <Link
                   to="/blog"
                   onClick={() => window.scroll(0, 0)}
-                  className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 xl:mx-4 text-lg font-medium tracking-wide text-gray-900 rounded-xl"
+                  className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-4 xl:mx-4 text-lg font-medium tracking-wide text-white rounded-xl"
                 >
                   <IoSearchOutline size={22} />
                 </Link>
                 <Link
                   to="/cart"
                   onClick={() => window.scroll(0, 0)}
-                  className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 xl:mx-4 text-lg font-medium tracking-wide text-gray-900 rounded-xl"
+                  className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-4 xl:mx-4 text-lg font-medium tracking-wide text-white rounded-xl"
                 >
                   <BsHandbag size={22} />
                 </Link>
@@ -195,6 +190,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      {/* )} */}
     </>
   );
 };

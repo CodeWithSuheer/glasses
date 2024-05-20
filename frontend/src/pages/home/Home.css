@@ -1,6 +1,19 @@
+Inter {
+  font-family: "Inter", sans-serif;
+}
+
+Noto {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
 .heroSectionbg {
-  background-image: url("https://cdn.shopify.com/s/files/1/0852/5099/8550/files/hero-home.jpg?v=1714088869");
+  background-image: url("https://res.cloudinary.com/dgsnff8tg/image/upload/v1714158942/Artboard_2_4x_1_ozdho1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.up:hover {
+  transform: translateY(-8px);
+  transition: 0.5s ease;
 }
