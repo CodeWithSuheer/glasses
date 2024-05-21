@@ -1,7 +1,6 @@
 import { FaStar } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
-import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
 const data = [
   {
@@ -40,6 +39,42 @@ const data = [
     price: "88",
     sale_price: "49",
   },
+  {
+    id: "5",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "6",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "7",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "8",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
 ];
 
 // STAR RATING
@@ -51,29 +86,29 @@ const StarRating = ({ rating }) => {
   return <div className="flex">{stars}</div>;
 };
 
-const BestSeller = () => {
+const PopularProducts = () => {
   const navigate = useNavigate();
 
-  // HANDLE SHOP
-  const handleShop = () => {
-    navigate("/shop");
+  // HANDLE ITEM CLICK
+  const handleItemClick = (id) => {
+    navigate(`/selectedItem/${id}`);
     window.scroll(0, 0);
   };
 
   return (
     <>
-      <section className="w-full pt-20 pb-10">
-        <div className="px-3 sm:px-5 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
+      <section className="w-full bg-[#F5F5F5]">
+        <div className="py-20 px-3 sm:px-5 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="header text-center">
             <span
               style={{ letterSpacing: "4px" }}
               className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
             >
-              BEST
+              POPULAR
             </span>
             <h2 className="Noto mt-2 text-2xl font-semibold md:text-5xl md:leading-tight">
-              Best Seller
+              Popular Product
             </h2>
             <p className="mt-2.5 text-gray-600 dark:text-neutral-400">
               See how game-changing companies are making the most of every
@@ -81,6 +116,7 @@ const BestSeller = () => {
             </p>
           </div>
 
+          {/* DATA */}
           <div className="data">
             <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-4">
               {data.map((data, index) => (
@@ -123,20 +159,10 @@ const BestSeller = () => {
               ))}
             </div>
           </div>
-
-          <div className="buttons mt-14 flex justify-center items-center">
-            <button
-              onClick={handleShop}
-              className="px-6 py-3 text-md font-semibold flex justify-center items-center gap-1 border border-black hover:bg-black hover:text-white transition-colors duration-150"
-            >
-              <span>View All Products</span>{" "}
-              <IoIosArrowForward className="mt-0.5" />
-            </button>
-          </div>
         </div>
       </section>
     </>
   );
 };
 
-export default BestSeller;
+export default PopularProducts;

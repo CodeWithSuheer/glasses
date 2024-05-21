@@ -19,9 +19,9 @@ const Header = () => {
 
   const navigation = [
     { title: "Home", path: "/" },
-    { title: "About", path: "/" },
-    { title: "Shop", path: "/" },
-    { title: "Blog", path: "/" },
+    { title: "About", path: "/about" },
+    { title: "Shop", path: "/shop" },
+    { title: "Blog", path: "/blogs" },
   ];
 
   const handleClickOutside = (event) => {
@@ -67,7 +67,7 @@ const Header = () => {
                   alt="Octa Tech Solution LLC Logo"
                 /> */}
                 <h2 className="text-xl mt-1 text-white ml-2 sm:text-3xl font-semibold">
-                  ClearView
+                  Googly
                 </h2>
               </Link>
 
@@ -111,7 +111,7 @@ const Header = () => {
                   key={index}
                   to={data.path}
                   onClick={() => window.scroll(0, 0)}
-                  className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-6 xl:mx-8 text-lg font-medium tracking-wide text-white rounded-xl"
+                  className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-6 xl:mx-6 text-lg font-medium tracking-wide text-white rounded-xl"
                 >
                   {data.title}
                 </Link>
@@ -119,6 +119,7 @@ const Header = () => {
 
               {/* CART & SEARCH */}
               <div className="cart_search flex ml-3 pl-3 py-7 items-center border-l border-[#A4A3A2]">
+                {/* SEARCH */}
                 <Link
                   to="/blog"
                   onClick={() => window.scroll(0, 0)}
@@ -126,6 +127,8 @@ const Header = () => {
                 >
                   <IoSearchOutline size={22} />
                 </Link>
+
+                {/* CART */}
                 <Link
                   to="/cart"
                   onClick={() => window.scroll(0, 0)}

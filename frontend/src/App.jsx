@@ -20,6 +20,7 @@ import OtpChecker from "./auth/OtpChecker";
 import ResetPass from "./auth/ResetPass";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Terms from "./components/Terms";
+import Blogs from "./pages/blog/Blogs";
 
 function App() {
   return (
@@ -49,8 +50,9 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/blogs/:id" element={<Blogs />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
       <Toaster />
     </>
