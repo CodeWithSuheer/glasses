@@ -4,6 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   const handleMoveToTop = () => {
@@ -12,18 +13,14 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="w-full bg-[#ECECFB] text-black">
+      <footer className="w-full bg-[#F3F4F6] text-black">
         <div className="max-w-7xl mx-auto">
           {/* FOOTER UPPER PART  */}
           <div className="pt-20 pb-16 px-4 md:px-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-5">
             {/* LOGO & HEADING */}
             <div className="sm:col-span-2">
               <h1 className="max-w-lg flex items-center text-xl font-semibold tracking-tight text-black xl:text-2xl">
-                <img
-                  className="-ml-3 w-12"
-                  src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/aaa.png?v=1713875658"
-                  alt="logo"
-                />
+                <img className="w-auto h-16" src={logo} alt="logo" />
               </h1>
               <p className="max-w-md text-[1rem] mt-3">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.

@@ -51,7 +51,7 @@ const HomeBlogs = () => {
                   </h3>
 
                   <time
-                    datetime="2022-10-10"
+                    dateTime="2022-10-10"
                     className="block text-xs text-gray-500"
                   >
                     {" "}
@@ -76,7 +76,7 @@ const HomeBlogs = () => {
                   </h3>
 
                   <time
-                    datetime="2022-10-10"
+                    dateTime="2022-10-10"
                     className="block text-xs text-gray-500"
                   >
                     {" "}
@@ -101,7 +101,7 @@ const HomeBlogs = () => {
                   </h3>
 
                   <time
-                    datetime="2022-10-10"
+                    dateTime="2022-10-10"
                     className="block text-xs text-gray-500"
                   >
                     {" "}

@@ -10,11 +10,11 @@ const Shop = () => {
   return (
     <>
       <section className="shopSectionbg ">
-        <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
-          <div className="pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
+        <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
+          <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}
-            <div className="flex items-center">
-              <div className="content">
+            <div className="flex items-end lg:items-center justify-center lg:justify-start">
+              <div className="content text-center lg:text-start">
                 <span
                   style={{ letterSpacing: "4px" }}
                   className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
@@ -22,20 +22,24 @@ const Shop = () => {
                   SHOP
                 </span>
 
-                <h2 className="Noto max-w-sm mt-4 mb-6 text-6xl font-medium text-white tracking-normal">
+                <h2 className="Noto mt-4 mb-6 text-4xl md:text-5xl font-medium text-white tracking-normal">
                   Shop
                 </h2>
               </div>
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex items-center justify-end">
-              <h2 className="mt-12 flex items-center gap-2 text-left font-semibold text-white text-xl">
-                <Link to="/" className="flex items-center gap-2">
+            <div className="flex items-start lg:items-center justify-center lg:justify-end">
+              <h2 className="mt-6 flex items-center gap-2 text-left font-normal text-white text-md md:text-lg">
+                <Link
+                  to="/"
+                  className="flex items-center gap-1 hover:underline hover:underline-offset-4"
+                >
                   <FaHome />
                   Home
                 </Link>{" "}
-                <IoIosArrowForward /> Shop
+                <IoIosArrowForward />
+                Shop
               </h2>
             </div>
           </div>

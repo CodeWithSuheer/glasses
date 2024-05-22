@@ -118,11 +118,12 @@ const PopularProducts = () => {
 
           {/* DATA */}
           <div className="data">
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-4">
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-x-4 lg:gap-y-7">
               {data.map((data, index) => (
                 <div
                   key={index}
-                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg"
+                  onClick={() => handleItemClick(data?.id)}
+                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150"
                 >
                   <img
                     className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
@@ -148,10 +149,7 @@ const PopularProducts = () => {
                       </span>
                     </p>
 
-                    <button
-                      onClick={() => handleItemClick(data?.id)}
-                      className="text-sm px-5 py-2 bg-black text-white font-semibold"
-                    >
+                    <button className="text-sm px-5 py-2 bg-black text-white font-semibold">
                       Add To Cart
                     </button>
                   </div>

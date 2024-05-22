@@ -40,7 +40,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "1",
+    id: "5",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -49,7 +49,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "2",
+    id: "6",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -58,7 +58,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "3",
+    id: "7",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
     name: "Crystal Wave",
@@ -67,7 +67,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "4",
+    id: "8",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -76,7 +76,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "1",
+    id: "9",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -85,7 +85,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "2",
+    id: "10",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -94,7 +94,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "3",
+    id: "11",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
     name: "Crystal Wave",
@@ -103,7 +103,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "4",
+    id: "12",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -112,7 +112,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "1",
+    id: "13",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -121,7 +121,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "2",
+    id: "14",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -130,7 +130,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "3",
+    id: "15",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
     name: "Crystal Wave",
@@ -139,7 +139,7 @@ const data = [
     sale_price: "49",
   },
   {
-    id: "4",
+    id: "16",
     image:
       "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
     name: "Crystal Wave",
@@ -166,9 +166,15 @@ const AllProducts = () => {
     console.log("Get More Products");
   };
 
+  // HANDLE ITEM CLICK
+  const handleItemClick = (id) => {
+    navigate(`/selectedItem/${id}`);
+    window.scroll(0, 0);
+  };
+
   return (
     <>
-      <section className="w-full pt-20 pb-10">
+      <section id="products" className="w-full pt-20 pb-10">
         <div className="px-3 sm:px-5 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="header text-center">
@@ -192,7 +198,8 @@ const AllProducts = () => {
               {data.map((data, index) => (
                 <div
                   key={index}
-                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-150"
+                  onClick={() => handleItemClick(data?.id)}
+                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150"
                 >
                   <img
                     className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"

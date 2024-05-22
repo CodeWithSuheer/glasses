@@ -1,7 +1,14 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useRef } from "react";
 
 const data = [
   {
@@ -53,10 +60,66 @@ const StarRating = ({ rating }) => {
 
 const BestSeller = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [slidesToShow, setSlidesToShow] = useState(4);
+  // const loading = useSelector((state) => state.products.Productloading);
+  const sliderRef = useRef(null);
+
+  const next = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+
+  const previous = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+
+  const settings = {
+    infinite: true,
+    slidesToShow: slidesToShow,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    arrows: false,
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1200) {
+        setSlidesToShow(4); // Full Desktop view
+      } else if (window.innerWidth >= 1024) {
+        setSlidesToShow(3); // Desktop view
+      } else if (window.innerWidth >= 768) {
+        setSlidesToShow(2); // Tablet view
+      } else {
+        setSlidesToShow(1); // Mobile view
+      }
+    };
+
+    // Initial update
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // HANDLE SHOP
   const handleShop = () => {
     navigate("/shop");
+    window.scroll(0, 0);
+  };
+
+  // HANDLE ITEM CLICK
+  const handleItemClick = (id) => {
+    navigate(`/selectedItem/${id}`);
     window.scroll(0, 0);
   };
 
@@ -82,45 +145,45 @@ const BestSeller = () => {
           </div>
 
           <div className="data">
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-4">
-              {data.map((data, index) => (
-                <div
-                  key={index}
-                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg"
-                >
-                  <img
-                    className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
-                    src={data.image}
-                    alt="products"
-                  />
+            <div className="mt-8 sm:mt-12">
+              <Slider ref={sliderRef} {...settings}>
+                {data.map((data, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleItemClick(data?.id)}
+                    className="group max-w-[17rem] mx-auto overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150"
+                  >
+                    <img
+                      className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
+                      src={data.image}
+                      alt="products"
+                    />
 
-                  <div className="py-5 text-center">
-                    <h3 className="mb-3 text-lg sm:text-xl font-semibold text-gray-800">
-                      {data.name}
-                    </h3>
+                    <div className="py-5 text-center">
+                      <h3 className="mb-3 text-lg sm:text-xl font-semibold text-gray-800">
+                        {data.name}
+                      </h3>
 
-                    <div className="mb-3 flex items-center justify-center gap-0.5">
-                      <StarRating rating={data?.rating} />
+                      <div className="mb-3 flex items-center justify-center gap-0.5">
+                        <StarRating rating={data?.rating} />
+                      </div>
+
+                      <p className="mb-3 text-lg">
+                        <span className="text-gray-400 line-through pr-1 font-semibold">
+                          Rs.{data.sale_price}
+                        </span>
+                        <span className="text-red-500 font-semibold">
+                          Rs.{data.price}
+                        </span>
+                      </p>
+
+                      <button className="text-sm px-5 py-2 bg-black text-white font-semibold">
+                        Add To Cart
+                      </button>
                     </div>
-
-                    <p className="mb-3 text-lg">
-                      <span className="text-gray-400 line-through pr-1 font-semibold">
-                        Rs.{data.sale_price}
-                      </span>
-                      <span className="text-red-500 font-semibold">
-                        Rs.{data.price}
-                      </span>
-                    </p>
-
-                    <button
-                      onClick={() => handleItemClick(data?.id)}
-                      className="text-sm px-5 py-2 bg-black text-white font-semibold"
-                    >
-                      Add To Cart
-                    </button>
                   </div>
-                </div>
-              ))}
+                ))}
+              </Slider>
             </div>
           </div>
 

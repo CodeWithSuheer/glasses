@@ -4,11 +4,20 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { BsHandbag } from "react-icons/bs";
 import "./Header.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartTotal } from "../features/ActionsSlice";
+import logo2 from "../assets/logo2.png";
 
 const Header = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const isHomePage = location.pathname === "/";
+
+  // getting data from store
+  const { cart, totalPrice, totalQuantity } = useSelector(
+    (state) => state.action
+  );
 
   const navigate = useNavigate();
   const [state, setState] = useState(false);
@@ -19,8 +28,8 @@ const Header = () => {
 
   const navigation = [
     { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
     { title: "Shop", path: "/shop" },
+    { title: "About", path: "/about" },
     { title: "Blog", path: "/blogs" },
   ];
 
@@ -46,6 +55,10 @@ const Header = () => {
     window.scroll(0, 0);
   };
 
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cart]);
+
   return (
     <>
       {/* {!isHomePage && ( */}
@@ -54,21 +67,18 @@ const Header = () => {
       >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl px-3 sm:px-6 xl:px-0 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between ">
-            <div className="flex items-center justify-between border-0 lg:border-r border-[#A4A3A2] py-6">
+            <div className="flex items-center justify-between border-0 lg:border-r border-[#A4A3A2] py-4">
               {/* -------------- BRAND LOGO -------------- */}
               <Link
                 to="/"
                 onClick={handleLinkClick}
                 className="flex items-center gap-0.5 md:pr-8"
               >
-                {/* <img
-                  className="w-auto h-10 sm:h-12"
-                  src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Untitled_design.png?v=1713204274"
-                  alt="Octa Tech Solution LLC Logo"
-                /> */}
-                <h2 className="text-xl mt-1 text-white ml-2 sm:text-3xl font-semibold">
-                  Googly
-                </h2>
+                <img
+                  className="w-auto h-10 sm:h-16"
+                  src={logo2}
+                  alt="Googly Logo"
+                />
               </Link>
 
               {/* -------------- HAMBURGER BUTTON FOR MOBILE VIEW -------------- */}
@@ -111,7 +121,7 @@ const Header = () => {
                   key={index}
                   to={data.path}
                   onClick={() => window.scroll(0, 0)}
-                  className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-6 xl:mx-6 text-lg font-medium tracking-wide text-white rounded-xl"
+                  className="button_navbar poppin px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-5 xl:mx-5 text-lg font-medium tracking-wide text-white rounded-xl"
                 >
                   {data.title}
                 </Link>
@@ -132,9 +142,14 @@ const Header = () => {
                 <Link
                   to="/cart"
                   onClick={() => window.scroll(0, 0)}
-                  className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-4 xl:mx-4 text-lg font-medium tracking-wide text-white rounded-xl"
+                  className="relative"
                 >
-                  <BsHandbag size={22} />
+                  <span className="relative -z-50">
+                    <BsHandbag size={22} className="text-white" />
+                    <span className="absolute -right-1 -top-2.5 rounded-full bg-[#DEC344] px-1 py-0 text-xs text-black">
+                      {totalQuantity}
+                    </span>
+                  </span>
                 </Link>
               </div>
             </div>
