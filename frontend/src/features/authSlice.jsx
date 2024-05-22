@@ -2,14 +2,14 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // API URLs
-const signupUrl = "http://localhost:8000/api/users/signup";
-const loginUrl = "http://localhost:8000/api/users/login";
-const updateUrl = "http://localhost:8000/api/users/updateUserInformation";
-const logoutUrl = "http://localhost:8000/api/users/logout";
-const userSessionUrl = "http://localhost:8000/api/users/persistUserSession";
-const forgetPassUrl = "http://localhost:8000/api/users/sendResetPasswordOTP";
-const verifyOtpPassUrl = "http://localhost:8000/api/users/verifyOtp";
-const resetPassUrl = "http://localhost:8000/api/users/updatePassword";
+const signupUrl = "http://localhost:7000/api/users/signup";
+const loginUrl = "http://localhost:7000/api/users/login";
+const updateUrl = "http://localhost:7000/api/users/updateUserInformation";
+const logoutUrl = "http://localhost:7000/api/users/logout";
+const userSessionUrl = "http://localhost:7000/api/users/persistUserSession";
+const forgetPassUrl = "http://localhost:7000/api/users/sendResetPasswordOTP";
+const verifyOtpPassUrl = "http://localhost:7000/api/users/verifyOtp";
+const resetPassUrl = "http://localhost:7000/api/users/updatePassword";
 
 // CREATE ASYNC THUNK
 export const createuserAsync = createAsyncThunk(
@@ -17,6 +17,7 @@ export const createuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(signupUrl, formData);
+      console.log(response.data);
       return response.data;
     } catch {
       console.log(error.response.data.error);
@@ -30,6 +31,7 @@ export const loginuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(loginUrl, formData);
+      console.log(response.data);
       return response.data;
     } catch {
       console.log(error.response.data.error);
@@ -43,7 +45,6 @@ export const updateuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(updateUrl, formData);
-      console.log(response.data);
       return response.data;
     } catch {
       console.log(error.response.data.error);
@@ -140,6 +141,9 @@ const authSlice = createSlice({
       .addCase(createuserAsync.fulfilled, (state, _action) => {
         state.signupLoading = false;
       })
+      .addCase(createuserAsync.rejected, (state, _action) => {
+        state.signupLoading = false;
+      })
 
       // LOGIN ADD CASE
       .addCase(loginuserAsync.pending, (state) => {
@@ -148,6 +152,9 @@ const authSlice = createSlice({
       .addCase(loginuserAsync.fulfilled, (state, action) => {
         state.loginLoading = false;
         state.user = action.payload;
+      })
+      .addCase(loginuserAsync.rejected, (state, action) => {
+        state.loginLoading = false;
       })
 
       // Session ADD CASE
@@ -170,7 +177,7 @@ const authSlice = createSlice({
         state.forgetLoading = false;
       })
 
-      // logout
+      // LOGOUT ADD CASE
       .addCase(logoutUserAsync.pending, (state) => {
         state.loading = true;
       })

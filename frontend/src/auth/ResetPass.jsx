@@ -48,9 +48,9 @@ const ResetPass = () => {
 
   return (
     <>
-      <section className="py-10 sm:py-10 px-4 sm:px-4 md:px-14 bg-[#FDEDF5]">
+      <section className="py-7 sm:py-10 px-4 sm:px-4 md:px-14 bg-[#fff]">
         <div className="max-w-5xl xl:max-w-4xl mx-auto">
-          <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-[80vh]">
+          <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
             <div className="min-w-[60%] md:min-w-[50%]">
               <h1 className="Noto max-w-xs text-center sm:max-w-full mb-5 text-4xl sm:text-4xl font-bold">
@@ -65,7 +65,7 @@ const ResetPass = () => {
                     type={showPassword ? "text" : "password"}
                     id="password"
                     name="password"
-                    placeholder="••••••••"
+                    placeholder="Enter New Password"
                     value={formData.password}
                     onChange={(e) =>
                       setFormData({ ...formData, password: e.target.value })
@@ -79,7 +79,7 @@ const ResetPass = () => {
                     type={showPassword ? "text" : "password"}
                     id="confirmpassword"
                     name="confirmPassword"
-                    placeholder="••••••••"
+                    placeholder="Confirm New Password"
                     value={formData.confirmPassword}
                     onChange={(e) =>
                       setFormData({

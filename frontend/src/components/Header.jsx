@@ -5,14 +5,15 @@ import { IoSearchOutline } from "react-icons/io5";
 import { BsHandbag } from "react-icons/bs";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
+import { IoIosArrowDown } from "react-icons/io";
 import { getCartTotal } from "../features/ActionsSlice";
+import { IoIosArrowUp } from "react-icons/io";
 import logo2 from "../assets/logo2.png";
+import { logoutUserAsync } from "../features/authSlice";
 
 const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-
-  const isHomePage = location.pathname === "/";
 
   const showNav1 =
     location.pathname === "/" ||
@@ -25,9 +26,15 @@ const Header = () => {
     (state) => state.action
   );
 
+  const data = useSelector((state) => state.auth.user);
+  const user = data?.user;
+  const login = data?.login;
+
   const navigate = useNavigate();
   const [state, setState] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [scrolled, setScrolled] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -46,10 +53,22 @@ const Header = () => {
   };
 
   useEffect(() => {
+    if (windowWidth > 1024) {
+      setIsMenuOpen(false);
+    }
+  }, [windowWidth]);
+
+  useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const toggleMenu = () => {
@@ -64,6 +83,15 @@ const Header = () => {
   useEffect(() => {
     dispatch(getCartTotal());
   }, [cart]);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUserAsync());
+    closeMenu();
+  };
 
   return (
     <>
@@ -139,7 +167,7 @@ const Header = () => {
                   <Link
                     to="/blog"
                     onClick={() => window.scroll(0, 0)}
-                    className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-4 xl:mx-4 text-lg font-medium tracking-wide text-white rounded-xl"
+                    className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-3 xl:mx-2 text-lg font-medium tracking-wide text-white rounded-xl"
                   >
                     <IoSearchOutline size={22} />
                   </Link>
@@ -148,7 +176,7 @@ const Header = () => {
                   <Link
                     to="/cart"
                     onClick={() => window.scroll(0, 0)}
-                    className="relative"
+                    className="relative mx-4 sm:mx-2 md:mx-3 xl:mx-2"
                   >
                     <span className="relative -z-50">
                       <BsHandbag size={22} className="text-white" />
@@ -157,6 +185,76 @@ const Header = () => {
                       </span>
                     </span>
                   </Link>
+
+                  {windowWidth > 426 &&
+                    (login && user ? (
+                      <div className="dropdown relative pl-6" ref={dropdownRef}>
+                        <button
+                          onClick={() => setIsDropDownOpen(!isDropDownOpen)}
+                          className="text-md font-medium tracking-wide text-gray-100 rounded-xl"
+                        >
+                          <span className="flex items-center capitalize font-medium text-[1.05rem]">
+                            {user?.name}
+                            {isDropDownOpen ? (
+                              <IoIosArrowUp />
+                            ) : (
+                              <IoIosArrowDown />
+                            )}
+                          </span>
+                        </button>
+
+                        {isDropDownOpen && (
+                          <div className="absolute right-0 z-20 w-40 py-2 mt-3 overflow-hidden origin-top-right bg-white rounded-xl shadow-xl">
+                            <Link
+                              to="/profile"
+                              onClick={handleLinkClick}
+                              className="block px-4 py-3 w-full text-left text-sm text-gray-800 font-medium capitalize hover:text-white hover:bg-[#252525cd]"
+                            >
+                              Profile
+                            </Link>
+
+                            <hr className="border-gray-200" />
+
+                            <Link
+                              to="/orders"
+                              onClick={handleLinkClick}
+                              className="block px-4 py-3 w-full text-left text-sm text-gray-800 font-medium capitalize hover:text-white hover:bg-[#252525cd]"
+                            >
+                              My Order
+                            </Link>
+
+                            <hr className="border-gray-200" />
+
+                            <button
+                              onClick={handleLogout}
+                              className="block px-4 py-3 w-full text-left text-sm text-gray-800 font-medium capitalize hover:text-white hover:bg-[#252525cd]"
+                            >
+                              Sign out
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link to="/login" className="px-4">
+                        {/* <UserCircle size={28} className="text-gray-700" /> */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="lucide lucide-circle-user-round text-gray-200"
+                        >
+                          <path d="M18 20a6 6 0 0 0-12 0" />
+                          <circle cx="12" cy="10" r="4" />
+                          <circle cx="12" cy="12" r="10" />
+                        </svg>
+                      </Link>
+                    ))}
                 </div>
               </div>
             </div>
@@ -286,7 +384,7 @@ const Header = () => {
                   <Link
                     to="/blog"
                     onClick={() => window.scroll(0, 0)}
-                    className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-4 xl:mx-4 text-lg font-medium tracking-wide text-white rounded-xl"
+                    className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-3 xl:mx-2 text-lg font-medium tracking-wide text-white rounded-xl"
                   >
                     <IoSearchOutline size={22} />
                   </Link>
@@ -295,7 +393,7 @@ const Header = () => {
                   <Link
                     to="/cart"
                     onClick={() => window.scroll(0, 0)}
-                    className="relative"
+                    className="relative mx-4 sm:mx-2 md:mx-3 xl:mx-2"
                   >
                     <span className="relative -z-50">
                       <BsHandbag size={22} className="text-white" />
@@ -304,6 +402,74 @@ const Header = () => {
                       </span>
                     </span>
                   </Link>
+
+                  {windowWidth > 426 &&
+                    (login && user ? (
+                      <div className="dropdown relative" ref={dropdownRef}>
+                        <button
+                          onClick={() => setIsDropDownOpen(!isDropDownOpen)}
+                          className="text-md px-4 tracking-wide text-gray-100 rounded-xl flex items-center capitalize font-medium text-[1.05rem]"
+                        >
+                          {user?.name}
+                          {isDropDownOpen ? (
+                            <IoIosArrowUp />
+                          ) : (
+                            <IoIosArrowDown />
+                          )}
+                        </button>
+
+                        {isDropDownOpen && (
+                          <div className="absolute right-0 z-20 w-40 py-2 mt-3 overflow-hidden origin-top-right bg-white rounded-xl shadow-xl">
+                            <Link
+                              to="/profile"
+                              onClick={handleLinkClick}
+                              className="block px-4 py-3 w-full text-left text-sm text-gray-800 font-medium capitalize hover:text-white hover:bg-[#252525cd]"
+                            >
+                              Profile
+                            </Link>
+
+                            <hr className="border-gray-200" />
+
+                            <Link
+                              to="/orders"
+                              onClick={handleLinkClick}
+                              className="block px-4 py-3 w-full text-left text-sm text-gray-800 font-medium capitalize hover:text-white hover:bg-[#252525cd]"
+                            >
+                              My Order
+                            </Link>
+
+                            <hr className="border-gray-200" />
+
+                            <button
+                              onClick={handleLogout}
+                              className="block px-4 py-3 w-full text-left text-sm text-gray-800 font-medium capitalize hover:text-white hover:bg-[#252525cd]"
+                            >
+                              Sign out
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link to="/login" className="px-4">
+                        {/* <UserCircle size={28} className="text-gray-700" /> */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="lucide lucide-circle-user-round text-gray-200"
+                        >
+                          <path d="M18 20a6 6 0 0 0-12 0" />
+                          <circle cx="12" cy="10" r="4" />
+                          <circle cx="12" cy="12" r="10" />
+                        </svg>
+                      </Link>
+                    ))}
                 </div>
               </div>
             </div>

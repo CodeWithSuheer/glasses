@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { userSessionAsync } from "./features/authSlice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
@@ -21,8 +24,39 @@ import ResetPass from "./auth/ResetPass";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Terms from "./components/Terms";
 import Blogs from "./pages/blog/Blogs";
+import { FaArrowUp } from "react-icons/fa6";
 
 function App() {
+  const dispatch = useDispatch();
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 600) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(userSessionAsync());
+  });
+
+  const handleTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <BrowserRouter>
@@ -52,6 +86,16 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blogs/:id" element={<Blogs />} />
         </Routes>
+
+        {showButton && (
+          <button
+            onClick={handleTop}
+            className="moveTop rounded-full px-3 py-3 bg-[#252525]"
+          >
+            <FaArrowUp size={21} className="text-white" />
+          </button>
+        )}
+
         <Footer />
       </BrowserRouter>
       <Toaster />
