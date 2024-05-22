@@ -123,7 +123,7 @@ const PopularProducts = () => {
                 <div
                   key={index}
                   onClick={() => handleItemClick(data?.id)}
-                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150"
+                  className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150  border border-gray-200"
                 >
                   <img
                     className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"

@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -94,7 +93,7 @@ const StarRating = ({ rating }) => {
   return <div className="flex">{stars}</div>;
 };
 
-const BestSeller = () => {
+const RelatedItems = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [slidesToShow, setSlidesToShow] = useState(4);
@@ -161,23 +160,34 @@ const BestSeller = () => {
 
   return (
     <>
-      <section className="w-full pt-20 pb-10">
-        <div className="px-3 sm:px-5 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
+      <section className="w-full pt-14 pb-10">
+        <div className="px-3 sm:px-5 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
-          <div className="header text-center">
-            <span
-              style={{ letterSpacing: "4px" }}
-              className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
-            >
-              BEST
-            </span>
-            <h2 className="Noto mt-2 text-2xl font-semibold md:text-5xl md:leading-tight">
-              Best Seller
-            </h2>
-            <p className="mt-2.5 text-gray-600 dark:text-neutral-400">
-              See how game-changing companies are making the most of every
-              engagement with Preline.
-            </p>
+          <div className="header px-0 sm:px-5 flex justify-between items-center flex-wrap gap-6">
+            <div className="name">
+              <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl md:leading-tight">
+                Related Products
+              </h2>
+              <p className="h-0.5 w-16 bg-[#DEC344]"></p>
+            </div>
+
+            <div className="slider_button hidden sm:flex flex-row">
+              {/* left arrow */}
+              <button
+                onClick={previous}
+                className="mx-1.5 inline-block rounded-full border text-white bg-[#DEC344] hover:text-white border-[#DEC344] hover:bg-[#dec244db] p-2.5 focus:outline-none"
+              >
+                <IoIosArrowBack size={22} />
+              </button>
+
+              {/* right arrow */}
+              <button
+                onClick={next}
+                className="mx-1.5 inline-block rounded-full border text-white bg-[#DEC344] hover:text-white border-[#DEC344] hover:bg-[#dec244db] p-2.5 focus:outline-none"
+              >
+                <IoIosArrowForward size={22} />
+              </button>
+            </div>
           </div>
 
           <div className="data">
@@ -243,31 +253,7 @@ const BestSeller = () => {
                   <IoIosArrowForward size={22} />
                 </button>
               </div>
-
-              <button
-                onClick={previous}
-                className="ml-8 xl:ml-0 absolute top-[40%] -left-4 mx-1.5 hidden sm:inline-block rounded-full border text-white bg-[#DEC344] hover:text-white border-[#DEC344] hover:bg-[#dec244db] p-2.5 focus:outline-none"
-              >
-                <IoIosArrowBack size={22} />
-              </button>
-
-              <button
-                onClick={next}
-                className="mr-8 xl:mr-0 absolute top-[40%] -right-4 mx-1.5 hidden sm:inline-block rounded-full border text-white bg-[#DEC344] hover:text-white border-[#DEC344] hover:bg-[#dec244db] p-2.5 focus:outline-none"
-              >
-                <IoIosArrowForward size={22} />
-              </button>
             </div>
-          </div>
-
-          <div className="buttons mt-14 flex justify-center items-center">
-            <button
-              onClick={handleShop}
-              className="px-6 py-3 text-md font-semibold flex justify-center items-center gap-1 border border-black hover:bg-black hover:text-white transition-colors duration-150"
-            >
-              <span>View All Products</span>{" "}
-              <IoIosArrowForward className="mt-0.5" />
-            </button>
           </div>
         </div>
       </section>
@@ -275,4 +261,4 @@ const BestSeller = () => {
   );
 };
 
-export default BestSeller;
+export default RelatedItems;

@@ -59,7 +59,7 @@ export const ProductOverviewTwo = ({ selectedItem }) => {
 
   return (
     <>
-      <div className="pt-4 w-full">
+      <div className="pt-4 pb-10 w-full">
         <div className="px-4 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="min-h-[70vh]">
             {selectedItem.map((selectedItem, index) => (
@@ -262,8 +262,6 @@ export const ProductOverviewTwo = ({ selectedItem }) => {
           </div>
         </div>
       </div>
-
-      <BestSeller />
     </>
   );
 };

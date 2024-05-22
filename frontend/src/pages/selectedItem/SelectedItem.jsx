@@ -3,6 +3,7 @@ import "./SelectedItem.css";
 import { Link, useParams } from "react-router-dom";
 import { ProductOverviewTwo } from "./ProductDetails";
 import { FaHome } from "react-icons/fa";
+import RelatedItems from "../shop/RelatedItems";
 
 const data = [
   {
@@ -202,9 +203,10 @@ const SelectedItem = () => {
           </div>
         </div>
       </section>
-      
 
       <ProductOverviewTwo selectedItem={selectedItem} />
+
+      <RelatedItems />
     </>
   );
 };
