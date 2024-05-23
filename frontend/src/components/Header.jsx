@@ -18,6 +18,8 @@ const Header = () => {
   const showNav1 =
     location.pathname === "/" ||
     location.pathname === "/shop" ||
+    location.pathname === "/about" ||
+    location.pathname === "/contact" ||
     location.pathname.startsWith("/selectedItem") ||
     location.pathname === "/cart";
 
@@ -43,6 +45,7 @@ const Header = () => {
     { title: "Home", path: "/" },
     { title: "Shop", path: "/shop" },
     { title: "About", path: "/about" },
+    { title: "Contact", path: "/contact" },
     { title: "Blog", path: "/blogs" },
   ];
 

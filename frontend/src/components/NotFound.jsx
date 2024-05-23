@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <>
-      <div className="grid h-screen place-content-center bg-white px-4">
-        <div className="text-center">
+      <div className="grid min-h-screen place-content-center bg-white px-4">
+        <div className="text-center mt-10 lg:mt-20">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1024 768"
