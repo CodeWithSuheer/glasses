@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { ProductOverviewTwo } from "./ProductDetails";
 import { FaHome } from "react-icons/fa";
 import RelatedItems from "../shop/RelatedItems";
+import { TfiArrowCircleDown } from "react-icons/tfi";
 
 const data = [
   {
@@ -160,7 +161,7 @@ const SelectedItem = () => {
 
   return (
     <>
-      <section className="selectedSectionbg">
+      <section className="selectedSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}
@@ -202,8 +203,17 @@ const SelectedItem = () => {
             </div>
           </div>
         </div>
+        <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <a href="#here">
+            <TfiArrowCircleDown
+              size={30}
+              className="text-gray-50 font-semibold cursor-pointer"
+            />
+          </a>
+        </div>
       </section>
 
+      <div className="h-px" id="here"></div>
       <ProductOverviewTwo selectedItem={selectedItem} />
 
       <RelatedItems />

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import { TfiArrowCircleDown } from "react-icons/tfi";
 import "../selectedItem/SelectedItem.css";
 import {
   decreaseQuantity,
@@ -31,7 +32,7 @@ const Cart = () => {
 
   return (
     <>
-      <section className="selectedSectionbg">
+      <section className="selectedSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}
@@ -66,9 +67,20 @@ const Cart = () => {
             </div>
           </div>
         </div>
+        <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <a href="#here">
+            <TfiArrowCircleDown
+              size={30}
+              className="text-gray-50 font-semibold cursor-pointer"
+            />
+          </a>
+        </div>
       </section>
 
-      <section className="w-full py-14 sm:py-14 px-5 sm:px-8 lg:px-10 xl:px-0 min-h-[90vh]">
+      <section
+        id="here"
+        className="w-full py-14 sm:py-14 px-5 sm:px-8 lg:px-10 xl:px-0 min-h-[90vh]"
+      >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="header">
@@ -170,18 +182,18 @@ const Cart = () => {
                   ))}
                 </div>
 
-                <div class="shadow-md p-6 lg:sticky lg:top-0 h-max border border-gray-400 rounded-xl">
-                  <h3 class="text-lg font-bold text-gray-800 bor4er-b pb-2">
+                <div className="shadow-md p-6 lg:sticky lg:top-0 h-max border border-gray-400 rounded-xl">
+                  <h3 className="text-lg font-bold text-gray-800 bor4er-b pb-2">
                     Cart Total
                   </h3>
 
-                  <ul class="text-gray-800 divide-y mt-0">
-                    <li class="flex flex-wrap gap-4 text-base py-4">
+                  <ul className="text-gray-800 divide-y mt-0">
+                    <li className="flex flex-wrap gap-4 text-base py-4">
                       Subtotal{" "}
-                      <span class="ml-auto font-bold">Rs {totalPrice}</span>
+                      <span className="ml-auto font-bold">Rs {totalPrice}</span>
                     </li>
-                    <li class="flex flex-wrap gap-4 text-base py-4 font-bold">
-                      Total <span class="ml-auto">Rs {totalPrice}</span>
+                    <li className="flex flex-wrap gap-4 text-base py-4 font-bold">
+                      Total <span className="ml-auto">Rs {totalPrice}</span>
                     </li>
                   </ul>
 
@@ -191,7 +203,7 @@ const Cart = () => {
                       <Link
                         to="/checkout"
                         onClick={() => window.scroll(0, 0)}
-                        class="mt-6 px-6 py-2.5 text-center hover:bg-black bg-[#252525] text-white w-full"
+                        className="mt-6 px-6 py-2.5 text-center hover:bg-black bg-[#252525] text-white w-full"
                       >
                         Checkout
                       </Link>
@@ -199,7 +211,7 @@ const Cart = () => {
                       <Link
                         to="/login?from=cart"
                         onClick={() => window.scroll(0, 0)}
-                        class="mt-6 px-6 py-2.5 text-center hover:bg-black bg-[#252525] text-white w-full"
+                        className="mt-6 px-6 py-2.5 text-center hover:bg-black bg-[#252525] text-white w-full"
                       >
                         Checkout
                       </Link>

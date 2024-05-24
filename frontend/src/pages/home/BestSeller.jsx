@@ -171,10 +171,10 @@ const BestSeller = () => {
             >
               BEST
             </span>
-            <h2 className="Noto mt-2 text-2xl font-semibold md:text-5xl md:leading-tight">
+            <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl lg:text-5xl md:leading-tight">
               Best Seller
             </h2>
-            <p className="mt-2.5 text-gray-600 dark:text-neutral-400">
+            <p className="mt-2.5 text-gray-800">
               See how game-changing companies are making the most of every
               engagement with Preline.
             </p>
@@ -186,7 +186,7 @@ const BestSeller = () => {
                 {data.map((data, index) => (
                   <div
                     key={index}
-                    // onClick={() => handleItemClick(data.id)}
+                    onClick={() => handleItemClick(data.id)}
                     className="mx-0 pb-7"
                   >
                     <div className="group max-w-[17rem] mx-auto overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer border border-gray-200">
@@ -214,10 +214,7 @@ const BestSeller = () => {
                           </span>
                         </p>
 
-                        <button
-                          onClick={() => handleItemClick(data.id)}
-                          className="text-sm px-5 py-2 bg-black text-white font-semibold"
-                        >
+                        <button className="text-sm px-5 py-2 bg-black text-white font-semibold">
                           Add To Cart
                         </button>
                       </div>

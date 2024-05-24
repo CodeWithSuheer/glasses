@@ -174,7 +174,7 @@ const AllProducts = () => {
 
   return (
     <>
-      <section id="products" className="w-full pt-20 pb-10">
+      <section id="products" className="w-full pt-16 pb-10">
         <div className="px-3 sm:px-5 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="header text-center">

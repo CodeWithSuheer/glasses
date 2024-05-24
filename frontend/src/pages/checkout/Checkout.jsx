@@ -1,13 +1,21 @@
 import { useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const { cart, totalPrice, totalQuantity } = useSelector(
-    (state) => state.action
-  );
+  const navigate = useNavigate();
+
+  const { cart, totalPrice } = useSelector((state) => state.action);
+
+  const user = useSelector((state) => state.auth.user);
+
+  // CHECKING USER
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [cart, navigate, user]);
 
   const shippingCharges = 300;
 

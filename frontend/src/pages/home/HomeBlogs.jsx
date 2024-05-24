@@ -15,7 +15,7 @@ const HomeBlogs = () => {
   return (
     <>
       <section className="w-full pt-20 pb-10">
-        <div className="px-3 sm:px-5 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
+        <div className="px-4 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
           <div className="header text-center">
             <span
@@ -24,17 +24,18 @@ const HomeBlogs = () => {
             >
               BLOG
             </span>
-            <h2 className="Noto mt-2 text-2xl font-semibold md:text-5xl md:leading-tight">
+            <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl lg:text-5xl md:leading-tight">
               Popular Blog & News
             </h2>
-            <p className="mt-2.5 text-gray-600 dark:text-neutral-400">
+            <p className="mt-2.5 text-gray-800">
               See how game-changing companies are making the most of every
               engagement with Preline.
             </p>
           </div>
 
           <div className="data">
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+            {/* <div className="mt-12 flex justify-center items-center flex-wrap gap-3 sm:gap-5 lg:gap-5"> */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 gap-y-6 lg:gap-5">
               <article
                 onClick={() => handleBlog(1)}
                 className="overflow-hidden bg-[#F5F5F5] border border-gray-200 rounded-lg shadow transition hover:shadow-lg cursor-pointer"

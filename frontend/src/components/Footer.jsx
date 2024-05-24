@@ -99,10 +99,10 @@ const Footer = () => {
               <div className="flex flex-col items-start mt-3 space-y-2">
                 {/* PHONE NUMBER */}
                 <a
-                  href="tel:+1-716-374-9747"
+                  href="tel:+92 310 5015888"
                   className="flex items-center gap-2"
                 >
-                  <FaPhone /> +1 (716) 374-9747
+                  <FaPhone /> +92 310 5015888
                 </a>
 
                 {/* SOCIAL LINKS */}

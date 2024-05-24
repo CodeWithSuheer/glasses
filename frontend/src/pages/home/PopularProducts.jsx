@@ -107,7 +107,7 @@ const PopularProducts = () => {
             >
               POPULAR
             </span>
-            <h2 className="Noto mt-2 text-2xl font-semibold md:text-5xl md:leading-tight">
+            <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl lg:text-5xl md:leading-tight">
               Popular Product
             </h2>
             <p className="mt-2.5 text-gray-600 dark:text-neutral-400">

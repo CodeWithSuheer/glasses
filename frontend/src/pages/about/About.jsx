@@ -1,11 +1,12 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { TfiArrowCircleDown } from "react-icons/tfi";
 
 const About = () => {
   return (
     <>
-      <section className="shopSectionbg ">
+      <section className="shopSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}
@@ -40,9 +41,17 @@ const About = () => {
             </div>
           </div>
         </div>
+        <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <a href="#here">
+            <TfiArrowCircleDown
+              size={30}
+              className="text-gray-50 font-semibold cursor-pointer"
+            />
+          </a>
+        </div>
       </section>
 
-      <section className="py-3 lg:py-16 px-4 sm:px-4 xl:px-0">
+      <section id="here" className="py-3 lg:py-16 px-4 sm:px-4 xl:px-0">
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* FIRST CARD */}
           <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">

@@ -196,7 +196,7 @@ const RelatedItems = () => {
                 {data.map((data, index) => (
                   <div
                     key={index}
-                    // onClick={() => handleItemClick(data.id)}
+                    onClick={() => handleItemClick(data.id)}
                     className="mx-0 pb-7"
                   >
                     <div className="group max-w-[17rem] mx-auto overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer border border-gray-200">
@@ -225,7 +225,6 @@ const RelatedItems = () => {
                         </p>
 
                         <button
-                          onClick={() => handleItemClick(data.id)}
                           className="text-sm px-5 py-2 bg-black text-white font-semibold"
                         >
                           Add To Cart

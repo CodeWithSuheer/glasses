@@ -45,6 +45,7 @@ export const updateuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(updateUrl, formData);
+      console.log(response.data);
       return response.data;
     } catch {
       console.log(error.response.data.error);

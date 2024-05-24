@@ -5,7 +5,7 @@ const Features = () => {
     <>
       <section className="w-full bg-black">
         <div className="max-w-7xl mx-auto py-11">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-4 lg:gap-5 sm:px-8 px-4 text-white">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 gap-y-7 lg:gap-5 sm:px-8 px-4 text-white">
             {/* BOX 1 */}
             <div className="box1 flex justify-center items-center flex-col">
               <FiTruck size={34} className="mb-2.5 text-yellow-400" />
