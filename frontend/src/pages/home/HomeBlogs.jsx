@@ -1,5 +1,3 @@
-import { FaStar } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 
@@ -7,8 +5,8 @@ const HomeBlogs = () => {
   const navigate = useNavigate();
 
   // HANDLE SHOP
-  const handleBlog = (id) => {
-    navigate(`/blogs/${id}`);
+  const handleBlog = (name) => {
+    navigate(`/${name}`);
     window.scroll(0, 0);
   };
 
@@ -37,7 +35,7 @@ const HomeBlogs = () => {
             {/* <div className="mt-12 flex justify-center items-center flex-wrap gap-3 sm:gap-5 lg:gap-5"> */}
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 gap-y-6 lg:gap-5">
               <article
-                onClick={() => handleBlog(1)}
+                onClick={() => handleBlog("blog")}
                 className="overflow-hidden bg-[#F5F5F5] border border-gray-200 rounded-lg shadow transition hover:shadow-lg cursor-pointer"
               >
                 <img
@@ -62,7 +60,7 @@ const HomeBlogs = () => {
               </article>
 
               <article
-                onClick={() => handleBlog(2)}
+                onClick={() => handleBlog("blog2")}
                 className="overflow-hidden bg-[#F5F5F5] border border-gray-200 rounded-lg shadow transition hover:shadow-lg cursor-pointer"
               >
                 <img
@@ -87,7 +85,7 @@ const HomeBlogs = () => {
               </article>
 
               <article
-                onClick={() => handleBlog(3)}
+                onClick={() => handleBlog("blog3")}
                 className="overflow-hidden bg-[#F5F5F5] border border-gray-200 rounded-lg shadow transition hover:shadow-lg cursor-pointer"
               >
                 <img

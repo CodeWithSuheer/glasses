@@ -49,7 +49,7 @@ const Header = () => {
     { title: "Shop", path: "/shop" },
     { title: "About", path: "/about" },
     { title: "Contact", path: "/contact" },
-    { title: "Blog", path: "/blogs" },
+    // { title: "Blog", path: "/blogs" },
   ];
 
   const handleClickOutside = (event) => {
@@ -109,9 +109,8 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`navbar absolute top-0 w-full py-0 border-b ${
-          showNav1 ? "bg-transparent" : "bg-[#2d2d2dd4]"
-        } border-[#A4A3A2] transition-all `}
+        className={`navbar absolute top-0 w-full py-0 border-b ${showNav1 ? "bg-transparent" : "bg-[#2d2d2dd4]"
+          } border-[#A4A3A2] transition-all `}
       >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl px-3 sm:px-6 xl:px-0 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between ">
@@ -132,6 +131,19 @@ const Header = () => {
               {/* -------------- HAMBURGER BUTTON FOR MOBILE VIEW -------------- */}
               {!isOpen ? (
                 <div className="flex lg:hidden">
+                  <Link
+                    to="/cart"
+                    onClick={() => window.scroll(0, 0)}
+                    className="relative mx-4 sm:mx-2 md:mx-3 xl:mx-3"
+                  >
+                    <span className="relative -z-50">
+                      <BsHandbag size={22} className="text-white" />
+                      <span className="absolute -right-1 -top-2.5 rounded-full bg-[#DEC344] px-1 py-0 text-xs text-black">
+                        {totalQuantity}
+                      </span>
+                    </span>
+                  </Link>
+
                   <button
                     onClick={toggleMenu}
                     type="button"
@@ -277,9 +289,8 @@ const Header = () => {
 
           {/* -------------- MENU FOR MOBILE VIEW -------------- */}
           <div
-            className={`lg:hidden ${
-              isOpen ? "block" : "hidden"
-            } absolute inset-x-0 top-0 w-full mt-0 px-6 pt-6 pb-4 transition-all duration-300 ease-in-out bg-[#1e1e1eec] lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}
+            className={`lg:hidden ${isOpen ? "block" : "hidden"
+              } absolute inset-x-0 top-0 w-full mt-0 px-6 pt-6 pb-4 transition-all duration-300 ease-in-out bg-[#1e1e1eec] lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}
           >
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
               {/* ------------- CLOSE BUTTONS ------------- */}
@@ -328,15 +339,15 @@ const Header = () => {
 
               {login && user && isOpen
                 ? forMobileNavigate.map((data, index) => (
-                    <Link
-                      key={index}
-                      to={`${data.path}`}
-                      className="px-0 py-5 mx-4 xl:mx-6 text-lg text-center font-medium tracking-wide text-gray-100"
-                      onClick={handleLinkClick}
-                    >
-                      {data.title}
-                    </Link>
-                  ))
+                  <Link
+                    key={index}
+                    to={`${data.path}`}
+                    className="px-0 py-5 mx-4 xl:mx-6 text-lg text-center font-medium tracking-wide text-gray-100"
+                    onClick={handleLinkClick}
+                  >
+                    {data.title}
+                  </Link>
+                ))
                 : null}
 
               {/* LOGOUT BUTTON */}

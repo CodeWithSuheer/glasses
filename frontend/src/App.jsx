@@ -25,6 +25,8 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import Terms from "./components/Terms";
 import Blogs from "./pages/blog/Blogs";
 import { FaArrowUp } from "react-icons/fa6";
+import Blog2 from "./pages/blog/Blog2";
+import Blog3 from "./pages/blog/Blog3";
 
 function App() {
   const dispatch = useDispatch();
@@ -84,7 +86,9 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/blogs/:id" element={<Blogs />} />
+          <Route path="/blog" element={<Blogs />} />
+          <Route path="/blog2" element={<Blog2 />} />
+          <Route path="/blog3" element={<Blog3 />} />
         </Routes>
 
         {showButton && (

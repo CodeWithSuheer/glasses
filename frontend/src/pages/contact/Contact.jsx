@@ -66,7 +66,7 @@ const Contact = () => {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex items-start lg:items-center justify-center lg:justify-end">
+            <div className="-mt-10 lg:mt-0 flex items-start lg:items-center justify-center lg:justify-end">
               <h2 className="mt-6 flex items-center gap-2 text-left font-normal text-white text-md md:text-lg">
                 <Link
                   to="/"

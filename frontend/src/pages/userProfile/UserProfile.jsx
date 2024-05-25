@@ -60,13 +60,13 @@ const UserProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoginLoading(true);
-    
+
     if (!hasChanges) {
       toast.error("No changes made");
       setLoginLoading(false);
       return;
     }
-    
+
     const id = userID;
 
     const updatedFields = {};
@@ -96,7 +96,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <section className="pt-10 p-4 bg-[#F5F5F5]">
+      <section className="pt-24 md:pt-32 xl:pt-24 p-4 bg-[#F5F5F5]">
         <div className="xl:max-w-4xl lg:max-w-4xl max-w-xl mx-auto min-h-screen flex items-center">
           <div className="grid lg:grid-cols-1 gap-8 w-full">
             {/* HEADER */}
@@ -220,11 +220,10 @@ const UserProfile = () => {
                 ) : (
                   <button
                     type="submit"
-                    className={`w-40 h-12 items-center mx-auto text-white ${
-                      hasChanges
-                        ? "hover:bg-black bg-[#252525]"
-                        : "bg-gray-400 cursor-not-allowed"
-                    } flex justify-center tracking-wide`}
+                    className={`w-40 h-12 items-center mx-auto text-white ${hasChanges
+                      ? "hover:bg-black bg-[#252525]"
+                      : "bg-gray-400 cursor-not-allowed"
+                      } flex justify-center tracking-wide`}
                     onClick={handleSubmit}
                     disabled={!hasChanges}
                   >

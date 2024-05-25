@@ -22,7 +22,7 @@ const Cart = () => {
   const user = [];
 
   // getting data from store
-  const { cart, totalPrice, totalQuantity } = useSelector(
+  const { cart, totalPrice } = useSelector(
     (state) => state.action
   );
 
@@ -52,7 +52,7 @@ const Cart = () => {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="flex items-start lg:items-center justify-center lg:justify-end">
+            <div className="-mt-10 lg:mt-0 flex items-start lg:items-center justify-center lg:justify-end">
               <h2 className="mt-6 flex items-center gap-2 text-left font-normal text-white text-md md:text-lg">
                 <Link
                   to="/"
@@ -79,7 +79,7 @@ const Cart = () => {
 
       <section
         id="here"
-        className="w-full py-14 sm:py-14 px-5 sm:px-8 lg:px-10 xl:px-0 min-h-[90vh]"
+        className="w-full py-14 sm:py-14 px-4 sm:px-8 lg:px-10 xl:px-0 min-h-[90vh]"
       >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           {/* HEADER */}
@@ -94,7 +94,7 @@ const Cart = () => {
 
           <div className="">
             {cart && cart.length > 0 ? (
-              <div className=" py-6 grid place grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+              <div className=" py-6 grid place grid-cols-1 gap-y-4 lg:grid-cols-3 lg:gap-8">
                 <div className="rounded-xl col-span-2">
                   {/* First Product Row */}
                   {cart.map((product) => (
@@ -102,7 +102,7 @@ const Cart = () => {
                       key={product.id}
                       className="grid md:grid-cols-4 items-center gap-8 px-4 py-6 mb-4 shadow-md bg-white border border-gray-400 rounded-xl"
                     >
-                      <div className="md:col-span-2 flex flex-wrap items-center gap-6">
+                      <div className="md:col-span-2 flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-start gap-4 sm:gap-4">
                         <div className="shrink-0 shadow-[0_0px_4px_0px_rgba(6,81,237,0.2)] p-0">
                           <img
                             className="w-28 h-22 object-contain rounded-md"
@@ -112,10 +112,10 @@ const Cart = () => {
                         </div>
 
                         <div>
-                          <h3 className="playfair text-lg tracking-wide font-bold text-[#333]">
+                          <h3 className="Noto text-lg tracking-wide font-bold text-[#333]">
                             VelvetGlide Boots
                           </h3>
-                          <h6 className="text-md text-gray-500 mt-2 flex items-center">
+                          <h6 className="text-md text-gray-500 mt-2 flex justify-center sm:justify-start items-center">
                             Price:{" "}
                             <strong className="ml-2 flex items-center">
                               {product.price !== product.sale_price ? (
@@ -130,7 +130,7 @@ const Cart = () => {
                         </div>
                       </div>
 
-                      <div className="flex">
+                      <div className="flex justify-center sm:justify-start">
                         <button
                           onClick={() => dispatch(decreaseQuantity(product.id))}
                           className="bg-transparent py-2 font-semibold text-[#333]"
@@ -183,7 +183,7 @@ const Cart = () => {
                 </div>
 
                 <div className="shadow-md p-6 lg:sticky lg:top-0 h-max border border-gray-400 rounded-xl">
-                  <h3 className="text-lg font-bold text-gray-800 bor4er-b pb-2">
+                  <h3 className="text-lg font-bold text-gray-800 border-b pb-2">
                     Cart Total
                   </h3>
 

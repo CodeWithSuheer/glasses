@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { IoIosArrowForward } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
@@ -21,10 +20,10 @@ const Checkout = () => {
 
   return (
     <>
-      <section className="pt-10 bg-white p-4">
+      <section className="pt-24 md:pt-28 lg:pt-10 pb-14 bg-white px-4 md:px-8 xl:px-0">
         <div className="xl:max-w-5xl lg:max-w-5xl max-w-xl mx-auto min-h-screen flex items-center">
           <div className="grid lg:grid-cols-3 gap-8 w-full">
-            <div className="lg:col-span-2 max-lg:order-1">
+            <div className="lg:col-span-2">
               <h2 className="Noto text-3xl font-bold text-[#333]">Checkout</h2>
               <p className="text-[#333] text-base mt-5 max-w-lg">
                 Complete your transaction swiftly and securely with our
