@@ -1,13 +1,237 @@
 import { IoIosArrowForward } from "react-icons/io";
-import { FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import "./Shop.css";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import BestSeller from "../home/BestSeller";
 import PopularProducts from "../home/PopularProducts";
-import AllProducts from "./AllProducts";
+import { FaHome } from "react-icons/fa";
 import { TfiArrowCircleDown } from "react-icons/tfi";
+import { FaStar } from "react-icons/fa";
+import { getAllProductsAsync } from "../../features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
+const data = [
+  {
+    id: "1",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "2",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "3",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "4",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "5",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "6",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "7",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "8",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "9",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "10",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "11",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "12",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "13",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "14",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "15",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+  {
+    id: "16",
+    image:
+      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
+    name: "Crystal Wave",
+    rating: 4,
+    price: "88",
+    sale_price: "49",
+  },
+];
+
+// STAR RATING
+const StarRating = ({ rating }) => {
+  const stars = [];
+  for (let i = 0; i < rating; i++) {
+    stars.push(<FaStar key={i} className="text-[#FFC209]" />);
+  }
+  return <div className="flex">{stars}</div>;
+};
 
 const Shop = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isCategoryVisible, setIsCategoryVisible] = useState(false);
+
+  const allproducts = useSelector((state) => state.products.products || []);
+  const loading = useSelector((state) => state.products.Productloading);
+  console.log(allproducts);
+  const [searchParams] = useSearchParams();
+  const page = parseInt(searchParams.get("page") || "1", 10);
+  const category = searchParams.get("category") || "All";
+
+  const toggleCategory = () => {
+    setIsCategoryVisible(!isCategoryVisible);
+  };
+
+  const renderPaginationLinks = () => {
+    const totalPages = allproducts?.totalPages;
+    const paginationLinks = [];
+    for (let i = 1; i <= totalPages; i++) {
+      paginationLinks.push(
+        <li onClick={ToTop} key={i}>
+          <Link
+            to={`/products?category=${category}&page=${i}`}
+            className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 border border-gray-300 ${
+              i === page ? "bg-gray-800 text-white" : "hover:bg-gray-100"
+            }`}
+            onClick={() => dispatch(getAllProductsAsync({ category, page: i }))}
+          >
+            {i}
+          </Link>
+        </li>
+      );
+    }
+    return paginationLinks;
+  };
+
+  useEffect(() => {
+    dispatch(getAllProductsAsync({ category, page }));
+  }, [dispatch, page, category]);
+
+  // HANDLE VIEW MORE
+  const handleViewMore = () => {
+    console.log("Get More Products");
+  };
+
+  const ToTop = () => {
+    window.scrollTo({
+      top: 450,
+      behavior: "smooth",
+    });
+  };
+
+  const ToDown = () => {
+    window.scrollTo({
+      top: 470,
+      behavior: "smooth",
+    });
+  };
+
+  // HANDLE ITEM CLICK
+  const handleItemClick = (id) => {
+    navigate(`/selectedItem/${id}`);
+    window.scroll(0, 0);
+  };
+
   return (
     <>
       <section className="shopSectionbg relative">
@@ -46,17 +270,235 @@ const Shop = () => {
           </div>
         </div>
         <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#here">
+          <button onClick={ToDown}>
             <TfiArrowCircleDown
               size={30}
               className="text-gray-50 font-semibold cursor-pointer"
             />
-          </a>
+          </button>
         </div>
       </section>
 
-      <div className="h-px" id="here"></div>
-      <AllProducts />
+      <section id="here" className="w-full pt-16 pb-10">
+        <div className="px-3 sm:px-5 xl:px-0  max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
+          {/* HEADER */}
+          <div className="header text-center">
+            <span
+              style={{ letterSpacing: "4px" }}
+              className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
+            >
+              GLASSES
+            </span>
+            <h2 className="Noto mt-2 text-2xl font-semibold md:text-5xl md:leading-tight">
+              All Products
+            </h2>
+            <p className="mt-2.5 text-gray-600">
+              See how game-changing companies are making the most of every
+              engagement with Preline.
+            </p>
+          </div>
+
+          <div className="data">
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-x-4 lg:gap-y-7">
+              {!loading ? (
+                <>
+                  {allproducts?.productData?.map((data, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleItemClick(data?.id)}
+                      className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150  border border-gray-200"
+                    >
+                      <img
+                        className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
+                        src={data?.image?.downloadURL}
+                        alt={data.name}
+                      />
+
+                      <div className="py-5 text-center">
+                        <h3 className="mb-3 text-lg sm:text-xl font-semibold text-gray-800">
+                          {data.name}
+                        </h3>
+
+                        <div className="mb-3 flex items-center justify-center gap-0.5">
+                          {data?.averageRating === 0 ? (
+                            <FaStar className="text-white" />
+                          ) : (
+                            <StarRating rating={data?.averageRating} />
+                          )}
+                        </div>
+
+                        {data.sale_price > 0 ? (
+                          <p className="mb-3 text-lg">
+                            <span className="text-gray-400 line-through pr-1 font-semibold">
+                              Rs.{data.price}
+                            </span>
+                            <span className="text-red-500 font-semibold">
+                              Rs.{data.sale_price}
+                            </span>
+                          </p>
+                        ) : (
+                          <>
+                            <p className="mb-3 text-lg">
+                              <span className="text-gray-800 font-semibold">
+                                Rs.{data.price}
+                              </span>
+                            </p>
+                          </>
+                        )}
+
+                        <button
+                          onClick={() => handleItemClick(data?.id)}
+                          className="text-sm px-5 py-2 bg-black text-white font-semibold"
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {[0, 1, 2, 3, 4, 5].map((_data, index) => (
+                    <div key={index}>
+                      <div className="group mb-5 relative rounded-lg w-full bg-white border border-gray-300 cursor-pointer animate-pulse">
+                        <div className="bg-gray-300 h-56 w-full"></div>
+
+                        <div className="py-5 text-center">
+                          <div className="bg-gray-300 h-5 w-3/4 mx-auto mb-2 rounded-lg"></div>
+                          <div className="flex items-center justify-center gap-1 mb-2">
+                            <div className="bg-gray-300 h-4 w-4 rounded-full"></div>
+                            <div className="bg-gray-300 h-4 w-4 rounded-full"></div>
+                            <div className="bg-gray-300 h-4 w-4 rounded-full"></div>
+                            <div className="bg-gray-300 h-4 w-4 rounded-full"></div>
+                            <div className="bg-gray-300 h-4 w-4 rounded-full"></div>
+                          </div>
+                          <div className="bg-gray-300 h-4 w-1/2 mx-auto mb-2 rounded-lg"></div>
+                          <div className="bg-gray-300 h-5 w-1/3 mx-auto mb-2 rounded-lg"></div>
+                          <div className="bg-gray-300 h-4 w-1/4 mx-auto mb-3 rounded-lg"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* PAGINATION */}
+          <div className="flex justify-center">
+            <nav aria-label="Page navigation example">
+              <ul className="flex items-center -space-x-px h-8 py-10 text-sm">
+                <li>
+                  {allproducts?.page > 1 ? (
+                    <Link
+                      onClick={ToTop}
+                      to={`/products?category=${category}&page=${page - 1}`}
+                      className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg
+                        className="w-2.5 h-2.5 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 1 1 5l4 4"
+                        />
+                      </svg>
+                    </Link>
+                  ) : (
+                    <button
+                      className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg cursor-not-allowed"
+                      disabled
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg
+                        className="w-2.5 h-2.5 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 1 1 5l4 4"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </li>
+                {renderPaginationLinks()}
+                <li>
+                  {allproducts?.totalPages !== page ? (
+                    <Link
+                      onClick={ToTop}
+                      to={`/products?category=${category}&page=${page + 1}`}
+                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg
+                        className="w-2.5 h-2.5 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="m1 9 4-4-4-4"
+                        />
+                      </svg>
+                    </Link>
+                  ) : (
+                    <button
+                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg cursor-not-allowed"
+                      disabled
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg
+                        className="w-2.5 h-2.5 rtl:rotate-180"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="m1 9 4-4-4-4"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div className="buttons mt-14 flex justify-center items-center">
+            <button
+              onClick={handleViewMore}
+              className="px-6 py-3 text-md font-semibold flex justify-center items-center gap-1 border border-black hover:bg-black hover:text-white transition-colors duration-150"
+            >
+              <span>View More</span> <IoIosArrowForward className="mt-0.5" />
+            </button>
+          </div>
+        </div>
+      </section>
 
       <BestSeller />
 

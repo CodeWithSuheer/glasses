@@ -18,17 +18,21 @@ import {
 const Cart = () => {
   const dispatch = useDispatch();
 
-  // const user = useSelector((state) => state.auth.user);
-  const user = [];
+  const user = useSelector((state) => state.auth.user);
 
   // getting data from store
-  const { cart, totalPrice } = useSelector(
-    (state) => state.action
-  );
+  const { cart, totalPrice } = useSelector((state) => state.action);
 
   useEffect(() => {
     dispatch(getCartTotal());
   }, [cart, dispatch]);
+
+  const ToDown = () => {
+    window.scrollTo({
+      top: 470,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -68,12 +72,12 @@ const Cart = () => {
           </div>
         </div>
         <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#here">
+          <button onClick={ToDown}>
             <TfiArrowCircleDown
               size={30}
               className="text-gray-50 font-semibold cursor-pointer"
             />
-          </a>
+          </button>
         </div>
       </section>
 
@@ -87,7 +91,7 @@ const Cart = () => {
             <div className="flex justify-between items-center">
               <div className="Noto text-3xl lg:text-5xl font-medium">Cart</div>
               <div className="text-md font-semibold text-[#252525] underline underline-offset-4">
-                <Link to="/products">Return to Shop</Link>
+                <Link to="/shop">Return to Shop</Link>
               </div>
             </div>
           </div>
@@ -106,7 +110,7 @@ const Cart = () => {
                         <div className="shrink-0 shadow-[0_0px_4px_0px_rgba(6,81,237,0.2)] p-0">
                           <img
                             className="w-28 h-22 object-contain rounded-md"
-                            src={product?.image}
+                            src={product?.image?.downloadURL}
                             alt={product?.name}
                           />
                         </div>

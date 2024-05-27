@@ -5,6 +5,9 @@ import { ProductOverviewTwo } from "./ProductDetails";
 import { FaHome } from "react-icons/fa";
 import RelatedItems from "../shop/RelatedItems";
 import { TfiArrowCircleDown } from "react-icons/tfi";
+import { useEffect } from "react";
+import { getProductByIdAsync } from "../../features/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const data = [
   {
@@ -153,11 +156,35 @@ const data = [
   },
 ];
 
+// STAR RATING
+const StarRating = ({ rating }) => {
+  const stars = [];
+  for (let i = 0; i < rating; i++) {
+    stars.push(<FaStar key={i} className="text-[#FFC209]" />);
+  }
+  return <div className="flex">{stars}</div>;
+};
+
 const SelectedItem = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const product = useSelector((state) => state.products.singleProduct);
+  console.log(product);
+
+  useEffect(() => {
+    dispatch(getProductByIdAsync(id));
+  }, [id]);
 
   const selectedItem = data?.filter((item) => item.id === id);
   console.log("selectedItem", selectedItem);
+
+  const ToDown = () => {
+    window.scrollTo({
+      top: 470,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -195,7 +222,6 @@ const SelectedItem = () => {
                   to="/shop"
                   className="flex items-center gap-1 hover:underline hover:underline-offset-4"
                 >
-                  <FaHome />
                   Shop
                 </Link>{" "}
                 <IoIosArrowForward /> SingleProduct
@@ -204,17 +230,16 @@ const SelectedItem = () => {
           </div>
         </div>
         <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#here">
+          <button onClick={ToDown}>
             <TfiArrowCircleDown
               size={30}
               className="text-gray-50 font-semibold cursor-pointer"
             />
-          </a>
+          </button>
         </div>
       </section>
 
-      <div className="h-px" id="here"></div>
-      <ProductOverviewTwo selectedItem={selectedItem} />
+      <ProductOverviewTwo product={product} id={id} />
 
       <RelatedItems />
     </>

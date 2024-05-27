@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { BsHandbag } from "react-icons/bs";
-import "../../components/Header.css";
+import "../../NormalComponnets/Header.css";
 import "./Home.css";
 
 const HeroSection = () => {

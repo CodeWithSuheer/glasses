@@ -1,13 +1,32 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const formRef = useRef(null);
+  const dispatch = useDispatch();
 
   const { cart, totalPrice } = useSelector((state) => state.action);
 
   const user = useSelector((state) => state.auth.user);
+  const userID = user?.user?.id;
+
+  const [formData, setFormData] = useState({
+    phone: user?.user?.phone || "",
+    address: user?.user?.address || "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const [showCouponInput, setShowCouponInput] = useState(false);
+
+  const handleCouponButtonClick = () => {
+    setShowCouponInput(!showCouponInput);
+  };
 
   // CHECKING USER
   useEffect(() => {
@@ -17,6 +36,43 @@ const Checkout = () => {
   }, [cart, navigate, user]);
 
   const shippingCharges = 300;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const id = userID;
+    dispatch(updateuserAsync({ id, ...formData })).then((res) => {
+      dispatch(userSessionAsync());
+
+      if (res.payload.message === "Update Successfull") {
+        const { phone, address } = formData;
+        const items = cart;
+        const totalAmount = couponSuccessData
+          ? totalPrice + shippingCharges - couponSuccessData?.discountAmount
+          : totalPrice + shippingCharges;
+        const requestData = {
+          name: user?.user?.name,
+          phone,
+          address,
+          items,
+          userID,
+          totalAmount,
+          couponUsed: couponSuccessData ? couponData : null,
+        };
+
+        dispatch(createOrderAsync(requestData)).then((res) => {
+          if (res.payload.message === "Order PLaced Succcessfully") {
+            openModal();
+            dispatch(clearCart());
+            dispatch(getallOrderAsync(id));
+          }
+          setFormData({
+            phone: "",
+            address: "",
+          });
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -30,11 +86,17 @@ const Checkout = () => {
                 easy-to-use payment process.
               </p>
 
-              <form className="mt-5 max-w-lg">
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="mt-5 max-w-lg"
+              >
                 <div className="mb-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <input
                     type="number"
                     placeholder="Enter Phone Number"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="px-4 py-3 bg-gray-100 text-[#333] w-full text-md border rounded-md border-gray-500 focus:border-gray-800 outline-none placeholder:text-gray-500 transition-shadow duration-200 focus:shadow-xl"
                   />
                   <input
@@ -47,6 +109,8 @@ const Checkout = () => {
                 <textarea
                   rows={4}
                   name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
                   placeholder="Enter Shipping Address"
                   className="px-4 py-3 bg-gray-100 text-[#333] w-full text-md border rounded-md border-gray-500 focus:border-gray-800 outline-none placeholder:text-gray-500 transition-shadow duration-200 focus:shadow-xl"
                   required

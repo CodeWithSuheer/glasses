@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // API URLs
@@ -33,8 +34,9 @@ export const loginuserAsync = createAsyncThunk(
       const response = await axios.post(loginUrl, formData);
       console.log(response.data);
       return response.data;
-    } catch {
+    } catch (error) {
       console.log(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   }
 );
@@ -68,8 +70,9 @@ export const logoutUserAsync = createAsyncThunk("user/logout", async () => {
   try {
     const response = await axios.delete(logoutUrl);
     return response.data;
-  } catch {
+  } catch (error) {
     console.log(error.response.data.error);
+    toast.error(error.response.data.error);
   }
 });
 

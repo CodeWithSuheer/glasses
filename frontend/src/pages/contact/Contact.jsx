@@ -44,6 +44,13 @@ const Contact = () => {
     }
   };
 
+  const ToDown = () => {
+    window.scrollTo({
+      top: 470,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <section className="shopSectionbg relative">
@@ -82,12 +89,12 @@ const Contact = () => {
           </div>
         </div>
         <div className="arrow absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#here">
+          <button onClick={ToDown}>
             <TfiArrowCircleDown
               size={30}
               className="text-gray-50 font-semibold cursor-pointer"
             />
-          </a>
+          </button>
         </div>
       </section>
 
