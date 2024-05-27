@@ -115,6 +115,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   getCartTotal,
+  clearCart,
 } = ActionsSlice.actions;
 
 export default ActionsSlice.reducer;
