@@ -1,73 +1,87 @@
 const Blog2 = () => {
-    return (
-        <>
-            <div>
-                <div className="max-w-3xl px-4 pt-6 lg:pt-32 pb-12 sm:px-6 lg:px-8 mx-auto">
-                    <div className="max-w-2xl">
-                        {/* Content */}
-                        <div className="space-y-5 md:space-y-8">
-                            <div className="space-y-3">
-                                <h2 className="text-2xl font-bold md:text-3xl">
-                                    Ohms Too Low on a Vape: What Does It Mean?
-                                </h2>
-                                <p className="text-lg text-gray-800">
-                                    If your vape mod displays the error “Ohms Too Low” when you
-                                    press the fire button, it means that your device can’t work
-                                    safely because the detected resistance of the atomizer coil
-                                    installed in the tank is too low.The best vapes always have
-                                    built-in protection circuits that manage power delivery to
-                                    ensure that you can vape safely
-                                </p>
-                            </div>
-                            <p className="text-lg text-gray-800">
-                                In some cases, a vape mod may also display the “Ohms Too Low”
-                                error when it detects a short circuit. Whatever the reason for
-                                the error may be, you can’t vape until you’ve resolved it
-                            </p>
-                            <figure>
-                                <img
-                                    className="w-full object-cover rounded-xl"
-                                    src="https://cdn.shopify.com/s/files/1/0649/1399/8024/files/Ohms_too_low.jpg?v=1713553714"
-                                    alt="Image Description"
-                                />
-                            </figure>
-                            <p className="text-lg text-gray-800">
-                                Before you get too deep into troubleshooting your vape mod’s
-                                “Ohms Too Low” error, you should check your device’s
-                                specifications because it’s possible that the coil’s resistance
-                                actually is too low. When you check the specifications of a
-                                device like the Kroma 217 at Innokin.com, you’ll see the
-                                device’s supported coil resistances at the bottom of the page
-                                next to “Resistance range.” In this case, the Kroma 217 supports
-                                coils with resistances as low as 0.1 ohm. You’re not likely to
-                                find a pre-built coil with a resistance lower than that – but if
-                                you do, it won’t work with this device.
-                            </p>
-                            <p className="text-lg text-gray-800">
-                                Every vape mod has a minimum supported coil resistance. If you
-                                can’t find your device’s minimum resistance online, you should
-                                be able to find it in the instruction manual.
-                            </p>
-                            <blockquote className="text-center p-4 sm:px-7">
-                                <p className="text-xl font-medium text-gray-800 md:text-2xl md:leading-normal xl:text-2xl xl:leading-normal">
-                                    You can usually find the resistance of a vape coil on its box
-                                    and etched into the side of the coil itself.
-                                </p>
-                            </blockquote>
-                            <figure>
-                                <img
-                                    className="w-full object-cover rounded-xl"
-                                    src="https://cdn.shopify.com/s/files/1/0649/1399/8024/files/Kroma_217-Apr-18-2024-08-53-15-3416-AM.webp?v=1713554018"
-                                    alt="Image Description"
-                                />
-                            </figure>
-                        </div>
-                        {/* End Content */}
-                    </div>
-                </div>
+  return (
+    <>
+      <div>
+        <div className="max-w-3xl px-4 pt-6 lg:pt-32 pb-12 sm:px-6 lg:px-8 mx-auto">
+          <div className="max-w-2xl">
+            {/* Content */}
+            <div className="space-y-5 md:space-y-5">
+              <div className="space-y-3">
+                <h2 className="text-2xl font-bold md:text-3xl">
+                  The Cultural Significance Of Sunglasses In Pakistan
+                </h2>
+                <p className="text-lg text-gray-800">
+                  Sunglasses are more than just a practical accessory in
+                  Pakistan; they hold cultural significance and play a vital
+                  role in shaping personal style and identity. From protecting
+                  against the scorching sun to making a fashion statement,
+                  sunglasses have become an integral part of Pakistani culture.
+                  Let's explore the cultural significance of sunglasses in
+                  Pakistan and their impact on the country's fashion landscape.
+                </p>
+              </div>
+
+              <h2 className="text-lg font-bold md:text-2xl">
+                Protection from the Harsh Sun
+              </h2>
+
+              <p className="text-lg text-gray-800">
+                In a country like Pakistan, where the sun shines bright
+                throughout the year, sunglasses are a necessity for protecting
+                against the harsh rays. Whether you're strolling through the
+                bustling streets of Karachi or exploring the historic sites of
+                Islamabad, sunglasses offer much-needed relief from the glaring
+                sun. Sunglasses stores across Pakistan, including the Googly
+                sunglasses store, offer a wide range of options to cater to the
+                diverse needs of Pakistani consumers, ensuring that everyone can
+                find a stylish pair to shield their eyes from the sun's glare.
+              </p>
+              <figure>
+                <img
+                  className="w-full object-cover rounded-xl"
+                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/blog2.jpg?v=1717008217"
+                  alt="Image Description"
+                />
+              </figure>
+
+              <h2 className="text-lg font-bold md:text-2xl">
+                Expressing Personal Style
+              </h2>
+
+              <p className="text-lg text-gray-800">
+                Beyond their practical function, sunglasses in Pakistan are also
+                a means of expressing personal style and individuality. From
+                classic aviators to trendy wayfarers, the choice of sunglasses
+                reflects one's fashion sensibilities and personality. In urban
+                centers like Karachi and Lahore, where fashion trends are
+                closely followed, sunglasses are a key accessory for completing
+                a stylish ensemble. Whether you're attending a high-profile
+                event or simply running errands, sporting a pair of stylish
+                sunglasses adds an extra element of sophistication to your look.
+              </p>
+
+              <h2 className="text-lg font-bold md:text-2xl">
+                Status Symbol and Prestige
+              </h2>
+
+              <p className="text-lg text-gray-800">
+                In Pakistani society, sunglasses are often associated with
+                status and prestige. Owning a pair of designer sunglasses from
+                brands like Ray-Ban or Prada is seen as a symbol of success and
+                affluence. People are willing to invest in high-quality
+                sunglasses not only for their functional benefits but also for
+                the sense of luxury and exclusivity they provide. Sunglasses
+                stores in upscale malls and shopping districts cater to the
+                demand for premium eyewear, offering a curated selection of
+                designer frames to discerning customers.
+              </p>
             </div>
-        </>
-    );
+            {/* End Content */}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Blog2;

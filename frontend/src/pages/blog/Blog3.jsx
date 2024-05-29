@@ -1,74 +1,84 @@
-
 const Blog3 = () => {
-    return (
-        <>
-            <div>
-                <div className="max-w-3xl px-4 pt-6 lg:pt-32 pb-12 sm:px-6 lg:px-8 mx-auto">
-                    <div className="max-w-2xl">
-                        {/* Content */}
-                        <div className="space-y-5 md:space-y-8">
-                            <div className="space-y-3">
-                                <h2 className="text-2xl font-bold md:text-3xl">
-                                    Ohms Too Low on a Vape: What Does It Mean?
-                                </h2>
-                                <p className="text-lg text-gray-800">
-                                    If your vape mod displays the error “Ohms Too Low” when you
-                                    press the fire button, it means that your device can’t work
-                                    safely because the detected resistance of the atomizer coil
-                                    installed in the tank is too low.The best vapes always have
-                                    built-in protection circuits that manage power delivery to
-                                    ensure that you can vape safely
-                                </p>
-                            </div>
-                            <p className="text-lg text-gray-800">
-                                In some cases, a vape mod may also display the “Ohms Too Low”
-                                error when it detects a short circuit. Whatever the reason for
-                                the error may be, you can’t vape until you’ve resolved it
-                            </p>
-                            <figure>
-                                <img
-                                    className="w-full object-cover rounded-xl"
-                                    src="https://cdn.shopify.com/s/files/1/0649/1399/8024/files/Ohms_too_low.jpg?v=1713553714"
-                                    alt="Image Description"
-                                />
-                            </figure>
-                            <p className="text-lg text-gray-800">
-                                Before you get too deep into troubleshooting your vape mod’s
-                                “Ohms Too Low” error, you should check your device’s
-                                specifications because it’s possible that the coil’s resistance
-                                actually is too low. When you check the specifications of a
-                                device like the Kroma 217 at Innokin.com, you’ll see the
-                                device’s supported coil resistances at the bottom of the page
-                                next to “Resistance range.” In this case, the Kroma 217 supports
-                                coils with resistances as low as 0.1 ohm. You’re not likely to
-                                find a pre-built coil with a resistance lower than that – but if
-                                you do, it won’t work with this device.
-                            </p>
-                            <p className="text-lg text-gray-800">
-                                Every vape mod has a minimum supported coil resistance. If you
-                                can’t find your device’s minimum resistance online, you should
-                                be able to find it in the instruction manual.
-                            </p>
-                            <blockquote className="text-center p-4 sm:px-7">
-                                <p className="text-xl font-medium text-gray-800 md:text-2xl md:leading-normal xl:text-2xl xl:leading-normal">
-                                    You can usually find the resistance of a vape coil on its box
-                                    and etched into the side of the coil itself.
-                                </p>
-                            </blockquote>
-                            <figure>
-                                <img
-                                    className="w-full object-cover rounded-xl"
-                                    src="https://cdn.shopify.com/s/files/1/0649/1399/8024/files/Kroma_217-Apr-18-2024-08-53-15-3416-AM.webp?v=1713554018"
-                                    alt="Image Description"
-                                />
-                            </figure>
-                        </div>
-                        {/* End Content */}
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div>
+        <div className="max-w-3xl px-4 pt-6 lg:pt-32 pb-12 sm:px-6 lg:px-8 mx-auto">
+          <div className="max-w-2xl">
+            {/* Content */}
+            <div className="space-y-5 md:space-y-5">
+              <div className="space-y-3">
+                <h2 className="text-2xl font-bold md:text-3xl">
+                  Virtual Adventures: Online Sunglasses Stores Unveiled
+                </h2>
+                <p className="text-lg text-gray-800">
+                  In the age of digital exploration, sunglasses stores have
+                  transcended brick-and-mortar constraints to unveil a virtual
+                  realm of possibilities. Online sunglasses stores have become
+                  the modern adventurer's haven, offering a treasure trove of
+                  eyewear options for those navigating the dynamic landscape of
+                  style. Googly online optics, a trailblazer in this digital
+                  era, stands as a beacon for eyeglasses for men and stylish
+                  sunglasses enthusiasts, inviting them on virtual adventures
+                  that redefine the traditional sunglasses shopping experience.
+                </p>
+              </div>
 
-export default Blog3
+              <h2 className="text-lg font-bold md:text-2xl">
+                The Googly Experience:
+              </h2>
+
+              <p className="text-lg text-gray-800">
+                As we embark on virtual adventures through Googly online optics,
+                the conventional constraints of physical stores fade away. The
+                vast selection of eyeglasses for men and stylish sunglasses is
+                at our fingertips, awaiting exploration. The interface is
+                user-friendly, providing a seamless experience akin to strolling
+                through aisles in a physical store. Googly recognizes that
+                Sunglasses Price in Pakistan can be a determining factor for
+                many, and thus, the online platform ensures transparency,
+                allowing customers to browse a diverse range of styles while
+                keeping their budget in mind.
+              </p>
+
+              <p className="text-lg text-gray-800">
+                The allure of online sunglasses stores lies not just in
+                convenience but in the ability to transcend geographical
+                boundaries. Googly, as an online optics destination in Pakistan,
+                beckons global enthusiasts to partake in its offerings. Virtual
+                adventures on this platform mean connecting with eyewear that
+                captures the essence of style, regardless of one's physical
+                location.
+              </p>
+              <figure>
+                <img
+                  className="w-full object-cover rounded-xl"
+                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/blog3.jpg?v=1717008216"
+                  alt="Image Description"
+                />
+              </figure>
+
+              <h2 className="text-lg font-bold md:text-2xl">
+                Finding Your Signature Style:
+              </h2>
+
+              <p className="text-lg text-gray-800">
+                One of the most captivating aspects of online sunglasses stores
+                is the opportunity for personalized exploration. Googly, in its
+                digital domain, allows users to filter through styles,
+                materials, and shapes effortlessly. It's not just about finding
+                any pair; it's about discovering the eyeglasses for men or
+                stylish sunglasses that resonate with one's unique personality
+                and style preferences. Virtual adventures on Googly online
+                optics are a journey of self-expression, where each click brings
+                you closer to your signature eyewear style.
+              </p>
+            </div>
+            {/* End Content */}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Blog3;

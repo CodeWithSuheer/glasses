@@ -104,20 +104,20 @@ const Cart = () => {
                   {cart.map((product) => (
                     <div
                       key={product.id}
-                      className="grid md:grid-cols-4 items-center gap-8 px-4 py-6 mb-4 shadow-md bg-white border border-gray-400 rounded-xl"
+                      className="grid md:grid-cols-4 items-center gap-8 px-4 py-6 mb-4 shadow-lg bg-white border border-gray-300 rounded-xl"
                     >
                       <div className="md:col-span-2 flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-start gap-4 sm:gap-4">
                         <div className="shrink-0 shadow-[0_0px_4px_0px_rgba(6,81,237,0.2)] p-0">
                           <img
                             className="w-28 h-22 object-contain rounded-md"
-                            src={product?.image?.downloadURL}
+                            src={product?.images?.primary?.downloadURL}
                             alt={product?.name}
                           />
                         </div>
 
                         <div>
                           <h3 className="Noto text-lg tracking-wide font-bold text-[#333]">
-                            VelvetGlide Boots
+                            {product?.name}
                           </h3>
                           <h6 className="text-md text-gray-500 mt-2 flex justify-center sm:justify-start items-center">
                             Price:{" "}
@@ -162,16 +162,16 @@ const Cart = () => {
                       <div className="flex items-center">
                         <h4 className="text-lg font-bold text-[#333]">
                           {/* Rs.{product.price * product.quantity} */}
-                          {product?.price !== product?.sale_price ? (
+                          {product && product.price !== product?.sale_price ? (
                             <>
-                              <p className="">
-                                Rs. {product.sale_price * product.quantity}
-                              </p>
+                              {product?.sale_price && product?.sale_price > 0 ? (
+                                <p className="">Rs. {product?.sale_price}</p>
+                              ) : (
+                                ""
+                              )}
                             </>
                           ) : (
-                            <p className="">
-                              Rs. {product.price * product.quantity}
-                            </p>
+                            <p className="">Rs. {product?.price}</p>
                           )}
                         </h4>
 
@@ -186,7 +186,7 @@ const Cart = () => {
                   ))}
                 </div>
 
-                <div className="shadow-md p-6 lg:sticky lg:top-0 h-max border border-gray-400 rounded-xl">
+                <div className="shadow-lg p-6 lg:sticky lg:top-0 h-max border border-gray-300 rounded-xl">
                   <h3 className="text-lg font-bold text-gray-800 border-b pb-2">
                     Cart Total
                   </h3>

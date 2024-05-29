@@ -27,7 +27,7 @@ const HeroSection = () => {
                 </span>
 
                 <h2 className="Noto max-w-sm mt-4 mb-6 text-5xl sm:text-7xl xl:text-8xl font-medium text-white tracking-normal">
-                  ClearView Eyeglasses Frames
+                  Googly Eyeglasses Frames
                 </h2>
                 <p className="pr-12 sm:pr-0 mb-10 text-lg sm:text-xl sm:max-w-md text-white">
                   Lacus egestas enim quis risus nullamib cursus fermentum

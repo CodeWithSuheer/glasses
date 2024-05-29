@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+  DialogClose,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -25,6 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import toast from "react-hot-toast";
 
 // STAR RATING
 const StarRating = ({ rating }) => {
@@ -43,6 +44,26 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   const [reviewId, setReviewId] = useState();
   const [deleteReviewId, setDeleteReviewId] = useState();
+
+  const [mainImage, setMainImage] = useState(null);
+
+  // Update mainImage when product changes
+  useEffect(() => {
+    if (product?.images?.primary?.downloadURL) {
+      setMainImage(null); // Clear the image first
+      setTimeout(() => {
+        setMainImage(product.images.primary.downloadURL);
+      }, 0); // Delay setting the new image to allow the clear state to take effect
+    }
+  }, [product]);
+
+  // Handle image click to update the main image
+  const handleImageClick = (url) => {
+    setMainImage(url);
+  };
+
+  // Extract images from product object
+  const { primary, ...otherImages } = product?.images || {};
 
   const user = useSelector((state) => state.auth.user);
   const userID = user?.user?.id;
@@ -71,13 +92,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
     // setIsOpenUpdate(true);
   };
 
-  // filter review based on id
   const allreviews = useSelector((state) => state.reviews.allReviews);
-  // console.log("allreviews", allreviews);
-
-  // const selectedReview = allreviews?.find((item) => item.id === reviewId);
-  // console.log("selectedReview", selectedReview);
-
   const loading = useSelector((state) => state.reviews.loading);
 
   // HANDLE ADD TO CART
@@ -95,8 +110,12 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   const [selectedRating, setSelectedRating] = useState();
 
-  const handleUpdateStarClick = (starValue) => {
+  const handleRatingChange = (starValue) => {
     setSelectedRating(starValue);
+    setUpdateReviewData({
+      ...updateReviewData,
+      rating: starValue,
+    });
   };
 
   // CALLING API TO GET ALL REVIEWS
@@ -129,26 +148,26 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   // HANDLE UPDATE REVIEW
   const handleUpdateReview = (review_Id, rating) => {
-    // const id = review_Id;
-    // if (selectedRating !== rating) {
-    //   const updateReviewDataOptional =
-    //     updateReviewData as Partial<ReviewFormData>;
-    //   delete updateReviewDataOptional.rating;
-    //   const payload: Partial<UpdateReviewPayload> = { id, ...updateReviewData };
-    //   payload.rating = selectedRating;
-    //   dispatch(updatereviewsAsync(payload as UpdateReviewPayload)).then(() => {
-    //     dispatch(getallreviewsAsync(productId));
-    //     closeUpdateModal();
-    //   });
-    // } else {
-    //   dispatch(updatereviewsAsync({ id, ...updateReviewData })).then(() => {
-    //     dispatch(getallreviewsAsync(productId));
-    //     closeUpdateModal();
-    //   });
-    //   setUpdateReviewData({ review: "", rating: 1 });
-    // }
+    const id = review_Id;
+
+    if (selectedRating !== rating) {
+      const updateReviewDataOptional = delete updateReviewDataOptional.rating;
+      const payload = { id, ...updateReviewData };
+      payload.rating = selectedRating;
+      dispatch(updatereviewsAsync(payload)).then(() => {
+        dispatch(getallreviewsAsync(productId));
+        // closeUpdateModal();
+      });
+    } else {
+      dispatch(updatereviewsAsync({ id, ...updateReviewData })).then(() => {
+        dispatch(getallreviewsAsync(productId));
+        // closeUpdateModal();
+      });
+      setUpdateReviewData({ review: "", rating: 1 });
+    }
   };
 
+  // HANDLE REVIEW CHANGE
   const handleReviewChange = (e) => {
     setUpdateReviewData({
       ...updateReviewData,
@@ -172,164 +191,216 @@ export const ProductOverviewTwo = ({ product, id }) => {
           <div className="px-4 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
             <div className="min-h-[70vh]">
               <div>
-                <div>
-                  <div className="py-10 xl:pt-16 xl:pb-6 grid items-start grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-10">
-                    <div className="w-full h-[30rem] top-0 sm:flex gap-2 border border-gray-500 bg-white">
-                      {/* MAIN DISPLAYER IMAGE */}
-                      <img
-                        alt="Product"
-                        className="w-full h-full pr-0 lg:pr-0 object-cover"
-                        src={product?.image?.downloadURL}
-                      />
+                <div className="py-10 xl:pt-16 xl:pb-6 grid items-start grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-6">
+                  {/* IMAGES */}
+                  <div className="w-full sm:flex justify-center gap-2">
+                    {/* SIDE IMAGES */}
+                    <div className="sm:space-y-3 w-[3.5rem] sm:w-[4.5rem] max-sm:flex sm:flex-col max-sm:mb-4 max-sm:gap-4">
+                      {primary && (
+                        <img
+                          src={primary.downloadURL}
+                          alt={primary.name}
+                          className="w-full h-16 sm:h-20 object-contain cursor-pointer rounded-sm border border-gray-300"
+                          onClick={() => handleImageClick(primary.downloadURL)}
+                        />
+                      )}
+                      {Object.keys(otherImages).map((key) => (
+                        <img
+                          key={key}
+                          src={otherImages[key].downloadURL}
+                          alt={otherImages[key].name}
+                          className="w-full h-16 sm:h-20 object-contain cursor-pointer rounded-sm border border-gray-300"
+                          onClick={() =>
+                            handleImageClick(otherImages[key].downloadURL)
+                          }
+                        />
+                      ))}
                     </div>
 
-                    {/* CONTENT SIDE */}
-                    <div className="">
-                      <div className="content_side pt-5">
-                        <h2 className="text-4xl font-medium text-gray-800">
-                          {product?.name}
-                        </h2>
+                    {/* MAIN IMAGE */}
+                    <div className="img_cont">
+                      <img
+                        src={mainImage}
+                        alt="Product"
+                        className="h-[28rem] w-[28rem] rounded object-contain border border-gray-300"
+                      />
+                    </div>
+                  </div>
 
-                        {/* PRICE SECTION */}
-                        <div className="flex flex-wrap items-center gap-4 mt-4">
-                          {product?.price !== product?.sale_price ? (
-                            <>
-                              <p className="text-gray-500 text-xl line-through">
-                                Rs.{product?.price}
-                              </p>
-                              <p className="text-red-600 text-3xl font-bold">
-                                Rs.{product?.sale_price}
-                              </p>
-                            </>
-                          ) : (
-                            <p className="text-gray-800 text-2xl font-bold">
+                  {/* CONTENT SIDE */}
+                  <div className="px-0 sm:px-10 lg:px-0">
+                    <div className="content_side pt-5">
+                      <h2 className="text-4xl font-medium text-gray-800">
+                        {product?.name}
+                      </h2>
+
+                      {/* PRICE SECTION */}
+                      <div className="flex flex-wrap items-center gap-4 mt-4">
+                        {/* {product?.sale_price === 0 &&
+                        product?.price !== product?.sale_price ? (
+                          <div className="flex items-center gap-x-3">
+                            <p className="text-gray-500 text-xl line-through">
+                              Rs.{product?.price}
+                            </p>
+                            <p className="text-red-600 text-3xl font-bold">
+                              Rs.{product?.sale_price}
+                            </p>
+                          </div>
+                        ) : (
+                          <p className="text-gray-800 text-2xl font-bold">
+                            Rs. {product?.price}
+                          </p>
+                        )} */}
+
+                        {product && product.price !== product?.sale_price ? (
+                          <>
+                            <p
+                              className={`${
+                                product?.sale_price && product?.sale_price > 0
+                                  ? "text-gray-500 text-lg line-through"
+                                  : "text-gray-500 text-lg"
+                              }`}
+                            >
                               Rs. {product?.price}
                             </p>
-                          )}
-                        </div>
-
-                        {/* ABOUT */}
-                        <div className="mt-4">
-                          {/* <StarRating rating={product?.rating} /> */}
-
-                          {product && (
-                            <div className="flex items-center mt-4">
-                              {product.averageRating === 0 ? (
-                                "No Ratings"
-                              ) : (
-                                <StarRating rating={product.averageRating} />
-                              )}
-                              <span className="ml-2 text-sm text-gray-500">
-                                ({product.averageRating})
-                              </span>
-                            </div>
-                          )}
-
-                          {/* DESCRIPTION */}
-                          <div className="mt-4 pl-0 text-md text-gray-800">
-                            <p>{product?.description}</p>
-                          </div>
-                        </div>
-
-                        <div className="details_box py-6">
-                          <div className="py-0.5 details flex justify-start items-center font-semibold">
-                            <h3 className="name w-40">SKU</h3>
-                            <h3 className="name w-full">00157PD-1-2</h3>
-                          </div>
-                          <div className="py-0.5 details flex justify-start items-center font-semibold">
-                            <h3 className="name w-40">Categories</h3>
-                            <h3 className="name w-full">
-                              Men’s Eyewear, Prescription Glasses, Women’s
-                              Eyewear
-                            </h3>
-                          </div>
-                          <div className="py-0.5 details flex justify-start items-center font-semibold">
-                            <h3 className="name w-40">Tags</h3>
-                            <h3 className="name w-full">
-                              Fashion, Glass, Men, Women
-                            </h3>
-                          </div>
-                        </div>
-
-                        {/* CART BUTTON */}
-                        <button
-                          onClick={handleAddToCart}
-                          className="w-full mt-4 flex items-center text-lg font-medium justify-center gap-2 px-4 py-3 hover:bg-black bg-[#252525] text-white"
-                          type="button"
-                        >
-                          Add To Cart
-                        </button>
+                            {product?.sale_price && product?.sale_price > 0 ? (
+                              <p className="text-gray-800 text-2xl font-bold">
+                                Rs. {product?.sale_price}
+                              </p>
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        ) : (
+                          <p className="text-gray-800 text-2xl font-bold">
+                            Rs. {product?.price}
+                          </p>
+                        )}
                       </div>
+
+                      {/* ABOUT */}
+                      <div className="mt-4">
+                        {/* <StarRating rating={product?.rating} /> */}
+
+                        {product && (
+                          <div className="flex items-center mt-4">
+                            {product.averageRating === 0 ? (
+                              "No Ratings"
+                            ) : (
+                              <StarRating rating={product.averageRating} />
+                            )}
+                            <span className="ml-2 text-sm text-gray-500">
+                              ({product.averageRating})
+                            </span>
+                          </div>
+                        )}
+
+                        {/* DESCRIPTION */}
+                        <div className="mt-4 pl-0 text-md text-gray-800">
+                          <p>{product?.description}</p>
+                        </div>
+                      </div>
+
+                      <div className="details_box py-6">
+                        <div className="py-0.5 details flex justify-start items-center font-semibold">
+                          <h3 className="name w-40">SKU</h3>
+                          <h3 className="name w-full">00157PD-1-2</h3>
+                        </div>
+                        <div className="py-0.5 details flex justify-start items-center font-semibold">
+                          <h3 className="name w-40">Categories</h3>
+                          <h3 className="name w-full">
+                            Men’s Eyewear, Prescription Glasses, Women’s Eyewear
+                          </h3>
+                        </div>
+                      </div>
+
+                      {/* CART BUTTON */}
+                      <button
+                        onClick={handleAddToCart}
+                        className="w-full mt-4 flex items-center text-lg font-medium justify-center gap-2 px-4 py-3 hover:bg-black bg-[#252525] text-white"
+                        type="button"
+                      >
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
                 </div>
 
                 {/* REVIEW SECTION */}
-                <div className="mt-6 pb-5 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
+                <div className="mt-10 pb-5 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
                   <div className="mt-8">
                     <>
-                      <div className="mb-8 reviews max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
-                        {/* ALL REVIEWS  */}
-                        <div className="mt-6 all_reviews">
-                          <h2 className="text-2xl text-gray-800 font-semibold">
-                            ALL REVIEWS
-                          </h2>
+                      {/* ALL REVIEWS  */}
+                      <div className="mt-6 all_reviews">
+                        <h2 className="text-2xl text-gray-800 font-semibold">
+                          ALL REVIEWS
+                        </h2>
 
-                          {/* ALL REVIEWS MAPPED HERE */}
-                          {allreviews.map((data, index) => (
-                            <div
-                              key={index}
-                              className="mt-3 px-6 py-3 lg:py-5 rounded-lg border border-gray-300 bg-[#ebebeb] all_reviews"
-                            >
-                              <div className="flex justify-between flex-wrap items-center gap-2">
-                                <div className="left flex items-center gap-2">
-                                  <h2 className="font-semibold">{data.name}</h2>{" "}
-                                  <p className="w-24">
-                                    <StarRating rating={data?.rating} />
-                                  </p>
+                        {/* ALL REVIEWS MAPPED HERE */}
+                        {loading ? (
+                          <div className="flex justify-center mt-10">
+                            Loading
+                          </div>
+                        ) : (
+                          <>
+                            {allreviews.map((data, index) => (
+                              <div
+                                key={index}
+                                className="mt-3 px-6 py-3 lg:py-4 rounded-lg border border-gray-300 bg-[#f6f6f6] all_reviews hover:shadow-md transition-shadow duration-150"
+                              >
+                                <div className="flex justify-between flex-wrap items-center gap-2">
+                                  <div className="left flex items-center gap-2">
+                                    <h2 className="font-semibold">
+                                      {data.name}
+                                    </h2>{" "}
+                                    <p className="w-24">
+                                      <StarRating rating={data?.rating} />
+                                    </p>
+                                  </div>
+                                  <div className="right">
+                                    <p>
+                                      {new Date(
+                                        data?.createdAt
+                                      ).toLocaleDateString()}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div className="right">
-                                  <p>
-                                    {new Date(
-                                      data?.createdAt
-                                    ).toLocaleDateString()}
-                                  </p>
+                                <div className="mt-1 flex justify-between flex-wrap items-center gap-2">
+                                  <p className="my-1">{data?.review}</p>
+
+                                  <div className="edit flex items-center  gap-3">
+                                    {userID === data.userID ? (
+                                      <>
+                                        <DialogTrigger asChild>
+                                          <Button className="bg-transparent hover:bg-transparent px-0">
+                                            <FiEdit
+                                              onClick={() =>
+                                                openUpdateModal(data?.id)
+                                              }
+                                              size={20}
+                                              className="text-gray-800"
+                                            />
+                                          </Button>
+                                        </DialogTrigger>
+                                        <IoTrashOutline
+                                          onClick={() =>
+                                            handleDeleteReview(data?.id)
+                                          }
+                                          className="cursor-pointer"
+                                          size={20}
+                                        />
+                                      </>
+                                    ) : null}
+                                  </div>
                                 </div>
                               </div>
-                              <div className="mt-2 flex justify-between flex-wrap items-center gap-2">
-                                <p className="my-1">{data?.review}</p>
-
-                                <div className="edit flex items-center  gap-3">
-                                  {userID === data.userID ? (
-                                    <>
-                                      <DialogTrigger asChild>
-                                        <Button className="bg-transparent hover:bg-transparent px-0">
-                                          <FiEdit
-                                            onClick={() =>
-                                              openUpdateModal(data?.id)
-                                            }
-                                            size={20}
-                                            className="text-gray-800"
-                                          />
-                                        </Button>
-                                      </DialogTrigger>
-                                      <IoTrashOutline
-                                        onClick={() =>
-                                          handleDeleteReview(data?.id)
-                                        }
-                                        className="cursor-pointer"
-                                        size={20}
-                                      />
-                                    </>
-                                  ) : null}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
+                            ))}
+                          </>
+                        )}
                       </div>
 
-                      <div>
+                      {/* YOUR REVIEWS  */}
+                      <div className="mt-10">
                         <p className="mb-1 ml-1 text-gray-700 font-medium">
                           Your Review*
                         </p>
@@ -391,12 +462,13 @@ export const ProductOverviewTwo = ({ product, id }) => {
               <Label htmlFor="name" className="text-right">
                 Your Review:
               </Label>
-              <Textarea
-                className="mt-3 focus:outline-none focus:border-none  border-gray-500"
+              <textarea
+                className="mt-3 border px-3 py-2.5 rounded-lg border-gray-500 focus:border-gray-800 w-full focus:outline-none"
+                rows={3}
                 placeholder="Type your message here."
                 value={updateReviewData.review}
                 onChange={handleReviewChange}
-              />
+              ></textarea>
 
               <div className="mt-4 mb-2 flex items-center justify-start gap-1">
                 <p className="mr-1 text-gray-700 font-medium text-sm">
@@ -412,19 +484,23 @@ export const ProductOverviewTwo = ({ product, id }) => {
                           : "#D1D5DB",
                       cursor: "pointer",
                     }}
-                    onClick={() => handleUpdateStarClick(starValue)}
+                    onClick={() => handleRatingChange(starValue)}
                   />
                 ))}
               </div>
             </div>
           </div>
           <DialogFooter>
-            <Button
-              onClick={() => handleUpdateReview(reviewId, data.rating)}
-              type="submit"
-            >
-              Save changes
-            </Button>
+            <DialogClose asChild>
+              <Button
+                onClick={() =>
+                  handleUpdateReview(reviewId, updateReviewData.rating)
+                }
+                type="submit"
+              >
+                Save changes
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

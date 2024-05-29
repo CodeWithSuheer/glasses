@@ -10,153 +10,6 @@ import { getAllProductsAsync } from "../../features/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const data = [
-  {
-    id: "1",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "2",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "3",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "4",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "5",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "6",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "7",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "8",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "9",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "10",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "11",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "12",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "13",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "14",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "15",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "16",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-];
-
 // STAR RATING
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -169,39 +22,13 @@ const StarRating = ({ rating }) => {
 const Shop = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isCategoryVisible, setIsCategoryVisible] = useState(false);
 
   const allproducts = useSelector((state) => state.products.products || []);
   const loading = useSelector((state) => state.products.Productloading);
-  console.log(allproducts);
+  // console.log(allproducts);
   const [searchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1", 10);
   const category = searchParams.get("category") || "All";
-
-  const toggleCategory = () => {
-    setIsCategoryVisible(!isCategoryVisible);
-  };
-
-  const renderPaginationLinks = () => {
-    const totalPages = allproducts?.totalPages;
-    const paginationLinks = [];
-    for (let i = 1; i <= totalPages; i++) {
-      paginationLinks.push(
-        <li onClick={ToTop} key={i}>
-          <Link
-            to={`/products?category=${category}&page=${i}`}
-            className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 border border-gray-300 ${
-              i === page ? "bg-gray-800 text-white" : "hover:bg-gray-100"
-            }`}
-            onClick={() => dispatch(getAllProductsAsync({ category, page: i }))}
-          >
-            {i}
-          </Link>
-        </li>
-      );
-    }
-    return paginationLinks;
-  };
 
   useEffect(() => {
     dispatch(getAllProductsAsync({ category, page }));
@@ -309,9 +136,9 @@ const Shop = () => {
                       className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150  border border-gray-200"
                     >
                       <img
-                        className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
-                        src={data?.image?.downloadURL}
-                        alt={data.name}
+                        className="object-cover w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
+                        src={data?.images?.primary?.downloadURL}
+                        alt={data?.name}
                       />
 
                       <div className="py-5 text-center">
@@ -382,111 +209,6 @@ const Shop = () => {
                 </>
               )}
             </div>
-          </div>
-
-          {/* PAGINATION */}
-          <div className="flex justify-center">
-            <nav aria-label="Page navigation example">
-              <ul className="flex items-center -space-x-px h-8 py-10 text-sm">
-                <li>
-                  {allproducts?.page > 1 ? (
-                    <Link
-                      onClick={ToTop}
-                      to={`/products?category=${category}&page=${page - 1}`}
-                      className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      <span className="sr-only">Previous</span>
-                      <svg
-                        className="w-2.5 h-2.5 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 6 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 1 1 5l4 4"
-                        />
-                      </svg>
-                    </Link>
-                  ) : (
-                    <button
-                      className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg cursor-not-allowed"
-                      disabled
-                    >
-                      <span className="sr-only">Previous</span>
-                      <svg
-                        className="w-2.5 h-2.5 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 6 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 1 1 5l4 4"
-                        />
-                      </svg>
-                    </button>
-                  )}
-                </li>
-                {renderPaginationLinks()}
-                <li>
-                  {allproducts?.totalPages !== page ? (
-                    <Link
-                      onClick={ToTop}
-                      to={`/products?category=${category}&page=${page + 1}`}
-                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      <span className="sr-only">Next</span>
-                      <svg
-                        className="w-2.5 h-2.5 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 6 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="m1 9 4-4-4-4"
-                        />
-                      </svg>
-                    </Link>
-                  ) : (
-                    <button
-                      className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg cursor-not-allowed"
-                      disabled
-                    >
-                      <span className="sr-only">Next</span>
-                      <svg
-                        className="w-2.5 h-2.5 rtl:rotate-180"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 6 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="m1 9 4-4-4-4"
-                        />
-                      </svg>
-                    </button>
-                  )}
-                </li>
-              </ul>
-            </nav>
           </div>
 
           <div className="buttons mt-14 flex justify-center items-center">

@@ -1,5 +1,5 @@
-import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
 const HomeBlogs = () => {
   const navigate = useNavigate();
@@ -26,8 +26,8 @@ const HomeBlogs = () => {
               Popular Blog & News
             </h2>
             <p className="mt-2.5 text-gray-800">
-              See how game-changing companies are making the most of every
-              engagement with Preline.
+              Stay ahead with news and stories that are shaping the future of
+              industries.
             </p>
           </div>
 
@@ -40,13 +40,13 @@ const HomeBlogs = () => {
               >
                 <img
                   alt=""
-                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/post-clearview1-768x549.jpg?v=1716239694"
+                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/blog1.jpg?v=1717007698"
                   className="h-56 w-full object-cover"
                 />
 
                 <div className="p-4 sm:p-6">
                   <h3 className="mb-1 text-lg font-semibold text-gray-900">
-                    How to position your furniture for positivity
+                    How Sunglasses Stores Balance Style And UV Protection
                   </h3>
 
                   <time
@@ -65,13 +65,13 @@ const HomeBlogs = () => {
               >
                 <img
                   alt=""
-                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/post-clearview2-768x549.jpg?v=1716239694"
+                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/blog2.jpg?v=1717008217"
                   className="h-56 w-full object-cover"
                 />
 
                 <div className="p-4 sm:p-6">
                   <h3 className="mb-1 text-lg font-semibold text-gray-900">
-                    How to position your furniture for positivity
+                    The Cultural Significance Of Sunglasses In Pakistan
                   </h3>
 
                   <time
@@ -90,13 +90,13 @@ const HomeBlogs = () => {
               >
                 <img
                   alt=""
-                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/post-clearview3-768x549.jpg?v=1716239694"
+                  src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/blog3.jpg?v=1717008216"
                   className="h-56 w-full object-cover"
                 />
 
                 <div className="p-4 sm:p-6">
                   <h3 className="mb-1 text-lg font-semibold text-gray-900">
-                    How to position your furniture for positivity
+                    Virtual Adventures: Online Sunglasses Stores Unveiled
                   </h3>
 
                   <time

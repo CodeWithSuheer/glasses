@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { useDispatch } from "react-redux";
 import { userSessionAsync } from "./features/authSlice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import HomePage from "./pages/home/HomePage";
+// import HomePage from "./pages/home/HomePage";
+const HomePage = React.lazy(() => import("./pages/home/HomePage"));
 import Contact from "./pages/contact/Contact";
 import About from "./pages/about/About";
 import Header from "./NormalComponnets/Header";
@@ -13,20 +15,29 @@ import Cart from "./pages/cart/Cart";
 import NotFound from "./NormalComponnets/NotFound";
 import Checkout from "./pages/checkout/Checkout";
 import MyOrders from "./pages/order/MyOrders";
-import Shop from "./pages/shop/Shop";
-import SelectedItem from "./pages/selectedItem/SelectedItem";
-import UserProfile from "./pages/userProfile/UserProfile";
-import Login from "./auth/Login";
-import Signup from "./auth/Signup";
+const Shop = React.lazy(() => import("./pages/shop/Shop"));
+const SelectedItem = React.lazy(() =>
+  import("./pages/selectedItem/SelectedItem")
+);
+// import SelectedItem from "./pages/selectedItem/SelectedItem";
+// AUTH ROUTES
+// import Signup from "./auth/Signup";
+// import Login from "./auth/Login";
+const Signup = React.lazy(() => import("./auth/Signup"));
+const Login = React.lazy(() => import("./auth/Login"));
 import ForgetPass from "./auth/ForgetPass";
 import OtpChecker from "./auth/OtpChecker";
 import ResetPass from "./auth/ResetPass";
+import UserProfile from "./pages/userProfile/UserProfile";
+// OTHERS ROUTES
 import PrivacyPolicy from "./NormalComponnets/PrivacyPolicy";
 import Terms from "./NormalComponnets/Terms";
 import Blogs from "./pages/blog/Blogs";
 import { FaArrowUp } from "react-icons/fa6";
 import Blog2 from "./pages/blog/Blog2";
 import Blog3 from "./pages/blog/Blog3";
+import OrderSuccessPage from "./pages/checkout/OrderSuccessPage";
+import Loader from "./NormalComponnets/Loader";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,16 +77,56 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
           {/* ---------- MAIN ROUTES ---------- */}
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<Loader />}>
+                <HomePage />
+              </Suspense>
+            }
+          />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<MyOrders />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/selectedItem/:id" element={<SelectedItem />} />
+          {/* <Route path="/shop" element={<Shop />} /> */}
+          <Route
+            path="/shop"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Shop />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/selectedItem/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SelectedItem />
+              </Suspense>
+            }
+          />
+          {/* <Route path="/selectedItem/:id" element={<SelectedItem />} /> */}
+          <Route path="/order-success" element={<OrderSuccessPage />} />
 
           {/* ---------- AUTH ROUTES ---------- */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/signup" element={<Signup />} /> */}
+          <Route
+            path="/signup"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Signup />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Login />
+              </Suspense>
+            }
+          />
           <Route path="/forget" element={<ForgetPass />} />
           <Route path="/otp/:id" element={<OtpChecker />} />
           <Route path="/profile" element={<UserProfile />} />

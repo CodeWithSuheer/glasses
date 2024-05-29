@@ -170,14 +170,14 @@ const SelectedItem = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.products.singleProduct);
-  console.log(product);
+  // console.log(product);
 
   useEffect(() => {
     dispatch(getProductByIdAsync(id));
   }, [id]);
 
   const selectedItem = data?.filter((item) => item.id === id);
-  console.log("selectedItem", selectedItem);
+  // console.log("selectedItem", selectedItem);
 
   const ToDown = () => {
     window.scrollTo({
