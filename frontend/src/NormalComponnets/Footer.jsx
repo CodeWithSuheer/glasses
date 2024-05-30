@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { FaPhone } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa6";
-import { FaTiktok } from "react-icons/fa";
+// import { FaLinkedinIn } from "react-icons/fa6";
+// import { FaTiktok } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
 const Footer = () => {
@@ -107,17 +107,11 @@ const Footer = () => {
 
                 {/* SOCIAL LINKS */}
                 <div className="links pt-2 flex items-center justify-start gap-2.5">
-                  <a href="#" className="">
+                  <a href="https://www.facebook.com/googlysmart.shop/" target="_blank" className="">
                     <FaFacebookF className="text-white bg-[#3c3b3b] h-7 w-7 p-1.5 rounded-full" />
                   </a>
-                  <a href="#" className="">
+                  <a href="https://www.instagram.com/googlysmart.shop/" target="_blank" className="">
                     <FaInstagram className="text-white bg-[#3c3b3b] h-7 w-7 p-1.5 rounded-full" />
-                  </a>
-                  <a href="#" className="">
-                    <FaLinkedinIn className="text-white bg-[#3c3b3b] h-7 w-7 p-1.5 rounded-full" />
-                  </a>
-                  <a href="#" className="">
-                    <FaTiktok className="text-white bg-[#3c3b3b] h-7 w-7 p-1.5 rounded-full" />
                   </a>
                 </div>
               </div>

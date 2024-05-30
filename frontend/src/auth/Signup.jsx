@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createuserAsync } from "../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -125,7 +125,7 @@ const Signup = () => {
                     <div role="status">
                       <svg
                         aria-hidden="true"
-                        className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                        className="w-8 h-8 text-gray-200 animate-spin fill-gray-900"
                         viewBox="0 0 100 101"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"

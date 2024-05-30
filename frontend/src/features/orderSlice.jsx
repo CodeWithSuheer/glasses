@@ -65,6 +65,15 @@ const orderSlice = createSlice({
     builder
 
       // GET ALL REVIEWS ADD CASE
+      .addCase(createOrderAsync.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createOrderAsync.fulfilled, (state) => {
+        state.loading = false;
+      })
+
+
+      // GET ALL REVIEWS ADD CASE
       .addCase(getallOrderAsync.pending, (state) => {
         state.loading = true;
       })

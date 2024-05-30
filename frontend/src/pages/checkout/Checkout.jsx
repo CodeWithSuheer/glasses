@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { updateuserAsync, userSessionAsync } from "../../features/authSlice";
 import { createOrderAsync, getallOrderAsync } from "../../features/orderSlice";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ const Checkout = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const shippingCharges = 300;
+  const shippingCharges = 280;
 
   const [showCouponInput, setShowCouponInput] = useState(false);
 
@@ -128,9 +128,8 @@ const Checkout = () => {
         <title>Checkout - Googly</title>
       </Helmet>
       <section
-        className={`pt-24 md:pt-32 ${
-          cart.length >= 3 ? "xl:pt-32" : "xl:pt-10"
-        } px-4 xl:px-0 bg-[#F5F5F5]`}
+        className={`pt-24 md:pt-32 ${cart.length >= 3 ? "xl:pt-32" : "xl:pt-10"
+          } px-4 xl:px-0 bg-[#F5F5F5]`}
       >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto min-h-screen flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 w-full">
@@ -179,7 +178,7 @@ const Checkout = () => {
                       <svg
                         aria-hidden="true"
                         role="status"
-                        class="inline mr-3 w-4 h-4 text-white animate-spin"
+                        className="inline mr-3 w-4 h-4 text-white animate-spin"
                         viewBox="0 0 100 101"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -324,8 +323,8 @@ const Checkout = () => {
                     Rs.{" "}
                     {couponSuccessData
                       ? totalPrice +
-                        shippingCharges -
-                        couponSuccessData?.discountAmount
+                      shippingCharges -
+                      couponSuccessData?.discountAmount
                       : totalPrice + shippingCharges}
                   </p>
                 </li>

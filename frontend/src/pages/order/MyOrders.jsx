@@ -161,6 +161,17 @@ const MyOrders = () => {
                     </div>
                     <div className="mb-4">
                       <div className="text-md sm:text-md font-semibold">
+                        Shipping
+                      </div>
+                      <div
+                        className={`text-md font-medium`}
+                      >
+                        Rs. 280
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <div className="text-md sm:text-md font-semibold">
                         Total Amount
                       </div>
                       <div className="text-md font-medium text-gray-700">
@@ -179,6 +190,7 @@ const MyOrders = () => {
                         {data?.orderProgress}
                       </div>
                     </div>
+
                   </div>
 
                   {/* ORDER CANCEL BUTTON */}
@@ -212,7 +224,7 @@ const MyOrders = () => {
                             <div className="flex-shrink-0">
                               <img
                                 className="h-20 w-20 rounded-lg bg-white border border-gray-200 object-contain"
-                                src={product?.image.downloadURL}
+                                src={product?.images?.primary?.downloadURL}
                                 alt="order_img"
                               />
                             </div>

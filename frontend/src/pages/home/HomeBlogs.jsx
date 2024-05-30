@@ -50,11 +50,11 @@ const HomeBlogs = () => {
                   </h3>
 
                   <time
-                    dateTime="2022-10-10"
+                    dateTime="2024-02-10"
                     className="block text-xs text-gray-500"
                   >
                     {" "}
-                    10th Oct 2022{" "}
+                    10th Feb 2024{" "}
                   </time>
                 </div>
               </article>
@@ -79,7 +79,7 @@ const HomeBlogs = () => {
                     className="block text-xs text-gray-500"
                   >
                     {" "}
-                    10th Oct 2022{" "}
+                    11th March 2024{" "}
                   </time>
                 </div>
               </article>
@@ -104,7 +104,7 @@ const HomeBlogs = () => {
                     className="block text-xs text-gray-500"
                   >
                     {" "}
-                    10th Oct 2022{" "}
+                    7th May 2024{" "}
                   </time>
                 </div>
               </article>
