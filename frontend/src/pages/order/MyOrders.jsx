@@ -163,11 +163,7 @@ const MyOrders = () => {
                       <div className="text-md sm:text-md font-semibold">
                         Shipping
                       </div>
-                      <div
-                        className={`text-md font-medium`}
-                      >
-                        Rs. 280
-                      </div>
+                      <div className={`text-md font-medium`}>Rs. 280</div>
                     </div>
 
                     <div className="mb-4">
@@ -190,7 +186,6 @@ const MyOrders = () => {
                         {data?.orderProgress}
                       </div>
                     </div>
-
                   </div>
 
                   {/* ORDER CANCEL BUTTON */}

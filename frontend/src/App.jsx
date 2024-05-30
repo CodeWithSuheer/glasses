@@ -36,7 +36,10 @@ import Blogs from "./pages/blog/Blogs";
 import { FaArrowUp } from "react-icons/fa6";
 import Blog2 from "./pages/blog/Blog2";
 import Blog3 from "./pages/blog/Blog3";
-import OrderSuccessPage from "./pages/checkout/OrderSuccessPage";
+// import OrderSuccessPage from "./pages/checkout/OrderSuccessPage";
+const OrderSuccessPage = React.lazy(() =>
+  import("./pages/checkout/OrderSuccessPage")
+);
 import Loader from "./NormalComponnets/Loader";
 
 function App() {
@@ -107,7 +110,15 @@ function App() {
             }
           />
           {/* <Route path="/selectedItem/:id" element={<SelectedItem />} /> */}
-          <Route path="/order-success" element={<OrderSuccessPage />} />
+          {/* <Route path="/order-success" element={<OrderSuccessPage />} /> */}
+          <Route
+            path="//order-success"
+            element={
+              <Suspense fallback={<Loader />}>
+                <OrderSuccessPage />
+              </Suspense>
+            }
+          />
 
           {/* ---------- AUTH ROUTES ---------- */}
           {/* <Route path="/signup" element={<Signup />} /> */}

@@ -42,6 +42,8 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   const productId = id;
 
+  console.log(product);
+
   const [reviewId, setReviewId] = useState();
   const [deleteReviewId, setDeleteReviewId] = useState();
 

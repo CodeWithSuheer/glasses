@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { getCartTotal } from "../features/ActionsSlice";
 import { IoIosArrowUp } from "react-icons/io";
 import { logoutUserAsync } from "../features/authSlice";
+import SearchModal from "./SearchModal";
 
 const Header = () => {
   const location = useLocation();
@@ -38,6 +39,16 @@ const Header = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const forMobileNavigate = [
     { title: "Profile", path: "profile" },
@@ -111,7 +122,7 @@ const Header = () => {
       <nav
         className={`navbar absolute top-0 w-full py-0 border-b ${
           showNav1 ? "bg-transparent" : "bg-[#2d2d2dd4]"
-        } border-[#A4A3A2] transition-all `}
+        }  ${isModalOpen ? "opacity-40" : ""} transition-all `}
       >
         <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl px-3 sm:px-6 xl:px-0 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between ">
@@ -194,8 +205,7 @@ const Header = () => {
               <div className="cart_search flex ml-3 pl-3 py-7 items-center border-l border-[#A4A3A2]">
                 {/* SEARCH */}
                 <Link
-                  to="/blog"
-                  onClick={() => window.scroll(0, 0)}
+                  onClick={openModal}
                   className="px-0 pt-2 pb-0.5 mx-4 sm:mx-2 md:mx-3 xl:mx-3 text-lg font-medium tracking-wide text-white rounded-xl"
                 >
                   <IoSearchOutline size={22} />
@@ -375,6 +385,12 @@ const Header = () => {
           </div>
         </div>
       </nav>
+
+      <SearchModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        isModalOpen={isModalOpen}
+      />
     </>
   );
 };
