@@ -116,9 +116,9 @@ const Contact = () => {
                 </h2>
 
                 <p className="text-gray-300 py-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt fugiat nemo beatae corrupti accusamus! Optio rem
-                  aspernatur, qui ex facere ipsam ipsum.
+                  Have questions or need assistance? Our team is here to help!
+                  Reach out to us for any inquiries or support, and we'll get
+                  back to you promptly.
                 </p>
 
                 <div className="mt-6 space-y-8 md:mt-6 flex flex-col justify-center items-center sm:block">
@@ -156,8 +156,8 @@ const Contact = () => {
                   Send A Message
                 </h2>
                 <p className="mt-2 text-black">
-                  Lorem ipsum dolor sit amet consectetur. Vestibulum velit
-                  aliquet magnis dapibus dictum enim praesent.
+                  Have something to say? Drop us a message and we’ll get back to
+                  you as soon as possible.
                 </p>
                 {/* FORM */}
                 <form className="mt-6" onSubmit={handleSubmit}>

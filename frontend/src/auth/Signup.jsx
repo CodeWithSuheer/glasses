@@ -41,12 +41,13 @@ const Signup = () => {
           <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
             <div className="min-w-[60%] md:min-w-[50%]">
-              <h1 className="playfair max-w-xs sm:max-w-full text-center mb-5 text-4xl sm:text-4xl font-bold">
+              <h1 className="playfair max-w-xs sm:max-w-full text-center mb-5 text-3xl sm:text-4xl font-bold">
                 Signup Your Account
               </h1>
 
-              <p className="max-w-full mb-5 text-md text-center">
-                Lorem ipsum dolor sit amet consectetur.
+              <p className="max-w-full mb-5 text-sm sm:text-md text-center">
+                Get the best in eyewear with Googly. Sign up for perks and
+                deals!
               </p>
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-4">
                 {/* NAME */}

@@ -22,17 +22,16 @@ const Footer = () => {
               <h1 className="max-w-lg flex items-center text-xl font-semibold tracking-tight text-black xl:text-2xl">
                 <img className="w-auto h-16" src={logo} alt="logo" />
               </h1>
-              <p className="max-w-md text-[1rem] mt-3">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                molestiae nostrum totam et iusto nisi sequi qui odio! Non
-                tempore sit est quas vero accusamus cum necessitatibus nesciunt
-                animi expedita et iusto nisi seq olor sit, amet con.
+              <p className="max-w-sm text-[1rem] mt-3">
+                Welcome to Googly, where style meets vision! Explore our curated
+                collection of trendy eyewear for men and women. Find the perfect
+                frames that blend fashion and function effortlessly.
               </p>
             </div>
 
             {/* QUICK LINKS */}
             <div>
-              <p className="text-xl font-semibold text-black">Quick Link</p>
+              <p className="text-xl font-semibold text-black">Quick Links</p>
               <div className="flex flex-col items-start mt-3 space-y-2">
                 <Link
                   to="/"
@@ -41,6 +40,34 @@ const Footer = () => {
                 >
                   Home
                 </Link>
+                <Link
+                  to="/shop"
+                  onClick={handleMoveToTop}
+                  className="text-black transition-colors duration-300 hover:underline hover:text-blue-500"
+                >
+                  Shop
+                </Link>
+                <Link
+                  to="/shop"
+                  onClick={handleMoveToTop}
+                  className="text-black transition-colors duration-300 hover:underline hover:text-blue-500"
+                >
+                  Men Glasses
+                </Link>
+                <Link
+                  to="/shop"
+                  onClick={handleMoveToTop}
+                  className="text-black transition-colors duration-300 hover:underline hover:text-blue-500"
+                >
+                  Women Glasses
+                </Link>
+              </div>
+            </div>
+
+            {/* SHOP */}
+            <div>
+              <p className="text-xl font-semibold text-black">Useful Links</p>
+              <div className="flex flex-col items-start mt-3 space-y-2">
                 <Link
                   to="/about"
                   onClick={handleMoveToTop}
@@ -62,33 +89,12 @@ const Footer = () => {
                 >
                   Privacy Policy
                 </Link>
-              </div>
-            </div>
-
-            {/* SHOP */}
-            <div>
-              <p className="text-xl font-semibold text-black">Products</p>
-              <div className="flex flex-col items-start mt-3 space-y-2">
                 <Link
-                  to="/shop"
+                  to="/terms"
                   onClick={handleMoveToTop}
                   className="text-black transition-colors duration-300 hover:underline hover:text-blue-500"
                 >
-                  Shop
-                </Link>
-                <Link
-                  to="/shop"
-                  onClick={handleMoveToTop}
-                  className="text-black transition-colors duration-300 hover:underline hover:text-blue-500"
-                >
-                  Mens
-                </Link>
-                <Link
-                  to="/shop"
-                  onClick={handleMoveToTop}
-                  className="text-black transition-colors duration-300 hover:underline hover:text-blue-500"
-                >
-                  Women
+                  Term & Condition
                 </Link>
               </div>
             </div>
@@ -107,10 +113,18 @@ const Footer = () => {
 
                 {/* SOCIAL LINKS */}
                 <div className="links pt-2 flex items-center justify-start gap-2.5">
-                  <a href="https://www.facebook.com/googlysmart.shop/" target="_blank" className="">
+                  <a
+                    href="https://www.facebook.com/googlysmart.shop/"
+                    target="_blank"
+                    className=""
+                  >
                     <FaFacebookF className="text-white bg-[#3c3b3b] h-7 w-7 p-1.5 rounded-full" />
                   </a>
-                  <a href="https://www.instagram.com/googlysmart.shop/" target="_blank" className="">
+                  <a
+                    href="https://www.instagram.com/googlysmart.shop/"
+                    target="_blank"
+                    className=""
+                  >
                     <FaInstagram className="text-white bg-[#3c3b3b] h-7 w-7 p-1.5 rounded-full" />
                   </a>
                 </div>

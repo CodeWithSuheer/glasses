@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginuserAsync } from "../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import "./auth.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,17 +35,17 @@ const Login = () => {
 
   return (
     <>
-      <section className="py-7 sm:py-10 px-4 sm:px-4 md:px-14 bg-[#fff]">
+      <section className="py-7 sm:py-10 px-4 sm:px-4 md:px-14">
         <div className="max-w-5xl xl:max-w-4xl mx-auto">
           <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
             <div className="min-w-[60%] md:min-w-[50%]">
-              <h1 className="Noto max-w-xs sm:max-w-full text-center mb-5 text-4xl sm:text-4xl font-bold">
+              <h1 className="playfair max-w-xs sm:max-w-full text-center mb-5 text-3xl sm:text-4xl font-bold">
                 Login Your Account
               </h1>
 
-              <p className="max-w-full mb-5 text-md text-center">
-                Lorem ipsum dolor sit amet consectetur.
+              <p className="max-w-full mb-5 text-sm sm:text-md text-center">
+                Sign in to access your account and explore exclusive offers.
               </p>
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* EMAIL */}

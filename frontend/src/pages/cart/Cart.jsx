@@ -122,12 +122,12 @@ const Cart = () => {
                           <h6 className="text-md text-gray-500 mt-2 flex justify-center sm:justify-start items-center">
                             Price:{" "}
                             <strong className="ml-2 flex items-center">
-                              {product.price !== product.sale_price ? (
+                              {product?.sale_price !== 0 ||  product?.sale_price > 0 ? (
                                 <>
-                                  <p className="">Rs. {product.sale_price}</p>
+                                  <p className="">Rs. {product?.sale_price}</p>
                                 </>
                               ) : (
-                                <p className="">Rs. {product.price}</p>
+                                <p className="">Rs. {product?.price}</p>
                               )}
                             </strong>
                           </h6>
@@ -164,10 +164,11 @@ const Cart = () => {
                           {/* Rs.{product.price * product.quantity} */}
                           {product && product.price !== product?.sale_price ? (
                             <>
-                              {product?.sale_price && product?.sale_price > 0 ? (
+                              {product?.sale_price &&
+                              product?.sale_price > 0 ? (
                                 <p className="">Rs. {product?.sale_price}</p>
                               ) : (
-                                ""
+                                <p className="">Rs. {product?.price}</p>
                               )}
                             </>
                           ) : (

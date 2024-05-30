@@ -242,7 +242,8 @@ const MyOrders = () => {
 
                           <div className="ml-auto flex flex-col items-end justify-between">
                             <p className="text-right text-sm font-bold text-gray-900">
-                              {product.price !== product.sale_price ? (
+                              {product?.sale_price !== 0 ||
+                              product?.sale_price > 0 ? (
                                 <>
                                   <p className="">Rs. {product.sale_price}</p>
                                 </>

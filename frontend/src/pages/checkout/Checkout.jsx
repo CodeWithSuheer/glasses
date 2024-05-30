@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { updateuserAsync, userSessionAsync } from "../../features/authSlice";
 import { createOrderAsync, getallOrderAsync } from "../../features/orderSlice";
-import { useNavigate } from "react-router-dom";
-// import { Modal } from "keep-react";
 import { Helmet } from "react-helmet";
+// import { Modal } from "keep-react";
 // import { Check } from "phosphor-react";
 import { clearCart } from "../../features/ActionsSlice";
 import { verifyCouponAsync } from "../../features/couponSlice";
@@ -128,17 +128,18 @@ const Checkout = () => {
         <title>Checkout - Googly</title>
       </Helmet>
       <section
-        className={`pt-24 md:pt-32 ${cart.length >= 3 ? "xl:pt-32" : "xl:pt-10"
-          } px-4 xl:px-0 bg-[#F5F5F5]`}
+        className={`pt-24 md:pt-32 ${
+          cart.length >= 3 ? "xl:pt-24" : "xl:pt-10"
+        } px-4 xl:px-0 bg-[#F5F5F5]`}
       >
-        <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto min-h-screen flex items-center">
+        <div className="pt-20 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto min-h-screen flex items-start">
           <div className="grid lg:grid-cols-2 gap-8 w-full">
             {/* FORM SIDE */}
             <div className="">
               <h2 className="Noto text-3xl font-bold text-[#333]">Checkout</h2>
-              <p className="text-[#333] text-base mt-5 max-w-lg">
-                Complete your transaction swiftly and securely with our
-                easy-to-use payment process.
+              <p className="text-[#333] text-base mt-5 max-w-sm">
+                Complete your purchase quickly and securely with our Cash on
+                Delivery (COD).
               </p>
 
               <form ref={formRef} onSubmit={handleSubmit} className="mt-5 ">
@@ -238,7 +239,7 @@ const Checkout = () => {
                       <div className="ml-auto flex flex-col items-end justify-between">
                         <p className="text-right text-sm font-bold text-gray-900">
                           {/* Rs. {product?.price * product.quantity} */}
-                          {product?.price !== product?.sale_price ? (
+                          {product?.sale_price !== 0 ||  product?.sale_price > 0 ? (
                             <>
                               <p className="">
                                 Rs. {product.sale_price * product.quantity}
@@ -323,8 +324,8 @@ const Checkout = () => {
                     Rs.{" "}
                     {couponSuccessData
                       ? totalPrice +
-                      shippingCharges -
-                      couponSuccessData?.discountAmount
+                        shippingCharges -
+                        couponSuccessData?.discountAmount
                       : totalPrice + shippingCharges}
                   </p>
                 </li>

@@ -42,8 +42,6 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   const productId = id;
 
-  console.log(product);
-
   const [reviewId, setReviewId] = useState();
   const [deleteReviewId, setDeleteReviewId] = useState();
 
@@ -404,7 +402,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
                       {/* YOUR REVIEWS  */}
                       <div className="mt-10">
                         <p className="mb-1 ml-1 text-gray-700 font-medium">
-                          Your Review*
+                          Your Review *
                         </p>
                         <textarea
                           id="OrderNotes"

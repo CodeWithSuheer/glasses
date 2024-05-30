@@ -175,8 +175,8 @@ const BestSeller = () => {
               Best Seller
             </h2>
             <p className="mt-2.5 text-gray-800">
-              See how game-changing companies are making the most of every
-              engagement with Preline.
+              Discover our top picks! Explore our best-selling eyewear that
+              combines style, comfort, and quality.
             </p>
           </div>
 
