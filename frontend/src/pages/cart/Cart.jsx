@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import "../selectedItem/SelectedItem.css";
+import "./Cart.css";
 import {
   decreaseQuantity,
   getCartTotal,
@@ -36,7 +37,7 @@ const Cart = () => {
 
   return (
     <>
-      <section className="selectedSectionbg relative">
+      <section className="cartpSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}
@@ -122,7 +123,8 @@ const Cart = () => {
                           <h6 className="text-md text-gray-500 mt-2 flex justify-center sm:justify-start items-center">
                             Price:{" "}
                             <strong className="ml-2 flex items-center">
-                              {product?.sale_price !== 0 ||  product?.sale_price > 0 ? (
+                              {product?.sale_price !== 0 ||
+                              product?.sale_price > 0 ? (
                                 <>
                                   <p className="">Rs. {product?.sale_price}</p>
                                 </>

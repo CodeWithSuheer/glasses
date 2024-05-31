@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getallOrderAsync, updateOrderAsync } from "@/features/orderSlice";
 import DeleteModal from "./DeleteModal";
+import "./orderr.css";
 
 const MyOrders = () => {
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ const MyOrders = () => {
 
   return (
     <>
-      <section className="selectedSectionbg relative">
+      <section className="orderSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}

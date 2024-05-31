@@ -193,14 +193,14 @@ export const ProductOverviewTwo = ({ product, id }) => {
               <div>
                 <div className="py-10 xl:pt-16 xl:pb-6 grid items-start grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-6">
                   {/* IMAGES */}
-                  <div className="w-full sm:flex justify-center gap-2">
+                  <div className="w-full sm:flex justify-center  gap-2">
                     {/* SIDE IMAGES */}
                     <div className="sm:space-y-3 w-[3.5rem] sm:w-[4.5rem] max-sm:flex sm:flex-col max-sm:mb-4 max-sm:gap-4">
                       {primary && (
                         <img
                           src={primary.downloadURL}
                           alt={primary.name}
-                          className="w-full h-16 sm:h-20 object-contain cursor-pointer rounded-sm border border-gray-300"
+                          className="w-full h-16 sm:h-20 object-cover cursor-pointer rounded-sm border border-gray-300"
                           onClick={() => handleImageClick(primary.downloadURL)}
                         />
                       )}
@@ -209,7 +209,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
                           key={key}
                           src={otherImages[key].downloadURL}
                           alt={otherImages[key].name}
-                          className="w-full h-16 sm:h-20 object-contain cursor-pointer rounded-sm border border-gray-300"
+                          className="w-full h-16 sm:h-20 object-cover cursor-pointer rounded-sm border border-gray-300"
                           onClick={() =>
                             handleImageClick(otherImages[key].downloadURL)
                           }
@@ -222,7 +222,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
                       <img
                         src={mainImage}
                         alt="Product"
-                        className="h-[28rem] w-[28rem] rounded object-contain border border-gray-300"
+                        className="w-full h-full sm:h-[28rem] sm:w-[28rem] rounded object-cover border border-gray-300"
                       />
                     </div>
                   </div>

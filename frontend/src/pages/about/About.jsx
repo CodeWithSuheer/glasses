@@ -2,6 +2,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TfiArrowCircleDown } from "react-icons/tfi";
+import "./about.css";
 
 const About = () => {
   const ToDown = () => {
@@ -13,7 +14,7 @@ const About = () => {
 
   return (
     <>
-      <section className="shopSectionbg relative">
+      <section className="aboutSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}

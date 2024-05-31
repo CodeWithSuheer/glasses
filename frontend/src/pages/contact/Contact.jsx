@@ -8,6 +8,7 @@ import { IoMail } from "react-icons/io5";
 import { MdLocationPin } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { TfiArrowCircleDown } from "react-icons/tfi";
+import "./Contact.css";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -53,7 +54,7 @@ const Contact = () => {
 
   return (
     <>
-      <section className="shopSectionbg relative">
+      <section className="contactSectionbg relative">
         <div className="px-5 md:px-7 xl:px-0 max-w-5xl xl:max-w-6xl xxl:max-w-7xl mx-auto">
           <div className="pt-24 lg:pt-10 grid place grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 min-h-[65vh]">
             {/* LEFT SIDE */}

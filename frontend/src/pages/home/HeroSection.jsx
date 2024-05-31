@@ -29,7 +29,7 @@ const HeroSection = () => {
                 <h2 className="Noto max-w-sm mt-4 mb-6 text-5xl sm:text-7xl xl:text-8xl font-medium text-white tracking-normal">
                   Googly Eyeglasses Frames
                 </h2>
-                <p className="pr-12 sm:pr-0 mb-10 text-lg sm:text-xl sm:max-w-md text-white">
+                <p className="pr-12 sm:pr-0 mb-8 text-lg sm:text-xl sm:max-w-md text-white">
                   Elevate your look with quality designs that blend fashion and
                   function perfectly.
                 </p>
@@ -38,7 +38,7 @@ const HeroSection = () => {
                 <Link
                   to="/shop"
                   onClick={handleMoveTop}
-                  className="text-white w-44 flex items-center gap-2 text-lg font-medium bg-black px-8 py-4"
+                  className="text-white w-40 flex justify-center items-center gap-2 text-md font-medium bg-black text-center py-[0.85rem]"
                 >
                   <span>Shop Now</span>
                   <IoIosArrowForward className="mt-0.5 font-bold" size={17} />
