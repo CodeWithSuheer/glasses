@@ -3,158 +3,12 @@ import "./SelectedItem.css";
 import { Link, useParams } from "react-router-dom";
 import { ProductOverviewTwo } from "./ProductDetails";
 import { FaHome } from "react-icons/fa";
-import RelatedItems from "../shop/RelatedItems";
+
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import { useEffect } from "react";
 import { getProductByIdAsync } from "../../features/productSlice";
 import { useDispatch, useSelector } from "react-redux";
-
-const data = [
-  {
-    id: "1",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "2",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "3",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "4",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "5",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "6",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "7",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "8",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "9",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "10",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "11",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "12",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "13",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "14",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "15",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "16",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-];
+import BestSeller from "../home/BestSeller";
 
 // STAR RATING
 const StarRating = ({ rating }) => {
@@ -175,9 +29,6 @@ const SelectedItem = () => {
   useEffect(() => {
     dispatch(getProductByIdAsync(id));
   }, [id]);
-
-  const selectedItem = data?.filter((item) => item.id === id);
-  // console.log("selectedItem", selectedItem);
 
   const ToDown = () => {
     window.scrollTo({
@@ -241,7 +92,7 @@ const SelectedItem = () => {
 
       <ProductOverviewTwo product={product} id={id} />
 
-      <RelatedItems />
+      <BestSeller />
     </>
   );
 };
