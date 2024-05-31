@@ -43,7 +43,6 @@ export const ProductOverviewTwo = ({ product, id }) => {
   const productId = id;
 
   const [reviewId, setReviewId] = useState();
-  const [deleteReviewId, setDeleteReviewId] = useState();
 
   const [mainImage, setMainImage] = useState(null);
 
@@ -236,22 +235,6 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
                       {/* PRICE SECTION */}
                       <div className="flex flex-wrap items-center gap-4 mt-4">
-                        {/* {product?.sale_price === 0 &&
-                        product?.price !== product?.sale_price ? (
-                          <div className="flex items-center gap-x-3">
-                            <p className="text-gray-500 text-xl line-through">
-                              Rs.{product?.price}
-                            </p>
-                            <p className="text-red-600 text-3xl font-bold">
-                              Rs.{product?.sale_price}
-                            </p>
-                          </div>
-                        ) : (
-                          <p className="text-gray-800 text-2xl font-bold">
-                            Rs. {product?.price}
-                          </p>
-                        )} */}
-
                         {product && product.price !== product?.sale_price ? (
                           <>
                             <p

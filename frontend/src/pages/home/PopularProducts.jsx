@@ -79,14 +79,24 @@ const PopularProducts = () => {
                           )}
                     </div>
 
-                    <p className="mb-3 text-lg">
-                      <span className="text-gray-400 line-through pr-1 font-semibold">
-                        Rs.{data?.sale_price}
-                      </span>
-                      <span className="text-red-500 font-semibold">
-                        Rs.{data?.price}
-                      </span>
-                    </p>
+                    {data?.sale_price > 0 ? (
+                          <p className="mb-3 text-lg">
+                            <span className="text-gray-400 line-through pr-1 font-semibold">
+                              Rs.{data?.price}
+                            </span>
+                            <span className="text-red-500 font-semibold">
+                              Rs.{data?.sale_price}
+                            </span>
+                          </p>
+                        ) : (
+                          <>
+                            <p className="mb-3 text-lg">
+                              <span className="text-gray-800 font-semibold">
+                                Rs.{data?.price}
+                              </span>
+                            </p>
+                          </>
+                        )}
 
                     <button className="text-sm px-5 py-2 bg-black text-white font-semibold">
                       Add To Cart
