@@ -1,7 +1,6 @@
 import { IoIosArrowForward } from "react-icons/io";
 import "./Shop.css";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import BestSeller from "../home/BestSeller";
 import PopularProducts from "../home/PopularProducts";
 import { FaHome } from "react-icons/fa";
 import { TfiArrowCircleDown } from "react-icons/tfi";
@@ -25,7 +24,6 @@ const Shop = () => {
 
   const allproducts = useSelector((state) => state.products.products || []);
   const loading = useSelector((state) => state.products.Productloading);
-  // console.log(allproducts);
   const [searchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1", 10);
   const category = searchParams.get("category") || "All";
@@ -34,23 +32,32 @@ const Shop = () => {
     dispatch(getAllProductsAsync({ category, page }));
   }, [dispatch, page, category]);
 
-  // HANDLE VIEW MORE
-  const handleViewMore = () => {
-    console.log("Get More Products");
-  };
-
-  const ToTop = () => {
-    window.scrollTo({
-      top: 450,
-      behavior: "smooth",
-    });
-  };
-
   const ToDown = () => {
-    window.scrollTo({
-      top: 470,
-      behavior: "smooth",
-    });
+    // window.scrollTo({
+    //   top: 470,
+    //   behavior: "smooth",
+    // });
+  };
+
+  const renderPaginationLinks = () => {
+    const totalPages = allproducts?.totalPages;
+    const paginationLinks = [];
+    for (let i = 1; i <= totalPages; i++) {
+      paginationLinks.push(
+        <li key={i}>
+          <Link
+            to={`/shop?category=${category}&page=${i}`}
+            className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 ${
+              i === page ? "bg-[#c9af3d] " : "hover:bg-gray-100"
+            }`}
+            onClick={() => dispatch(getAllProductsAsync({ category, page: i }))}
+          >
+            {i}
+          </Link>
+        </li>
+      );
+    }
+    return paginationLinks;
   };
 
   // HANDLE ITEM CLICK
@@ -211,18 +218,115 @@ const Shop = () => {
             </div>
           </div>
 
-          <div className="buttons mt-14 flex justify-center items-center">
-            <button
-              onClick={handleViewMore}
-              className="px-6 py-3 text-md font-semibold flex justify-center items-center gap-1 border border-black hover:bg-black hover:text-white transition-colors duration-150"
-            >
-              <span>View More</span> <IoIosArrowForward className="mt-0.5" />
-            </button>
-          </div>
+          <div className="flex justify-center">
+                    <nav aria-label="Page navigation example">
+                      <ul className="flex items-center -space-x-px h-8 py-10 text-sm">
+                        <li>
+                          {allproducts?.page > 1 ? (
+                            <Link
+                              to={`/shop?category=${category}&page=${
+                                page - 1
+                              }`}
+                              className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            >
+                              <span className="sr-only">Previous</span>
+                              <svg
+                                className="w-2.5 h-2.5 rtl:rotate-180"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 6 10"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M5 1 1 5l4 4"
+                                />
+                              </svg>
+                            </Link>
+                          ) : (
+                            <button
+                              className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg cursor-not-allowed"
+                              disabled
+                            >
+                              <span className="sr-only">Previous</span>
+                              <svg
+                                className="w-2.5 h-2.5 rtl:rotate-180"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 6 10"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M5 1 1 5l4 4"
+                                />
+                              </svg>
+                            </button>
+                          )}
+                        </li>
+                        {renderPaginationLinks()}
+                        <li>
+                          {allproducts?.totalPages !== page ? (
+                            <Link
+                              to={`/shop?category=${category}&page=${
+                                page + 1
+                              }`}
+                              className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            >
+                              <span className="sr-only">Next</span>
+                              <svg
+                                className="w-2.5 h-2.5 rtl:rotate-180"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 6 10"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="m1 9 4-4-4-4"
+                                />
+                              </svg>
+                            </Link>
+                          ) : (
+                            <button
+                              className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg cursor-not-allowed"
+                              disabled
+                            >
+                              <span className="sr-only">Next</span>
+                              <svg
+                                className="w-2.5 h-2.5 rtl:rotate-180"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 6 10"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="m1 9 4-4-4-4"
+                                />
+                              </svg>
+                            </button>
+                          )}
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
         </div>
       </section>
 
-      <BestSeller />
+
 
       <PopularProducts />
     </>

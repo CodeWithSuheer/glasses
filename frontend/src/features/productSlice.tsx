@@ -4,8 +4,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // API URLs
 const getAllProductUrl = `http://localhost:7000/api/products/getProducts`;
 const getProductById = `http://localhost:7000/api/products/getProductById`;
-const getLatestProductUrl =
+const getPoularProductUrl =
   "http://localhost:7000/api/products/getLatestPRoducts";
+  const getBEstSellingProductUrl =
+  "http://localhost:7000/api/products/getBestSellingProducts";
 
 // GET ALL PRODUCT ASYNC THUNK
 export const getAllProductsAsync = createAsyncThunk(
@@ -31,12 +33,12 @@ export const getAllProductsAsync = createAsyncThunk(
   }
 );
 
-// GET ALL PRODUCT ASYNC THUNK
-export const getLatestProductsAsync = createAsyncThunk(
+// GET POPOLAR PRODUCTS ASYNC THUNK
+export const getPopularProductsAsync = createAsyncThunk(
   "products/latest ",
   async () => {
     try {
-      const response = await axios.post(getLatestProductUrl);
+      const response = await axios.post(getPoularProductUrl);
       return response.data;
     } catch (error) {
       throw new Error(error);
@@ -44,7 +46,20 @@ export const getLatestProductsAsync = createAsyncThunk(
   }
 );
 
-// GET ALL PRODUCT ASYNC THUNK
+// GET BEST SELLING PRODUCTS ASYNC THUNK
+export const getBestSellingProductsAsync = createAsyncThunk(
+  "products/bestSellingProducts ",
+  async () => {
+    try {
+      const response = await axios.post(getBEstSellingProductUrl);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+);
+
+// GET SINGLE PRODUCT ASYNC THUNK
 export const getProductByIdAsync = createAsyncThunk(
   "products/singleProduct ",
   async (id) => {
@@ -61,8 +76,9 @@ const initialState = {
   loading: false,
   Productloading: false,
   products: [],
-  latestProducts: [],
+  popularProducts: [],
   singleProduct: null,
+  BEstSellingProduct: [],
 };
 
 const productSlice = createSlice({
@@ -91,13 +107,22 @@ const productSlice = createSlice({
       })
 
       // GET ALL LATEST PRODUCTS ADD CASE
-      .addCase(getLatestProductsAsync.pending, (state) => {
+      .addCase(getPopularProductsAsync.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getLatestProductsAsync.fulfilled, (state, action) => {
+      .addCase(getPopularProductsAsync.fulfilled, (state, action) => {
         state.loading = false;
-        state.latestProducts = action.payload;
-      });
+        state.popularProducts = action.payload;
+      })
+
+         // GET ALL BEST SELLING PRODUCTS ADD CASE
+         .addCase(getBestSellingProductsAsync.pending, (state) => {
+          state.loading = true;
+        })
+        .addCase(getBestSellingProductsAsync.fulfilled, (state, action) => {
+          state.loading = false;
+          state.BEstSellingProduct = action.payload;
+        });
   },
 });
 

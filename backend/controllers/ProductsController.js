@@ -1,10 +1,11 @@
+import { OrdersModel } from "../models/OrdersModel.js";
 import { ProductsModel } from "../models/Products.Model.js";
 import { reviewsAndRatings } from "../models/ReviewsModel.js";
 import { setMongoose } from "../utils/Mongoose.js";
 
 export const getLatestPRoducts = async (req, res, next) => {
   try {
-    const products = await ProductsModel.find({ latest: true });
+    const products = (await ProductsModel.find({ latest: true })).splice(0,12);
     const productIds  = products.map((item)=>item._id);
     const ratings = await reviewsAndRatings.find({productID:productIds});
 
@@ -40,7 +41,7 @@ export const getLatestPRoducts = async (req, res, next) => {
 export const getProducts = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = 15;
+    const limit = 16;
     let search = req.query.search || "";
     let category = req.query.category || "All";
 
@@ -110,15 +111,55 @@ export const getProductById = async (req, res, next) => {
         0
       );
       averageRating = totalRating / productReviews.length;
-    };  
+    };
+    const {_id,...productDataWithoutId} = product.toObject();
     const productWithRating = {
-      ...product._doc,
+      ...productDataWithoutId,
+      id:product._id,
       averageRating: parseFloat(averageRating.toFixed(1))
     };
-
-
     setMongoose();
     return res.status(200).json(productWithRating);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+export const getBestSellingProducts = async (req,res,next) => {
+  try {
+   const productOrderCounts = await OrdersModel.aggregate([
+    {$unwind:"$items"},
+    {$group:{_id:"$items.id",count:{$sum:1}}},
+    {$sort:{count:-1}},
+    {$limit:8}
+   ]);
+   const productIds = productOrderCounts.map((product) => product._id);
+   const products = await ProductsModel.find({_id:productIds});
+  const ratings = await reviewsAndRatings.find({productID:productIds});
+
+      const ratingsMap = ratings.reduce((acc, rating) => {
+        if (!acc[rating.productID]) {
+          acc[rating.productID] = { sum: 0, count: 0 };
+        }
+        acc[rating.productID].sum += rating.rating;
+        acc[rating.productID].count += 1;
+        return acc;
+      }, {});
+  
+      // Add averageRating to each product
+      const productDataWithRatings = products.map((product) => {
+        const ratingData = ratingsMap[product._id] || { sum: 0, count: 0 };
+        const averageRating = ratingData.count > 0 ? (ratingData.sum / ratingData.count).toFixed(1) : 0;
+        const {_id,...productDataWithoutId} = product.toObject();
+        return {
+          ...productDataWithoutId,
+          id:product._id,
+          averageRating: parseFloat(averageRating),
+        };
+      });
+  
+    setMongoose();
+    return res.status(200).json(productDataWithRatings);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

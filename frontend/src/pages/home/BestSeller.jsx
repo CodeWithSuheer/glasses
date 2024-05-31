@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { getBestSellingProductsAsync } from "@/features/productSlice";
 
 const data = [
   {
@@ -98,8 +99,12 @@ const BestSeller = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [slidesToShow, setSlidesToShow] = useState(4);
-  // const loading = useSelector((state) => state.products.Productloading);
+  const products = useSelector((state) => state.products.BEstSellingProduct);
   const sliderRef = useRef(null);
+
+  useEffect(()=>{
+    dispatch(getBestSellingProductsAsync())
+  },[]);
 
   const next = () => {
     if (sliderRef.current) {
@@ -183,36 +188,50 @@ const BestSeller = () => {
           <div className="data">
             <div className="relative mt-8 sm:mt-12">
               <Slider ref={sliderRef} {...settings}>
-                {data.map((data, index) => (
+                {products?.map((data, index) => (
                   <div
                     key={index}
-                    onClick={() => handleItemClick(data.id)}
+                    onClick={() => handleItemClick(data?.id)}
                     className="mx-0 pb-7"
                   >
                     <div className="group max-w-[17rem] mx-auto overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer border border-gray-200">
                       <img
                         className="object-contain w-full h-52 sm:h-56 transition duration-500 group-hover:scale-105"
-                        src={data.image}
+                        src={data?.images?.primary?.downloadURL}
                         alt="products"
                       />
 
                       <div className="py-5 text-center">
                         <h3 className="mb-3 text-lg sm:text-xl font-semibold text-gray-800">
-                          {data.name}
+                          {data?.name}
                         </h3>
 
                         <div className="mb-3 flex items-center justify-center gap-0.5">
-                          <StarRating rating={data?.rating} />
+                        {data?.averageRating === 0 ? (
+                            <FaStar className="text-white" />
+                          ) : (
+                            <StarRating rating={data?.averageRating} />
+                          )}
                         </div>
 
-                        <p className="mb-3 text-lg">
-                          <span className="text-gray-400 line-through pr-1 font-semibold">
-                            Rs.{data.sale_price}
-                          </span>
-                          <span className="text-red-500 font-semibold">
-                            Rs.{data.price}
-                          </span>
-                        </p>
+                        {data?.sale_price > 0 ? (
+                          <p className="mb-3 text-lg">
+                            <span className="text-gray-400 line-through pr-1 font-semibold">
+                              Rs.{data?.price}
+                            </span>
+                            <span className="text-red-500 font-semibold">
+                              Rs.{data?.sale_price}
+                            </span>
+                          </p>
+                        ) : (
+                          <>
+                            <p className="mb-3 text-lg">
+                              <span className="text-gray-800 font-semibold">
+                                Rs.{data?.price}
+                              </span>
+                            </p>
+                          </>
+                        )}
 
                         <button className="text-sm px-5 py-2 bg-black text-white font-semibold">
                           Add To Cart

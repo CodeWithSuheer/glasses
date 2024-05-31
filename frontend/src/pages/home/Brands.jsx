@@ -64,11 +64,8 @@ const Brands = () => {
               style={{ letterSpacing: "4px" }}
               className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
             >
-              BRANDS
+             OUR BRANDS
             </span>
-            <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl lg:text-5xl md:leading-tight">
-              Browse By Brands
-            </h2>
           </div>
           {/* GRID */}
           <div className="mt-10 grid place-items-center gap-8 text-gray-300 sm:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">

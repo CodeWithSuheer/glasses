@@ -1,81 +1,9 @@
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-
-const data = [
-  {
-    id: "1",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "2",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "3",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "4",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "5",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "6",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "7",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "8",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPopularProductsAsync } from "@/features/productSlice";
 
 // STAR RATING
 const StarRating = ({ rating }) => {
@@ -87,7 +15,14 @@ const StarRating = ({ rating }) => {
 };
 
 const PopularProducts = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const popularProducts = useSelector((state)=>state.products.popularProducts);
+  console.log(popularProducts);
+
+  useEffect(()=>{
+    dispatch(getPopularProductsAsync());
+  },[])
 
   // HANDLE ITEM CLICK
   const handleItemClick = (id) => {
@@ -119,7 +54,7 @@ const PopularProducts = () => {
           {/* DATA */}
           <div className="data">
             <div className="mt-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-x-4 lg:gap-y-7">
-              {data.map((data, index) => (
+              {popularProducts?.map((data, index) => (
                 <div
                   key={index}
                   onClick={() => handleItemClick(data?.id)}
@@ -127,25 +62,29 @@ const PopularProducts = () => {
                 >
                   <img
                     className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
-                    src={data.image}
+                    src={data?.images?.primary?.downloadURL}
                     alt="products"
                   />
 
                   <div className="py-5 text-center">
                     <h3 className="mb-3 text-lg sm:text-xl font-semibold text-gray-800">
-                      {data.name}
+                      {data?.name}
                     </h3>
 
                     <div className="mb-3 flex items-center justify-center gap-0.5">
-                      <StarRating rating={data?.rating} />
+                    {data?.averageRating === 0 ? (
+                            <FaStar className="text-white" />
+                          ) : (
+                            <StarRating rating={data?.averageRating} />
+                          )}
                     </div>
 
                     <p className="mb-3 text-lg">
                       <span className="text-gray-400 line-through pr-1 font-semibold">
-                        Rs.{data.sale_price}
+                        Rs.{data?.sale_price}
                       </span>
                       <span className="text-red-500 font-semibold">
-                        Rs.{data.price}
+                        Rs.{data?.price}
                       </span>
                     </p>
 

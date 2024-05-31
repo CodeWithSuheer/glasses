@@ -15,7 +15,7 @@ const HomePage = () => {
 
       <HomeCategories />
 
-      <Brands />
+      {/* <Brands /> */}
 
       <BestSeller />
 

@@ -32,10 +32,6 @@ const productsSchema = new mongoose.Schema(
         required: [true, "category required"],
         enum:["Skincare","Body Care","Haircare","Cosmetics"]
     },
-    subCategory:{
-        type: String,
-        default:null,
-    },
     latest:{
         type: Boolean,
         default:false,
