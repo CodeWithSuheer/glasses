@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo2 from "../assets/logo2.png";
 import "./Header.css";
@@ -18,6 +18,9 @@ const Header = () => {
   const showNav1 =
     location.pathname === "/" ||
     location.pathname === "/shop" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forget" ||
     location.pathname === "/about" ||
     location.pathname === "/contact" ||
     location.pathname === "/orders" ||

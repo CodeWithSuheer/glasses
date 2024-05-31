@@ -1,4 +1,9 @@
+import { BsEmojiSunglasses } from "react-icons/bs";
 import { FiTruck } from "react-icons/fi";
+import { RiGlassesFill } from "react-icons/ri";
+import { RiCustomerServiceFill } from "react-icons/ri";
+import { CgCheckO } from "react-icons/cg";
+import { GiBoxUnpacking } from "react-icons/gi";
 
 const Features = () => {
   return (
@@ -8,42 +13,31 @@ const Features = () => {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 gap-y-7 lg:gap-5 sm:px-8 px-4 text-white">
             {/* BOX 1 */}
             <div className="box1 flex justify-center items-center flex-col">
-              <FiTruck size={34} className="mb-2.5 text-yellow-400" />
-              <h3 className="mb-1 text-md font-medium">
-                FREE SHIPPING & RETURNS
-              </h3>
-              <p className="text-gray-300 text-sm">
-                Lacus, egestas enim ut quis risus
-              </p>
+              <BsEmojiSunglasses size={36} className="mb-2.5 text-yellow-400" />
+              <h3 className="mb-1 text-md font-medium">EXCLUSIVE DESIGNS</h3>
             </div>
 
             {/* BOX 2 */}
             <div className="box1 flex justify-center items-center flex-col">
-              <FiTruck size={34} className="mb-2.5 text-yellow-400" />
+              <RiGlassesFill size={36} className="mb-2.5 text-yellow-400" />
               <h3 className="mb-1 text-md font-medium">
-                GUARANTEE ORIGINAL ITEMS
+                HIGH-QUALITY MATERIALS
               </h3>
-              <p className="text-gray-300 text-sm">
-                Lacus, egestas enim ut quis risus
-              </p>
             </div>
 
             {/* BOX 3 */}
             <div className="box1 flex justify-center items-center flex-col">
-              <FiTruck size={34} className="mb-2.5 text-yellow-400" />
-              <h3 className="mb-1 text-md font-medium">100% SECURE CHECKOUT</h3>
-              <p className="text-gray-300 text-sm">
-                Lacus, egestas enim ut quis risus
-              </p>
+              <GiBoxUnpacking size={36} className="mb-2.5 text-yellow-400" />
+              <h3 className="mb-1 text-md font-medium">SUSTAINABLE PRODUCTS</h3>
             </div>
 
             {/* BOX 4 */}
             <div className="box1 flex justify-center items-center flex-col">
-              <FiTruck size={34} className="mb-2.5 text-yellow-400" />
+              <RiCustomerServiceFill
+                size={36}
+                className="mb-2.5 text-yellow-400"
+              />
               <h3 className="mb-1 text-md font-medium">24H CUSTOMER SERVICE</h3>
-              <p className="text-gray-300 text-sm">
-                Lacus, egestas enim ut quis risus
-              </p>
             </div>
           </div>
         </div>

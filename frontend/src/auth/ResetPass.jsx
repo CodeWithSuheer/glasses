@@ -48,11 +48,11 @@ const ResetPass = () => {
 
   return (
     <>
-      <section className="py-7 sm:py-10 px-4 sm:px-4 md:px-14 bg-[#fff]">
+      <section className="bg_auth py-7 sm:py-10 px-0 sm:px-4 md:px-14">
         <div className="max-w-5xl xl:max-w-4xl mx-auto">
           <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
-            <div className="w-full sm:max-w-xs">
+            <div className="blur_bg border text-white w-full sm:max-w-sm px-2 py-8 sm:p-10 rounded-2xl">
               <h1 className="Noto text-center sm:max-w-full mb-5 text-3xl sm:text-4xl font-bold">
                 Reset Password
               </h1>
@@ -105,7 +105,7 @@ const ResetPass = () => {
                     </div>
                     <div className="ml-3 text-sm">
                       <label
-                        className="text-gray-800 select-none cursor-pointer"
+                        className="text-white select-none cursor-pointer"
                         htmlFor="remember"
                       >
                         show password
@@ -116,7 +116,7 @@ const ResetPass = () => {
 
                 <button
                   type="submit"
-                  className="w-full h-11 items-center mx-auto bg-[#252525] hover:bg-black text-white flex justify-center tracking-wide"
+                  className="w-full h-11 items-center font-semibold mx-auto bg-[#DEC344] hover:bg-[#e3cc65] text-black flex justify-center tracking-wide"
                 >
                   SUBMIT NOW
                 </button>

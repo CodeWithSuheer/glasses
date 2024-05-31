@@ -35,16 +35,16 @@ const Login = () => {
 
   return (
     <>
-      <section className="py-7 sm:py-10 px-4 sm:px-4 md:px-14">
+      <section className="bg_auth py-7 sm:py-10 px-0 sm:px-4 md:px-14">
         <div className="max-w-5xl xl:max-w-4xl mx-auto">
           <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
-            <div className="min-w-[60%] md:min-w-[50%]">
-              <h1 className="playfair max-w-xs sm:max-w-full text-center mb-5 text-3xl sm:text-4xl font-bold">
+            <div className="blur_bg border px-4 py-8 sm:p-12 rounded-2xl">
+              <h1 className="Noto text-white max-w-xs sm:max-w-full text-center mb-5 text-3xl sm:text-4xl font-bold">
                 Login Your Account
               </h1>
 
-              <p className="max-w-full mb-5 text-sm sm:text-md text-center">
+              <p className="max-w-full mb-5 text-white  text-sm sm:text-md text-center">
                 Sign in to access your account and explore exclusive offers.
               </p>
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
@@ -94,7 +94,7 @@ const Login = () => {
                     </div>
                     <div className="ml-3 text-sm">
                       <label
-                        className="text-gray-800 select-none cursor-pointer"
+                        className="text-gray-50 select-none cursor-pointer"
                         htmlFor="remember"
                       >
                         show password
@@ -103,7 +103,7 @@ const Login = () => {
                   </div>
                   <Link
                     to="/forget"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-sm font-medium text-primary-600 hover:underline text-gray-50"
                   >
                     Forgot password?
                   </Link>
@@ -134,13 +134,13 @@ const Login = () => {
                 ) : (
                   <button
                     type="submit"
-                    className="w-full h-11 items-center mx-auto bg-[#252525] hover:bg-black text-white flex justify-center tracking-wide"
+                    className="w-full h-11 items-center font-semibold mx-auto bg-[#DEC344] hover:bg-[#e3cc65] text-black flex justify-center tracking-wide"
                   >
                     LOGIN NOW
                   </button>
                 )}
 
-                <p className="text-sm font-light text-gray-800">
+                <p className="text-sm font-light text-white ">
                   Don’t have an account yet?{" "}
                   <Link
                     to="/signup"

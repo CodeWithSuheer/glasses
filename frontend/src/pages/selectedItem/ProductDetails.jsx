@@ -150,7 +150,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
     const id = review_Id;
 
     if (selectedRating !== rating) {
-      const updateReviewDataOptional = delete updateReviewDataOptional.rating;
+      const updateReviewDataOptional = delete updateReviewDataOptional?.rating;
       const payload = { id, ...updateReviewData };
       payload.rating = selectedRating;
       dispatch(updatereviewsAsync(payload)).then(() => {

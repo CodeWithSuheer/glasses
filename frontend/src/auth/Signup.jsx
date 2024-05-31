@@ -36,11 +36,11 @@ const Signup = () => {
 
   return (
     <>
-      <section className="py-7 sm:py-10 px-4 sm:px-4 md:px-14 bg-[#fff]">
+      <section className="bg_auth py-7 sm:py-10 px-0 sm:px-4 md:px-14">
         <div className="max-w-5xl xl:max-w-4xl mx-auto">
           <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
-            <div className="min-w-[60%] md:min-w-[50%]">
+            <div className="blur_bg border text-white px-4 py-8 sm:p-12 rounded-2xl">
               <h1 className="playfair max-w-xs sm:max-w-full text-center mb-5 text-3xl sm:text-4xl font-bold">
                 Signup Your Account
               </h1>
@@ -112,7 +112,7 @@ const Signup = () => {
                     </div>
                     <div className="ml-3 text-sm">
                       <label
-                        className="text-gray-800 select-none cursor-pointer"
+                        className="text-white select-none cursor-pointer"
                         htmlFor="remember"
                       >
                         show password
@@ -146,14 +146,14 @@ const Signup = () => {
                 ) : (
                   <button
                     type="submit"
-                    className="w-full h-11 items-center mx-auto bg-[#252525] hover:bg-black text-white flex justify-center tracking-wide"
+                    className="w-full h-11 items-center font-semibold mx-auto bg-[#DEC344] hover:bg-[#e3cc65] text-black flex justify-center tracking-wide"
                   >
                     SIGNUP NOW
                   </button>
                 )}
 
                 {/* TERM & CONDITION LINKS*/}
-                <p className="max-w-sm text-sm font-normal text-gray-800">
+                <p className="max-w-sm text-sm font-normal text-white">
                   By creating an account, you agree to It Experts{" "}
                   <Link
                     to="/terms"
@@ -173,7 +173,7 @@ const Signup = () => {
                   </Link>
                 </p>
 
-                <p className="text-sm font-light text-gray-800">
+                <p className="text-sm font-light text-white">
                   Already have an account ?{" "}
                   <Link
                     to="/login"
