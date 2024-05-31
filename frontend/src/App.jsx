@@ -19,10 +19,7 @@ const Shop = React.lazy(() => import("./pages/shop/Shop"));
 const SelectedItem = React.lazy(() =>
   import("./pages/selectedItem/SelectedItem")
 );
-// import SelectedItem from "./pages/selectedItem/SelectedItem";
-// AUTH ROUTES
-// import Signup from "./auth/Signup";
-// import Login from "./auth/Login";
+
 const Signup = React.lazy(() => import("./auth/Signup"));
 const Login = React.lazy(() => import("./auth/Login"));
 import ForgetPass from "./auth/ForgetPass";
