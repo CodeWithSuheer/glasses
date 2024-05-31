@@ -22,9 +22,9 @@ const HomeCategories = () => {
             <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl lg:text-5xl md:leading-tight">
               Shop By Categories
             </h2>
-            <p className="mt-2.5 text-gray-800">
-              See how game-changing companies are making the most of every
-              engagement with Preline.
+            <p className="mt-3 text-gray-800">
+              Explore curated categories for the latest trends and timeless
+              classics.
             </p>
           </div>
 

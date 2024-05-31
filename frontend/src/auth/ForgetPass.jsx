@@ -34,8 +34,8 @@ const ForgetPass = () => {
         <div className="max-w-5xl xl:max-w-4xl mx-auto">
           <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-10 md:gap-2 min-h-screen">
             {/* FORM SIDE */}
-            <div className="min-w-[60%] md:min-w-[50%]">
-              <h1 className="playfair max-w-xs sm:max-w-full mb-5 text-4xl sm:text-4xl font-bold">
+            <div className="w-full sm:max-w-xs">
+              <h1 className="Noto text-center sm:max-w-full mb-5 text-3xl sm:text-4xl font-bold">
                 Forget Password
               </h1>
 

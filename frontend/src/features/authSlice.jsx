@@ -20,7 +20,7 @@ export const createuserAsync = createAsyncThunk(
       const response = await axios.post(signupUrl, formData);
       console.log(response.data);
       return response.data;
-    } catch {
+    } catch (error) {
       console.log(error.response.data.error);
     }
   }
@@ -47,9 +47,9 @@ export const updateuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(updateUrl, formData);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
-    } catch {
+    } catch (error) {
       console.log(error.response.data.error);
     }
   }
@@ -60,7 +60,7 @@ export const userSessionAsync = createAsyncThunk("user/session", async () => {
   try {
     const response = await axios.get(userSessionUrl);
     return response.data;
-  } catch {
+  } catch (error) {
     console.log(error.response.data.error);
   }
 });
@@ -83,7 +83,7 @@ export const forgetuserAsync = createAsyncThunk(
     try {
       const response = await axios.post(forgetPassUrl, formData);
       return response.data;
-    } catch {
+    } catch (error) {
       console.log(error.response.data.error);
     }
   }
@@ -96,7 +96,7 @@ export const verifyOtpAsync = createAsyncThunk(
     try {
       const response = await axios.post(verifyOtpPassUrl, formData);
       return response.data;
-    } catch {
+    } catch (error) {
       console.log(error.response.data.error);
     }
   }
@@ -113,7 +113,7 @@ export const resetPassAsync = createAsyncThunk(
         resetPassword,
       });
       return response.data;
-    } catch {
+    } catch (error) {
       console.log(error.response.data.error);
     }
   }
@@ -142,10 +142,10 @@ const authSlice = createSlice({
       .addCase(createuserAsync.pending, (state) => {
         state.signupLoading = true;
       })
-      .addCase(createuserAsync.fulfilled, (state, _action) => {
+      .addCase(createuserAsync.fulfilled, (state) => {
         state.signupLoading = false;
       })
-      .addCase(createuserAsync.rejected, (state, _action) => {
+      .addCase(createuserAsync.rejected, (state) => {
         state.signupLoading = false;
       })
 
@@ -157,7 +157,7 @@ const authSlice = createSlice({
         state.loginLoading = false;
         state.user = action.payload;
       })
-      .addCase(loginuserAsync.rejected, (state, action) => {
+      .addCase(loginuserAsync.rejected, (state) => {
         state.loginLoading = false;
       })
 

@@ -30,12 +30,12 @@ const ActionsSlice = createSlice({
 
       itemsToAdd.forEach((item) => {
         const { id } = item;
-        const existingItem = state.cart.findIndex(
+        const existingItemIndex = state.cart.findIndex(
           (existingItem) => existingItem.id === id
         );
 
-        if (existingItem !== -1) {
-          state.cart[existingItem].quantity += 1;
+        if (existingItemIndex !== -1) {
+          state.cart[existingItemIndex].quantity += 1;
         } else {
           state.cart.push({
             ...item,
@@ -43,7 +43,6 @@ const ActionsSlice = createSlice({
           });
         }
       });
-
       localStorage.setItem("cart", JSON.stringify(state));
     },
 

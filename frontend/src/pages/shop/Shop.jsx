@@ -127,8 +127,8 @@ const Shop = () => {
               All Products
             </h2>
             <p className="mt-2.5 text-gray-600">
-              See how game-changing companies are making the most of every
-              engagement with Preline.
+              Explore our entire collection of stylish and innovative eyewear.
+              Find the perfect pair to match your unique style.
             </p>
           </div>
 
@@ -143,7 +143,7 @@ const Shop = () => {
                       className="group w-full max-w-full overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-150  border border-gray-200"
                     >
                       <img
-                        className="object-cover w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
+                        className="object-contain w-full h-40 sm:h-56 transition duration-500 group-hover:scale-105"
                         src={data?.images?.primary?.downloadURL}
                         alt={data?.name}
                       />

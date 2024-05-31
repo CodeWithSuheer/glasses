@@ -1,21 +1,6 @@
-Inter {
-  font-family: "Inter", sans-serif;
-}
-
-Noto {
-  font-family: "Noto Sans JP", sans-serif;
-}
-
-.heroSectionbg {
+.bg_auth {
   background-image: url("https://cdn.shopify.com/s/files/1/0852/5099/8550/files/Googly_Banners_3.png?v=1717098445");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-.up:hover {
-  transform: translateY(-8px);
-  transition: 0.5s ease;
-}
-
-

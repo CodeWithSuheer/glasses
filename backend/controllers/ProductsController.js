@@ -5,32 +5,36 @@ import { setMongoose } from "../utils/Mongoose.js";
 
 export const getLatestPRoducts = async (req, res, next) => {
   try {
+
     const products = (await ProductsModel.find({ latest: true })).splice(0,12);
     const productIds  = products.map((item)=>item._id);
     const ratings = await reviewsAndRatings.find({productID:productIds});
 
-      // Calculate average ratings for each product
-      const ratingsMap = ratings.reduce((acc, rating) => {
-        if (!acc[rating.productID]) {
-          acc[rating.productID] = { sum: 0, count: 0 };
-        }
-        acc[rating.productID].sum += rating.rating;
-        acc[rating.productID].count += 1;
-        return acc;
-      }, {});
-  
-      // Add averageRating to each product
-      const productDataWithRatings = products.map((product) => {
-        const ratingData = ratingsMap[product._id] || { sum: 0, count: 0 };
-        const averageRating = ratingData.count > 0 ? (ratingData.sum / ratingData.count).toFixed(1) : 0;
-        const {_id,...productDataWithoutId} = product.toObject();
-        return {
-          ...productDataWithoutId,
-          id:product._id,
-          averageRating: parseFloat(averageRating),
-        };
-      });
-  
+    // Calculate average ratings for each product
+    const ratingsMap = ratings.reduce((acc, rating) => {
+      if (!acc[rating.productID]) {
+        acc[rating.productID] = { sum: 0, count: 0 };
+      }
+      acc[rating.productID].sum += rating.rating;
+      acc[rating.productID].count += 1;
+      return acc;
+    }, {});
+
+    // Add averageRating to each product
+    const productDataWithRatings = products.map((product) => {
+      const ratingData = ratingsMap[product._id] || { sum: 0, count: 0 };
+      const averageRating =
+        ratingData.count > 0
+          ? (ratingData.sum / ratingData.count).toFixed(1)
+          : 0;
+      const { _id, ...productDataWithoutId } = product.toObject();
+      return {
+        ...productDataWithoutId,
+        id: product._id,
+        averageRating: parseFloat(averageRating),
+      };
+    });
+
     setMongoose();
     return res.status(200).json(productDataWithRatings);
   } catch (error) {
@@ -56,38 +60,41 @@ export const getProducts = async (req, res, next) => {
     const productData = await ProductsModel.find(query)
       .skip((page - 1) * limit)
       .limit(limit)
-      .sort({createdAt:-1})
+      .sort({ createdAt: -1 });
 
     const total = await ProductsModel.countDocuments(query);
-    const productIds  = productData.map((item)=>item._id);
-    const ratings = await reviewsAndRatings.find({productID:productIds});
+    const productIds = productData.map((item) => item._id);
+    const ratings = await reviewsAndRatings.find({ productID: productIds });
 
-      // Calculate average ratings for each product
-      const ratingsMap = ratings.reduce((acc, rating) => {
-        if (!acc[rating.productID]) {
-          acc[rating.productID] = { sum: 0, count: 0 };
-        }
-        acc[rating.productID].sum += rating.rating;
-        acc[rating.productID].count += 1;
-        return acc;
-      }, {});
-  
-      // Add averageRating to each product
-      const productDataWithRatings = productData.map((product) => {
-        const ratingData = ratingsMap[product._id] || { sum: 0, count: 0 };
-        const averageRating = ratingData.count > 0 ? (ratingData.sum / ratingData.count).toFixed(1) : 0;
-        const {_id,...productDataWithoutId} = product.toObject();
-        return {
-          ...productDataWithoutId,
-          id:product._id,
-          averageRating: parseFloat(averageRating),
-        };
-      });
-  
+    // Calculate average ratings for each product
+    const ratingsMap = ratings.reduce((acc, rating) => {
+      if (!acc[rating.productID]) {
+        acc[rating.productID] = { sum: 0, count: 0 };
+      }
+      acc[rating.productID].sum += rating.rating;
+      acc[rating.productID].count += 1;
+      return acc;
+    }, {});
+
+    // Add averageRating to each product
+    const productDataWithRatings = productData.map((product) => {
+      const ratingData = ratingsMap[product._id] || { sum: 0, count: 0 };
+      const averageRating =
+        ratingData.count > 0
+          ? (ratingData.sum / ratingData.count).toFixed(1)
+          : 0;
+      const { _id, ...productDataWithoutId } = product.toObject();
+      return {
+        ...productDataWithoutId,
+        id: product._id,
+        averageRating: parseFloat(averageRating),
+      };
+    });
+
     const response = {
       totalPages: Math.ceil(total / limit),
       page,
-      productData:productDataWithRatings,
+      productData: productDataWithRatings,
     };
     setMongoose();
     res.status(200).json(response);
@@ -111,6 +118,7 @@ export const getProductById = async (req, res, next) => {
         0
       );
       averageRating = totalRating / productReviews.length;
+
     };
     const {_id,...productDataWithoutId} = product.toObject();
     const productWithRating = {

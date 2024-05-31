@@ -163,11 +163,7 @@ const MyOrders = () => {
                       <div className="text-md sm:text-md font-semibold">
                         Shipping
                       </div>
-                      <div
-                        className={`text-md font-medium`}
-                      >
-                        Rs. 280
-                      </div>
+                      <div className={`text-md font-medium`}>Rs. 280</div>
                     </div>
 
                     <div className="mb-4">
@@ -190,7 +186,6 @@ const MyOrders = () => {
                         {data?.orderProgress}
                       </div>
                     </div>
-
                   </div>
 
                   {/* ORDER CANCEL BUTTON */}
@@ -247,7 +242,8 @@ const MyOrders = () => {
 
                           <div className="ml-auto flex flex-col items-end justify-between">
                             <p className="text-right text-sm font-bold text-gray-900">
-                              {product.price !== product.sale_price ? (
+                              {product?.sale_price !== 0 ||
+                              product?.sale_price > 0 ? (
                                 <>
                                   <p className="">Rs. {product.sale_price}</p>
                                 </>

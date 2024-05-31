@@ -45,9 +45,9 @@ const PopularProducts = () => {
             <h2 className="Noto mt-2 text-2xl font-semibold md:text-4xl lg:text-5xl md:leading-tight">
               Popular Product
             </h2>
-            <p className="mt-2.5 text-gray-600 dark:text-neutral-400">
-              See how game-changing companies are making the most of every
-              engagement with Preline.
+            <p className="mt-3 text-gray-600 dark:text-neutral-400">
+              Explore our hottest picks! Discover the most sought-after eyewear
+              styles loved by our customers.
             </p>
           </div>
 
@@ -101,5 +101,4 @@ const PopularProducts = () => {
     </>
   );
 };
-
 export default PopularProducts;

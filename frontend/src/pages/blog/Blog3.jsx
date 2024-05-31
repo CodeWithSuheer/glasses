@@ -2,7 +2,7 @@ const Blog3 = () => {
   return (
     <>
       <div>
-        <div className="max-w-3xl px-4 pt-6 lg:pt-32 pb-12 sm:px-6 lg:px-8 mx-auto">
+        <div className="max-w-3xl px-4 pt-24 sm:pt-28 lg:pt-32 pb-12 sm:px-6 lg:px-8 mx-auto">
           <div className="max-w-2xl">
             {/* Content */}
             <div className="space-y-5 md:space-y-5">

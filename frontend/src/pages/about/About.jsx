@@ -66,7 +66,7 @@ const About = () => {
             <div className="left_img group overflow-hidden">
               <img
                 className="transition duration-500 group-hover:scale-105 w-full"
-                src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/design-sect-pn1nv6oznl5nueqhyuiyembh9zgfumb1p6pl4obwc4.jpg?v=1716422494"
+                src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/2543.jpg?v=1717101293"
                 alt=""
               />
             </div>
@@ -78,23 +78,26 @@ const About = () => {
                   style={{ letterSpacing: "4px" }}
                   className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
                 >
-                  DESIGN
+                  EYEWEAR
                 </span>
                 <h2 className="mt-3 Noto mb-1.5 sm:mb-3 text-2xl md:text-3xl font-semibold">
-                  Designed In New York
+                  Innovative Urban Eyewear
                 </h2>
                 <p className="mb-7 sm:mb-7 lg:mb-7 text-md max-w-full">
-                  Sapien amet dui rutrum quis lectus accumsan morbi aliquam
-                  interdum. Nisl malesuada imperdiet nunc ultricies massa id
-                  urna sit. Elementum velit aliquam aliquet aliquam id volutpat.
-                  Sed sodales in orci at risus lectus pharetra in mollis odio.
+                  Experience the pinnacle of fashion with Googly's eyewear,
+                  inspired by the vibrant and dynamic spirit of New York City.
+                  Our frames are meticulously crafted to reflect the energy and
+                  sophistication of urban life, offering you the perfect blend
+                  of style and functionality.
                 </p>
 
                 <p className="mb-7 sm:mb-7 lg:mb-7 text-md max-w-full">
-                  Sapien amet dui rutrum quis lectus accumsan morbi aliquam
-                  interdum. Nisl malesuada imperdiet nunc ultricies massa id
-                  urna sit. Elementum velit aliquam aliquet aliquam id volutpat.
-                  Sed sodales in orci at risus lectus pharetra in mollis odio.
+                  Each piece in our collection showcases exceptional attention
+                  to detail and superior craftsmanship. We combine cutting-edge
+                  design with timeless elegance, ensuring our eyewear not only
+                  enhances your vision but also elevates your personal style.
+                  Discover eyewear that captures the essence of modern urban
+                  living with Googly.
                 </p>
               </div>
             </div>
@@ -115,11 +118,12 @@ const About = () => {
                   Our Mission
                 </h2>
                 <p className="mb-7 sm:mb-7 lg:mb-7 text-md max-w-full">
-                  Sapien amet dui rutrum quis lectus accumsan morbi aliquam
-                  interdum. Nisl malesuada imperdiet nunc ultricies massa id
-                  urna sit. Elementum velit aliquam aliquet aliquam id volutpat.
-                  urna sit. Elementum velit aliquam aliquet aliquam id volutpat.
-                  Sed sodales in orci at risus lectus pharetra in mollis odio.
+                  At Googly, our mission is to revolutionize eyewear by
+                  combining exceptional design, superior quality, and unmatched
+                  comfort. We are dedicated to crafting eyewear that not only
+                  enhances your vision but also elevates your personal style.
+                  Our commitment to innovation and excellence drives us to
+                  continuously improve and set new standards in the industry.
                 </p>
               </div>
             </div>
@@ -127,8 +131,8 @@ const About = () => {
             {/* RIGHT SIDE */}
             <div className="left_img group overflow-hidden">
               <img
-                className="transition duration-500 group-hover:scale-105 w-full"
-                src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/mission-sect-pn1nv8ko1988hmnrnvc7jluegr76a0iidg0k3893zo.jpg?v=1716422493"
+                className="transition duration-500 object-fill group-hover:scale-105 w-full"
+                src="https://cdn.shopify.com/s/files/1/0852/5099/8550/files/118966.jpg?v=1717101726"
                 alt=""
               />
             </div>
@@ -152,23 +156,19 @@ const About = () => {
                   style={{ letterSpacing: "4px" }}
                   className="py-1 px-1.5 font-medium text-black bg-[#DEC344] text-[11px] lg:text-[13px]"
                 >
-                  DESIGN
+                  VISION
                 </span>
                 <h2 className="mt-3 Noto mb-1.5 sm:mb-3 text-2xl md:text-3xl font-semibold">
-                  Designed In New York
+                  Our Vision
                 </h2>
                 <p className="mb-7 sm:mb-7 lg:mb-7 text-md max-w-full">
-                  Sapien amet dui rutrum quis lectus accumsan morbi aliquam
-                  interdum. Nisl malesuada imperdiet nunc ultricies massa id
-                  urna sit. Elementum velit aliquam aliquet aliquam id volutpat.
-                  Sed sodales in orci at risus lectus pharetra in mollis odio.
-                </p>
-
-                <p className="mb-7 sm:mb-7 lg:mb-7 text-md max-w-full">
-                  Sapien amet dui rutrum quis lectus accumsan morbi aliquam
-                  interdum. Nisl malesuada imperdiet nunc ultricies massa id
-                  urna sit. Elementum velit aliquam aliquet aliquam id volutpat.
-                  Sed sodales in orci at risus lectus pharetra in mollis odio.
+                  At Googly, our vision is to redefine the eyewear industry
+                  through innovation and creativity. We aspire to be the leading
+                  brand in eyewear fashion, offering unique and stylish designs
+                  that cater to diverse tastes and preferences. Our goal is to
+                  blend cutting-edge technology with contemporary aesthetics,
+                  ensuring that our products not only improve vision but also
+                  make a bold fashion statement.
                 </p>
               </div>
             </div>
