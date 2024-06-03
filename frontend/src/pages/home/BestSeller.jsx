@@ -12,82 +12,8 @@ import { useState } from "react";
 import { useRef } from "react";
 import { getBestSellingProductsAsync } from "@/features/productSlice";
 
-const data = [
-  {
-    id: "1",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "2",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "3",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "4",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "5",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview11-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "6",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview4-300x300.jpg?v=1714171785",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "7",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview2-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-  {
-    id: "8",
-    image:
-      "https://cdn.shopify.com/s/files/1/0852/5099/8550/files/product-clearview3-300x300.jpg?v=1714171786",
-    name: "Crystal Wave",
-    rating: 4,
-    price: "88",
-    sale_price: "49",
-  },
-];
 // STAR RATING
-const StarRating = ({ rating }) => {
+const StarRating = ({rating}) => {
   const stars = [];
   for (let i = 0; i < rating; i++) {
     stars.push(<FaStar key={i} className="text-[#FFC209]" />);
@@ -102,9 +28,9 @@ const BestSeller = () => {
   const products = useSelector((state) => state.products.BEstSellingProduct);
   const sliderRef = useRef(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getBestSellingProductsAsync())
-  },[]);
+  }, []);
 
   const next = () => {
     if (sliderRef.current) {
@@ -196,7 +122,7 @@ const BestSeller = () => {
                   >
                     <div className="group max-w-[17rem] mx-auto overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-150 cursor-pointer border border-gray-200">
                       <img
-                        className="object-contain w-full h-52 sm:h-56 transition duration-500 group-hover:scale-105"
+                        className="object-cover w-full h-52 sm:h-56 transition duration-500 group-hover:scale-105"
                         src={data?.images?.primary?.downloadURL}
                         alt="products"
                       />
@@ -207,7 +133,7 @@ const BestSeller = () => {
                         </h3>
 
                         <div className="mb-3 flex items-center justify-center gap-0.5">
-                        {data?.averageRating === 0 ? (
+                          {data?.averageRating === 0 ? (
                             <FaStar className="text-white" />
                           ) : (
                             <StarRating rating={data?.averageRating} />

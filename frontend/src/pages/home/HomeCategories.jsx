@@ -35,12 +35,12 @@ const HomeCategories = () => {
               <Link
                 to="/shop"
                 onClick={handleMoveTop}
-                className="relative overflow-hidden rounded-lg shadow transition hover:shadow-lg"
+                className="relative group overflow-hidden rounded-lg shadow transition hover:shadow-lg"
               >
                 <img
                   alt="category"
                   src="https://firebasestorage.googleapis.com/v0/b/it-expert-d4328.appspot.com/o/Googly%20Banners%2FFemale%20Category.png?alt=media&token=be834710-4d02-47fc-b3a4-bcb9c89056e4"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="relative bg-gradient-to-t from-gray-900/50 to-transparent pt-32 sm:pt-48 lg:pt-64">
                   <div className="p-4 sm:p-6">
@@ -62,12 +62,12 @@ const HomeCategories = () => {
               <Link
                 to="/shop"
                 onClick={handleMoveTop}
-                className="relative overflow-hidden rounded-lg shadow transition hover:shadow-lg"
+                className="relative group overflow-hidden rounded-lg shadow transition hover:shadow-lg"
               >
                 <img
                   alt=""
                   src="https://firebasestorage.googleapis.com/v0/b/it-expert-d4328.appspot.com/o/Googly%20Banners%2FMale%20Category.png?alt=media&token=e565098b-25b0-46f1-bc0f-e48c6ea76eb6"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
 
                 <div className="relative bg-gradient-to-t from-gray-900/50 to-transparent pt-32 sm:pt-48 lg:pt-64">
