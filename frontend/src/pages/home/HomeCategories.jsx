@@ -38,8 +38,8 @@ const HomeCategories = () => {
                 className="relative group overflow-hidden rounded-lg shadow transition hover:shadow-lg"
               >
                 <img
-                  alt="category"
-                  src="https://firebasestorage.googleapis.com/v0/b/it-expert-d4328.appspot.com/o/Googly%20Banners%2FFemale%20Category.png?alt=media&token=be834710-4d02-47fc-b3a4-bcb9c89056e4"
+                  alt="Women category"
+                  src="https://firebasestorage.googleapis.com/v0/b/it-expert-d4328.appspot.com/o/Googly%20Images%2FFemale_Category.png?alt=media&token=87837630-2a2c-44bd-b0a5-cf90b947cb85"
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="relative bg-gradient-to-t from-gray-900/50 to-transparent pt-32 sm:pt-48 lg:pt-64">
@@ -65,8 +65,8 @@ const HomeCategories = () => {
                 className="relative group overflow-hidden rounded-lg shadow transition hover:shadow-lg"
               >
                 <img
-                  alt=""
-                  src="https://firebasestorage.googleapis.com/v0/b/it-expert-d4328.appspot.com/o/Googly%20Banners%2FMale%20Category.png?alt=media&token=e565098b-25b0-46f1-bc0f-e48c6ea76eb6"
+                  alt="Men Category"
+                  src="https://firebasestorage.googleapis.com/v0/b/it-expert-d4328.appspot.com/o/Googly%20Images%2FMale_Category.png?alt=media&token=86ed8d67-871e-482a-99e9-911778a93da3"
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
 

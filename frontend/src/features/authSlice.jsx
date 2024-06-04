@@ -18,10 +18,9 @@ export const createuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(signupUrl, formData);
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      console.log(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   }
 );
@@ -32,10 +31,8 @@ export const loginuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(loginUrl, formData);
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      console.log(error.response.data.error);
       toast.error(error.response.data.error);
     }
   }
@@ -47,10 +44,9 @@ export const updateuserAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(updateUrl, formData);
-      // console.log(response.data);
       return response.data;
     } catch (error) {
-      console.log(error.response.data.error);
+      throw new Error(error)
     }
   }
 );
@@ -61,7 +57,7 @@ export const userSessionAsync = createAsyncThunk("user/session", async () => {
     const response = await axios.get(userSessionUrl);
     return response.data;
   } catch (error) {
-    console.log(error.response.data.error);
+  throw new Error(error)
   }
 });
 
@@ -71,7 +67,6 @@ export const logoutUserAsync = createAsyncThunk("user/logout", async () => {
     const response = await axios.delete(logoutUrl);
     return response.data;
   } catch (error) {
-    console.log(error.response.data.error);
     toast.error(error.response.data.error);
   }
 });
@@ -84,7 +79,7 @@ export const forgetuserAsync = createAsyncThunk(
       const response = await axios.post(forgetPassUrl, formData);
       return response.data;
     } catch (error) {
-      console.log(error.response.data.error);
+      throw new Error(error)
     }
   }
 );
@@ -97,7 +92,7 @@ export const verifyOtpAsync = createAsyncThunk(
       const response = await axios.post(verifyOtpPassUrl, formData);
       return response.data;
     } catch (error) {
-      console.log(error.response.data.error);
+      throw new Error(error)
     }
   }
 );
@@ -114,7 +109,7 @@ export const resetPassAsync = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.log(error.response.data.error);
+      throw new Error(error)
     }
   }
 );

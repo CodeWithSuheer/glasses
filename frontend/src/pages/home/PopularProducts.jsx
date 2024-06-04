@@ -18,7 +18,6 @@ const PopularProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const popularProducts = useSelector((state) => state.products.popularProducts);
-  console.log(popularProducts);
 
   useEffect(() => {
     dispatch(getPopularProductsAsync());

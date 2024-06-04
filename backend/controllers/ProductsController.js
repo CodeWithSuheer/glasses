@@ -99,7 +99,6 @@ export const getProducts = async (req, res, next) => {
     setMongoose();
     res.status(200).json(response);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 };

@@ -24,7 +24,6 @@ const SelectedItem = () => {
   const dispatch = useDispatch();
 
   const product = useSelector((state) => state.products.singleProduct);
-  // console.log(product);
 
   useEffect(() => {
     dispatch(getProductByIdAsync(id));

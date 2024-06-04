@@ -13,11 +13,8 @@ export const verifyCouponAtCheckout = async (req,res,next) => {
     if(coupon.uses_count === coupon.total_limit) throw new Error("Coupun Limit reached");
     const currentDate = Date.now();
     if(coupon.expiresAt <= currentDate || !coupon.isActive) throw new Error("Coupun Expired");
-    console.log(userId);
     const userIds = coupon.users.map(user => user.userId);
     const checkUserID = userIds.includes(userId);
-    console.log(checkUserID);
-    console.log(coupon.users);
     if(checkUserID) throw new Error("You have already used this code");
     return res.status(200).json({couponDiscountSuccess:true,discountAmount:coupon.discountAmount,message:"Coupon verified Successfully" });
   } catch (error) {

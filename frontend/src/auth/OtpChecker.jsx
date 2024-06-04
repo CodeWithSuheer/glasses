@@ -16,9 +16,7 @@ const OtpChecker = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(verifyOtpAsync(formData)).then((res) => {
-      console.log(res);
       if (res.payload.OtpVerified) {
         navigate(`/reset/${id}/${res.payload.OtpVerified.toString()}`);
         setFormData({

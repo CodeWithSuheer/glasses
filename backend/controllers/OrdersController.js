@@ -74,10 +74,7 @@ export const updateOrder = async (req, res, next) => {
     if (!id) {
       throw new Error("No ID Provided");
     }
-    console.log(id);
-    console.log(orderProgress);
     const order = await OrdersModel.findById(id);
-    console.log(order);
     if (!order) {
       throw new Error("No Order Data Found");
     }

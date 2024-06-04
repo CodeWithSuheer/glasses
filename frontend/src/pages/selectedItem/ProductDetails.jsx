@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import toast from "react-hot-toast";
+import Loader from "react-loaders";
 
 // STAR RATING
 const StarRating = ({ rating }) => {
@@ -286,13 +287,13 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
                       <div className="details_box py-6">
                         <div className="py-0.5 details flex justify-start items-center font-semibold">
-                          <h3 className="name w-40">SKU</h3>
-                          <h3 className="name w-full">00157PD-1-2</h3>
+                          <h3 className="name w-40">Product Code</h3>
+                          <h3 className="name w-full">{product?.product_code}</h3>
                         </div>
                         <div className="py-0.5 details flex justify-start items-center font-semibold">
-                          <h3 className="name w-40">Categories</h3>
+                          <h3 className="name w-40">Category</h3>
                           <h3 className="name w-full">
-                            Men’s Eyewear, Prescription Glasses, Women’s Eyewear
+                           {product?.category}
                           </h3>
                         </div>
                       </div>
@@ -322,7 +323,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
                         {/* ALL REVIEWS MAPPED HERE */}
                         {loading ? (
                           <div className="flex justify-center mt-10">
-                            Loading
+                            <Loader type="ball-beat" active={true} />
                           </div>
                         ) : (
                           <>
