@@ -18,6 +18,10 @@ const productsSchema = new mongoose.Schema(
       type: Number,
       default:0
     },
+    product_code: {
+      type: String,
+      required: [true, "product_code required"],
+    },
     stock: {
       type: Number,
       required: [true, "stock required"],
