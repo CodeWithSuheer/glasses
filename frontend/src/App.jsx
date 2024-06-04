@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { userSessionAsync } from "./features/authSlice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import "loaders.css/loaders.min.css";
+import "./Loader.scss";
 import { Toaster } from "react-hot-toast";
 // import HomePage from "./pages/home/HomePage";
 const HomePage = React.lazy(() => import("./pages/home/HomePage"));
@@ -33,7 +35,6 @@ import Blogs from "./pages/blog/Blogs";
 import { FaArrowUp } from "react-icons/fa6";
 import Blog2 from "./pages/blog/Blog2";
 import Blog3 from "./pages/blog/Blog3";
-// import OrderSuccessPage from "./pages/checkout/OrderSuccessPage";
 const OrderSuccessPage = React.lazy(() =>
   import("./pages/checkout/OrderSuccessPage")
 );
