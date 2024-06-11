@@ -25,7 +25,6 @@ export const getAllProductsAsync = createAsyncThunk(
       const response = await axios.post(
         `${getAllProductUrl}?category=${data.category}&page=${data.page}${searchQuery}`
       );
-      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error);

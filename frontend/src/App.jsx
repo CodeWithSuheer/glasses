@@ -7,7 +7,6 @@ import "./App.css";
 import "loaders.css/loaders.min.css";
 import "./Loader.scss";
 import { Toaster } from "react-hot-toast";
-// import HomePage from "./pages/home/HomePage";
 const HomePage = React.lazy(() => import("./pages/home/HomePage"));
 import Contact from "./pages/contact/Contact";
 import About from "./pages/about/About";
@@ -78,7 +77,6 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
           {/* ---------- MAIN ROUTES ---------- */}
-          {/* <Route path="/" element={<HomePage />} /> */}
           <Route
             path="/"
             element={
@@ -90,7 +88,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<MyOrders />} />
-          {/* <Route path="/shop" element={<Shop />} /> */}
           <Route
             path="/shop"
             element={
@@ -107,8 +104,6 @@ function App() {
               </Suspense>
             }
           />
-          {/* <Route path="/selectedItem/:id" element={<SelectedItem />} /> */}
-          {/* <Route path="/order-success" element={<OrderSuccessPage />} /> */}
           <Route
             path="//order-success"
             element={
@@ -119,7 +114,6 @@ function App() {
           />
 
           {/* ---------- AUTH ROUTES ---------- */}
-          {/* <Route path="/signup" element={<Signup />} /> */}
           <Route
             path="/signup"
             element={

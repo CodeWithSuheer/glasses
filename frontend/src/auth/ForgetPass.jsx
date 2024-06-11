@@ -19,7 +19,6 @@ const ForgetPass = () => {
       if (res.error) {
         ("");
       } else {
-        console.log(res);
         navigate(`/otp/${res.payload.userId}`);
         setFormData({
           email: "",

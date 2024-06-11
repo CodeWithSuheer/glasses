@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { updateuserAsync, userSessionAsync } from "../../features/authSlice";
 import { createOrderAsync, getallOrderAsync } from "../../features/orderSlice";
 import { Helmet } from "react-helmet";
-// import { Modal } from "keep-react";
-// import { Check } from "phosphor-react";
 import { clearCart } from "../../features/ActionsSlice";
 import { verifyCouponAsync } from "../../features/couponSlice";
 import { useDispatch, useSelector } from "react-redux";

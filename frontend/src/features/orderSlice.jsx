@@ -13,12 +13,9 @@ export const createOrderAsync = createAsyncThunk(
   async (formData) => {
     try {
       const response = await axios.post(createOrderUrl, formData);
-      // toast.success(response.data.message);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       toast.error(error.response.data.error);
-      console.error("Error submitting review:", error);
     }
   }
 );
@@ -29,12 +26,9 @@ export const getallOrderAsync = createAsyncThunk(
   async (id) => {
     try {
       const response = await axios.post(getAllOrderUrl, { id });
-      // toast.success(response.data.message);
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.error);
-      console.error("Error submitting review:", error);
+      throw new Error(error)
     }
   }
 );
