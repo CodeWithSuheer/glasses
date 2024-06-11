@@ -48,6 +48,7 @@ export const updateOrderAsync = createAsyncThunk(
 
 const initialState = {
   loading: false,
+  deleteLoading : false,
   allOrders: [],
 };
 
@@ -58,13 +59,22 @@ const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      // GET ALL REVIEWS ADD CASE
+      // CREATE ORDER
       .addCase(createOrderAsync.pending, (state) => {
         state.loading = true;
       })
       .addCase(createOrderAsync.fulfilled, (state) => {
         state.loading = false;
       })
+
+        // UPDATE REVIEWS
+        .addCase(updateOrderAsync.pending, (state) => {
+          state.deleteLoading = true;
+        })
+        .addCase(updateOrderAsync.fulfilled, (state) => {
+          state.deleteLoading = false;
+        })
+  
 
 
       // GET ALL REVIEWS ADD CASE

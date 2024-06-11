@@ -123,7 +123,7 @@ export const sendResetPasswordOTP = async (req, res, next) => {
         timestamp: new Date(currentDate.getTime()),
       });
     }
-    await sendEmail({ email, g_Otp });
+    await sendEmail({ email, g_Otp , subject:"Reset Password Code" });
     return res
       .status(200)
       .json({ message: "OTP has been sent to your email", userId: user.id });
@@ -153,7 +153,7 @@ export const verifyOtp = async (req, res, next) => {
 
 export const updateUserInformation = async (req, res, next) => {
   try {
-    const { id, name, email, address, phone } = req.body;
+    const { id, name, email, address, phone , postal_code } = req.body;
     if (!id) throw new Error("User ID Required");
     let updateQuery = {};
     if (name) {
@@ -164,6 +164,9 @@ export const updateUserInformation = async (req, res, next) => {
     }
     if (phone) {
       updateQuery = { ...updateQuery, phone };
+    }
+    if (postal_code) {
+      updateQuery = { ...updateQuery, postal_code };
     }
     if (email) {
       const isEmailExist = await UserModel.findOne({ email });

@@ -51,9 +51,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
   useEffect(() => {
     if (product?.images?.primary?.downloadURL) {
       setMainImage(null); // Clear the image first
-      setTimeout(() => {
         setMainImage(product.images.primary.downloadURL);
-      }, 0); // Delay setting the new image to allow the clear state to take effect
     }
   }, [product]);
 
@@ -67,6 +65,19 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   const user = useSelector((state) => state.auth.user);
   const userID = user?.user?.id;
+
+  // HANDLE ADD TO CART
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addToCart(product));
+      navigate("/shop");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      toast.success("Item Added to Cart");
+    }
+  };
 
   // FORMDATA
   const [formData, setFormData] = useState({
@@ -89,24 +100,12 @@ export const ProductOverviewTwo = ({ product, id }) => {
         rating: review.rating,
       });
     }
-    // setIsOpenUpdate(true);
   };
 
   const allreviews = useSelector((state) => state.reviews.allReviews);
   const loading = useSelector((state) => state.reviews.loading);
 
-  // HANDLE ADD TO CART
-  const handleAddToCart = () => {
-    if (product) {
-      dispatch(addToCart(product));
-      navigate("/shop");
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-      toast.success("Item Added to Cart");
-    }
-  };
+  
 
   const [selectedRating, setSelectedRating] = useState();
 
@@ -151,17 +150,14 @@ export const ProductOverviewTwo = ({ product, id }) => {
     const id = review_Id;
 
     if (selectedRating !== rating) {
-      const updateReviewDataOptional = delete updateReviewDataOptional?.rating;
       const payload = { id, ...updateReviewData };
       payload.rating = selectedRating;
       dispatch(updatereviewsAsync(payload)).then(() => {
         dispatch(getallreviewsAsync(productId));
-        // closeUpdateModal();
       });
     } else {
       dispatch(updatereviewsAsync({ id, ...updateReviewData })).then(() => {
         dispatch(getallreviewsAsync(productId));
-        // closeUpdateModal();
       });
       setUpdateReviewData({ review: "", rating: 1 });
     }
@@ -193,9 +189,19 @@ export const ProductOverviewTwo = ({ product, id }) => {
               <div>
                 <div className="py-10 xl:pt-16 xl:pb-6 grid items-start grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-6">
                   {/* IMAGES */}
-                  <div className="w-full sm:flex justify-center  gap-2">
-                    {/* SIDE IMAGES */}
-                    <div className="sm:space-y-3 w-[3.5rem] sm:w-[4.5rem] max-sm:flex sm:flex-col max-sm:mb-4 max-sm:gap-4">
+                  <div className="w-full sm:flex-row-reverse sm:flex justify-center  gap-2">
+
+                     {/* MAIN IMAGE */}
+                     <div className="img_cont">
+                      <img
+                        src={mainImage}
+                        alt="Product"
+                        className="w-full h-full sm:h-[28rem] sm:w-[28rem] rounded object-cover border border-gray-300"
+                      />
+                    </div>
+
+                     {/* SIDE IMAGES 1 */}
+                     <div className="mt-3 sm:space-y-3 w-[3.5rem] sm:w-[4.5rem] max-sm:flex sm:flex-col max-sm:mb-4 max-sm:gap-4">
                       {primary && (
                         <img
                           src={primary.downloadURL}
@@ -215,15 +221,6 @@ export const ProductOverviewTwo = ({ product, id }) => {
                           }
                         />
                       ))}
-                    </div>
-
-                    {/* MAIN IMAGE */}
-                    <div className="img_cont">
-                      <img
-                        src={mainImage}
-                        alt="Product"
-                        className="w-full h-full sm:h-[28rem] sm:w-[28rem] rounded object-cover border border-gray-300"
-                      />
                     </div>
                   </div>
 
@@ -264,8 +261,6 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
                       {/* ABOUT */}
                       <div className="mt-4">
-                        {/* <StarRating rating={product?.rating} /> */}
-
                         {product && (
                           <div className="flex items-center mt-4">
                             {product.averageRating === 0 ? (

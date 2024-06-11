@@ -14,8 +14,8 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="heroSectionbg min-h-[120vh] ">
-        <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl px-4 sm:px-16 lg:px-14 xl:px-0 pt-40 pb-0 lg:pt-24 lg:pb-0 mx-auto">
+      <section className="heroSectionbg min-h-[100vh] sm:min-h-[120vh] ">
+        <div className="max-w-5xl xl:max-w-6xl xxl:max-w-7xl px-4 sm:px-16 lg:px-14 xl:px-0 pt-32 pb-0 lg:pt-24 lg:pb-0 mx-auto">
           <div className="items-center lg:flex lg:min-h-screen">
             <div className="w-full pt-0 sm:pt-0 lg:pt-0 lg:w-1/2 antialiased">
               <div className="lg:max-w-xl">
