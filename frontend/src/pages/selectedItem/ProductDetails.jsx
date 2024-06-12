@@ -51,7 +51,7 @@ export const ProductOverviewTwo = ({ product, id }) => {
   useEffect(() => {
     if (product?.images?.primary?.downloadURL) {
       setMainImage(null); // Clear the image first
-        setMainImage(product.images.primary.downloadURL);
+      setMainImage(product.images.primary.downloadURL);
     }
   }, [product]);
 
@@ -104,8 +104,6 @@ export const ProductOverviewTwo = ({ product, id }) => {
 
   const allreviews = useSelector((state) => state.reviews.allReviews);
   const loading = useSelector((state) => state.reviews.loading);
-
-  
 
   const [selectedRating, setSelectedRating] = useState();
 
@@ -190,9 +188,8 @@ export const ProductOverviewTwo = ({ product, id }) => {
                 <div className="py-10 xl:pt-16 xl:pb-6 grid items-start grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-6">
                   {/* IMAGES */}
                   <div className="w-full sm:flex-row-reverse sm:flex justify-center  gap-2">
-
-                     {/* MAIN IMAGE */}
-                     <div className="img_cont">
+                    {/* MAIN IMAGE */}
+                    <div className="img_cont">
                       <img
                         src={mainImage}
                         alt="Product"
@@ -200,8 +197,8 @@ export const ProductOverviewTwo = ({ product, id }) => {
                       />
                     </div>
 
-                     {/* SIDE IMAGES 1 */}
-                     <div className="mt-3 sm:space-y-3 w-[3.5rem] sm:w-[4.5rem] max-sm:flex sm:flex-col max-sm:mb-4 max-sm:gap-4">
+                    {/* SIDE IMAGES 1 */}
+                    <div className="mt-3 sm:space-y-3 w-[3.5rem] sm:w-[4.5rem] max-sm:flex sm:flex-col max-sm:mb-4 max-sm:gap-4">
                       {primary && (
                         <img
                           src={primary.downloadURL}
@@ -283,13 +280,13 @@ export const ProductOverviewTwo = ({ product, id }) => {
                       <div className="details_box py-6">
                         <div className="py-0.5 details flex justify-start items-center font-semibold">
                           <h3 className="name w-40">Product Code</h3>
-                          <h3 className="name w-full">{product?.product_code}</h3>
+                          <h3 className="name w-full">
+                            {product?.product_code}
+                          </h3>
                         </div>
                         <div className="py-0.5 details flex justify-start items-center font-semibold">
                           <h3 className="name w-40">Category</h3>
-                          <h3 className="name w-full">
-                           {product?.category}
-                          </h3>
+                          <h3 className="name w-full">{product?.category}</h3>
                         </div>
                       </div>
 
@@ -311,9 +308,25 @@ export const ProductOverviewTwo = ({ product, id }) => {
                     <>
                       {/* ALL REVIEWS  */}
                       <div className="mt-6 all_reviews">
-                        <h2 className="text-2xl text-gray-800 font-semibold">
-                          ALL REVIEWS
-                        </h2>
+                        <div className="mb-6 reviews_headers">
+                          {allreviews.length > 0 ? (
+                            <>
+                              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-800 text-center font-semibold">
+                                We’re feeling the love
+                              </h2>
+                              <h2 className="mt-2 text-xl text-gray-600 text-center font-semibold">
+                                Reviews{" "}
+                                <span className="text-md">
+                                  ({allreviews.length})
+                                </span>
+                              </h2>
+                            </>
+                          ) : (
+                            <h2 className="text-2xl text-gray-800 text-center font-semibold">
+                              No Reviews
+                            </h2>
+                          )}
+                        </div>
 
                         {/* ALL REVIEWS MAPPED HERE */}
                         {loading ? (

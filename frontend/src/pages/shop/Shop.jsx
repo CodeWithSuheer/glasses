@@ -1,13 +1,13 @@
-import { IoIosArrowForward } from "react-icons/io";
-import "./Shop.css";
+import { useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
 import PopularProducts from "../home/PopularProducts";
 import { FaHome } from "react-icons/fa";
 import { TfiArrowCircleDown } from "react-icons/tfi";
 import { FaStar } from "react-icons/fa";
 import { getAllProductsAsync } from "../../features/productSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import "./Shop.css";
 
 // STAR RATING
 const StarRating = ({ rating }) => {
@@ -150,7 +150,10 @@ const Shop = () => {
 
                       <div className="py-5 text-center overflow-hidden">
                         <h3 className="mb-3 text-md sm:text-xl font-semibold text-gray-800">
-                          {data?.name} <span className="text-base">({data?.product_code})</span>
+                          {data?.name}{" "}
+                          <span className="text-base">
+                            ({data?.product_code})
+                          </span>
                         </h3>
 
                         <div className="mb-3 flex items-center justify-center gap-0.5">
@@ -192,7 +195,7 @@ const Shop = () => {
                 </>
               ) : (
                 <>
-                  {[0, 1, 2, 3, 4, 5,6].map((_data, index) => (
+                  {[0, 1, 2, 3, 4, 5, 6].map((_data, index) => (
                     <div key={index}>
                       <div className="group mb-5 relative rounded-lg w-full bg-white border border-gray-300 cursor-pointer animate-pulse">
                         <div className="bg-gray-300 h-56 w-full"></div>
